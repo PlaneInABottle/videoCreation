@@ -1,0 +1,174 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 31387611,
+  "query": "neon city street",
+  "url": "https://www.pexels.com/video/neon-lights-on-japanese-restaurant-facade-31387611/",
+  "download_url": "https://videos.pexels.com/video-files/31387611/13393390_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 6,
+  "user": {
+    "id": 177885845,
+    "name": "Ali  Alcántara",
+    "url": "https://www.pexels.com/@alialcantara"
+  },
+  "video_files": [
+    {
+      "id": 13393385,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/31387611/13393385_360_640_30fps.mp4",
+      "size": 526888
+    },
+    {
+      "id": 13393387,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/31387611/13393387_540_960_30fps.mp4",
+      "size": 940677
+    },
+    {
+      "id": 13393389,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/31387611/13393389_720_1280_30fps.mp4",
+      "size": 1417577
+    },
+    {
+      "id": 13393390,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/31387611/13393390_1080_1920_30fps.mp4",
+      "size": 2835385
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 25736942,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/31387611/pictures/preview-0.jpg"
+    },
+    {
+      "id": 25736943,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/31387611/pictures/preview-1.jpg"
+    },
+    {
+      "id": 25736947,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/31387611/pictures/preview-2.jpg"
+    },
+    {
+      "id": 25736949,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/31387611/pictures/preview-3.jpg"
+    },
+    {
+      "id": 25736952,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/31387611/pictures/preview-4.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Ali  Alcántara on Pexels",
+  "downloaded_at": "2026-07-11T12:15:28.507Z",
+  "api_response": {
+    "id": 31387611,
+    "width": 1080,
+    "height": 1920,
+    "duration": 6,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/neon-lights-on-japanese-restaurant-facade-31387611/",
+    "image": "https://images.pexels.com/videos/31387611/authentic-japanese-historic-japan-japanese-japon-31387611.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 177885845,
+      "name": "Ali  Alcántara",
+      "url": "https://www.pexels.com/@alialcantara"
+    },
+    "video_files": [
+      {
+        "id": 13393385,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/31387611/13393385_360_640_30fps.mp4",
+        "size": 526888
+      },
+      {
+        "id": 13393387,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/31387611/13393387_540_960_30fps.mp4",
+        "size": 940677
+      },
+      {
+        "id": 13393389,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/31387611/13393389_720_1280_30fps.mp4",
+        "size": 1417577
+      },
+      {
+        "id": 13393390,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/31387611/13393390_1080_1920_30fps.mp4",
+        "size": 2835385
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 25736942,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/31387611/pictures/preview-0.jpg"
+      },
+      {
+        "id": 25736943,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/31387611/pictures/preview-1.jpg"
+      },
+      {
+        "id": 25736947,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/31387611/pictures/preview-2.jpg"
+      },
+      {
+        "id": 25736949,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/31387611/pictures/preview-3.jpg"
+      },
+      {
+        "id": 25736952,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/31387611/pictures/preview-4.jpg"
+      }
+    ]
+  }
+}

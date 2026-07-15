@@ -1,0 +1,40 @@
+{
+  "id": "04-night-city-beat-edit",
+  "type": "fast-paced-reel",
+  "sourceMode": "stock-montage",
+  "editStyle": "social-arc",
+  "length": 22.5,
+  "aspect": "9:16",
+  "gradeId": "subtle-teal-orange",
+  "musicQuery": "Kavinsky Nightcall official audio",
+  "queries": [
+    {
+      "query": "Tokyo street night",
+      "count": 3,
+      "anchorY": 0.48
+    },
+    {
+      "query": "Tokyo neon signs",
+      "count": 3,
+      "anchorY": 0.46
+    },
+    {
+      "query": "Tokyo train night",
+      "count": 2,
+      "anchorY": 0.48
+    },
+    {
+      "query": "Tokyo traffic night",
+      "count": 2,
+      "anchorY": 0.48
+    },
+    {
+      "query": "Tokyo people night street",
+      "count": 2,
+      "anchorY": 0.46
+    }
+  ],
+  "musicStart": 30.929,
+  "musicHookTime": 31.03,
+  "musicHookRole": "opening"
+}

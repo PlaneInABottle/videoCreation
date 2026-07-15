@@ -1,0 +1,19 @@
+{
+  "id": "03-talking-head-broll",
+  "type": "talking-head-broll-short",
+  "sourceMode": "stock-montage",
+  "length": 30,
+  "aspect": "9:16",
+  "gradeId": "clean-talking-head",
+  "musicQuery": "The xx Intro official audio",
+  "musicStart": 18,
+  "voiceoverFile": "voiceover.wav",
+  "title": "NOTICE MORE",
+  "subtitle": "a city is built from small moments",
+  "queries": [
+    { "query": "person talking to camera", "count": 2, "anchorY": 0.38 },
+    { "query": "walking through city", "count": 2, "anchorY": 0.45 },
+    { "query": "coffee shop details", "count": 2, "anchorY": 0.5 },
+    { "query": "city architecture close up", "count": 2, "anchorY": 0.46 }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 31310968,
+  "query": "Tokyo traffic night",
+  "url": "https://www.pexels.com/video/aerial-night-view-of-tokyo-city-skyline-31310968/",
+  "download_url": "https://videos.pexels.com/video-files/31310968/13367605_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 15,
+  "user": {
+    "id": 2150753825,
+    "name": "Софья Шабанова",
+    "url": "https://www.pexels.com/@2150753825"
+  },
+  "video_files": [
+    {
+      "id": 13367602,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/31310968/13367602_360_640_30fps.mp4",
+      "size": 786130
+    },
+    {
+      "id": 13367603,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/31310968/13367603_540_960_30fps.mp4",
+      "size": 1715251
+    },
+    {
+      "id": 13367604,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/31310968/13367604_720_1280_30fps.mp4",
+      "size": 3131590
+    },
+    {
+      "id": 13367605,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/31310968/13367605_1080_1920_30fps.mp4",
+      "size": 7983755
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 25671219,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-0.jpg"
+    },
+    {
+      "id": 25671220,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-1.jpg"
+    },
+    {
+      "id": 25671221,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-2.jpg"
+    },
+    {
+      "id": 25671222,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-3.jpg"
+    },
+    {
+      "id": 25671223,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-4.jpg"
+    },
+    {
+      "id": 25671224,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-5.jpg"
+    },
+    {
+      "id": 25671225,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-6.jpg"
+    },
+    {
+      "id": 25671226,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-7.jpg"
+    },
+    {
+      "id": 25671227,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-8.jpg"
+    },
+    {
+      "id": 25671228,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-9.jpg"
+    },
+    {
+      "id": 25671229,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-10.jpg"
+    },
+    {
+      "id": 25671230,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-11.jpg"
+    },
+    {
+      "id": 25671231,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-12.jpg"
+    },
+    {
+      "id": 25671232,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/31310968/pictures/preview-13.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Софья Шабанова on Pexels",
+  "downloaded_at": "2026-07-11T16:30:10.100Z",
+  "api_response": {
+    "id": 31310968,
+    "width": 1080,
+    "height": 1920,
+    "duration": 15,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/aerial-night-view-of-tokyo-city-skyline-31310968/",
+    "image": "https://images.pexels.com/videos/31310968/pexels-photo-31310968.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 2150753825,
+      "name": "Софья Шабанова",
+      "url": "https://www.pexels.com/@2150753825"
+    },
+    "video_files": [
+      {
+        "id": 13367602,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/31310968/13367602_360_640_30fps.mp4",
+        "size": 786130
+      },
+      {
+        "id": 13367603,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/31310968/13367603_540_960_30fps.mp4",
+        "size": 1715251
+      },
+      {
+        "id": 13367604,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/31310968/13367604_720_1280_30fps.mp4",
+        "size": 3131590
+      },
+      {
+        "id": 13367605,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/31310968/13367605_1080_1920_30fps.mp4",
+        "size": 7983755
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 25671219,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-0.jpg"
+      },
+      {
+        "id": 25671220,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-1.jpg"
+      },
+      {
+        "id": 25671221,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-2.jpg"
+      },
+      {
+        "id": 25671222,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-3.jpg"
+      },
+      {
+        "id": 25671223,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-4.jpg"
+      },
+      {
+        "id": 25671224,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-5.jpg"
+      },
+      {
+        "id": 25671225,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-6.jpg"
+      },
+      {
+        "id": 25671226,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-7.jpg"
+      },
+      {
+        "id": 25671227,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-8.jpg"
+      },
+      {
+        "id": 25671228,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-9.jpg"
+      },
+      {
+        "id": 25671229,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-10.jpg"
+      },
+      {
+        "id": 25671230,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-11.jpg"
+      },
+      {
+        "id": 25671231,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-12.jpg"
+      },
+      {
+        "id": 25671232,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/31310968/pictures/preview-13.jpg"
+      }
+    ]
+  }
+}

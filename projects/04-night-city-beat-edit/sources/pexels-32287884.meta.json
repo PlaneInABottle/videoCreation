@@ -1,0 +1,194 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 32287884,
+  "query": "Tokyo neon signs",
+  "url": "https://www.pexels.com/video/vibrant-night-traffic-in-tokyo-s-shinjuku-district-32287884/",
+  "download_url": "https://videos.pexels.com/video-files/32287884/13769555_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 8,
+  "user": {
+    "id": 2148748546,
+    "name": "Ebrar photography",
+    "url": "https://www.pexels.com/@ebrar-photography-2148748546"
+  },
+  "video_files": [
+    {
+      "id": 13769552,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/32287884/13769552_360_640_30fps.mp4",
+      "size": 1580299
+    },
+    {
+      "id": 13769553,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/32287884/13769553_540_960_30fps.mp4",
+      "size": 3153991
+    },
+    {
+      "id": 13769554,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/32287884/13769554_720_1280_30fps.mp4",
+      "size": 4975297
+    },
+    {
+      "id": 13769555,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/32287884/13769555_1080_1920_30fps.mp4",
+      "size": 9506213
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 26716655,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-0.jpg"
+    },
+    {
+      "id": 26716656,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-1.jpg"
+    },
+    {
+      "id": 26716657,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-2.jpg"
+    },
+    {
+      "id": 26716658,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-3.jpg"
+    },
+    {
+      "id": 26716659,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-4.jpg"
+    },
+    {
+      "id": 26716660,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-5.jpg"
+    },
+    {
+      "id": 26716661,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/32287884/pictures/preview-6.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Ebrar photography on Pexels",
+  "downloaded_at": "2026-07-11T16:30:01.964Z",
+  "api_response": {
+    "id": 32287884,
+    "width": 1080,
+    "height": 1920,
+    "duration": 8,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/vibrant-night-traffic-in-tokyo-s-shinjuku-district-32287884/",
+    "image": "https://images.pexels.com/videos/32287884/cars-japan-street-tokyo-32287884.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 2148748546,
+      "name": "Ebrar photography",
+      "url": "https://www.pexels.com/@ebrar-photography-2148748546"
+    },
+    "video_files": [
+      {
+        "id": 13769552,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/32287884/13769552_360_640_30fps.mp4",
+        "size": 1580299
+      },
+      {
+        "id": 13769553,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/32287884/13769553_540_960_30fps.mp4",
+        "size": 3153991
+      },
+      {
+        "id": 13769554,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/32287884/13769554_720_1280_30fps.mp4",
+        "size": 4975297
+      },
+      {
+        "id": 13769555,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/32287884/13769555_1080_1920_30fps.mp4",
+        "size": 9506213
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 26716655,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-0.jpg"
+      },
+      {
+        "id": 26716656,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-1.jpg"
+      },
+      {
+        "id": 26716657,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-2.jpg"
+      },
+      {
+        "id": 26716658,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-3.jpg"
+      },
+      {
+        "id": 26716659,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-4.jpg"
+      },
+      {
+        "id": 26716660,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-5.jpg"
+      },
+      {
+        "id": 26716661,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/32287884/pictures/preview-6.jpg"
+      }
+    ]
+  }
+}

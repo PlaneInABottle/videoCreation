@@ -1,0 +1,294 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 18688462,
+  "query": "Tokyo street night",
+  "url": "https://www.pexels.com/video/night-walk-at-the-asakusa-sensoji-temple-18688462/",
+  "download_url": "https://videos.pexels.com/video-files/18688462/18688462-hd_1080_1920_30fps.mp4",
+  "downloaded_quality": "hd",
+  "width": 1080,
+  "height": 1920,
+  "duration": 20,
+  "user": {
+    "id": 754618019,
+    "name": "Dr. Rogelio Varela Jr.",
+    "url": "https://www.pexels.com/@dr-rogelio-varela-jr-754618019"
+  },
+  "video_files": [
+    {
+      "id": 7967927,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/18688462/18688462-hd_720_1280_30fps.mp4",
+      "size": 6125818
+    },
+    {
+      "id": 7967928,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/18688462/18688462-hd_1080_1920_30fps.mp4",
+      "size": 12190207
+    },
+    {
+      "id": 7967929,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 240,
+      "height": 426,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_240_426_30fps.mp4",
+      "size": 1352637
+    },
+    {
+      "id": 7967930,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_540_960_30fps.mp4",
+      "size": 4157509
+    },
+    {
+      "id": 7967931,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_360_640_30fps.mp4",
+      "size": 2409053
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 19502264,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-0.jpeg"
+    },
+    {
+      "id": 19502266,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-1.jpeg"
+    },
+    {
+      "id": 19502267,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-2.jpeg"
+    },
+    {
+      "id": 19502270,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-3.jpeg"
+    },
+    {
+      "id": 19502272,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-4.jpeg"
+    },
+    {
+      "id": 19502274,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-5.jpeg"
+    },
+    {
+      "id": 19502275,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-6.jpeg"
+    },
+    {
+      "id": 19502278,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-7.jpeg"
+    },
+    {
+      "id": 19502279,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-8.jpeg"
+    },
+    {
+      "id": 19502281,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-9.jpeg"
+    },
+    {
+      "id": 19502284,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-10.jpeg"
+    },
+    {
+      "id": 19502288,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-11.jpeg"
+    },
+    {
+      "id": 19502292,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-12.jpeg"
+    },
+    {
+      "id": 19502295,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-13.jpeg"
+    },
+    {
+      "id": 19502299,
+      "nr": 14,
+      "picture": "https://images.pexels.com/videos/18688462/pictures/preview-14.jpeg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Dr. Rogelio Varela Jr. on Pexels",
+  "downloaded_at": "2026-07-11T16:30:00.469Z",
+  "api_response": {
+    "id": 18688462,
+    "width": 1080,
+    "height": 1920,
+    "duration": 20,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/night-walk-at-the-asakusa-sensoji-temple-18688462/",
+    "image": "https://images.pexels.com/videos/18688462/asakusa-japan-sensoji-temple-18688462.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 754618019,
+      "name": "Dr. Rogelio Varela Jr.",
+      "url": "https://www.pexels.com/@dr-rogelio-varela-jr-754618019"
+    },
+    "video_files": [
+      {
+        "id": 7967927,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/18688462/18688462-hd_720_1280_30fps.mp4",
+        "size": 6125818
+      },
+      {
+        "id": 7967928,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/18688462/18688462-hd_1080_1920_30fps.mp4",
+        "size": 12190207
+      },
+      {
+        "id": 7967929,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 240,
+        "height": 426,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_240_426_30fps.mp4",
+        "size": 1352637
+      },
+      {
+        "id": 7967930,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_540_960_30fps.mp4",
+        "size": 4157509
+      },
+      {
+        "id": 7967931,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/18688462/18688462-sd_360_640_30fps.mp4",
+        "size": 2409053
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 19502264,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-0.jpeg"
+      },
+      {
+        "id": 19502266,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-1.jpeg"
+      },
+      {
+        "id": 19502267,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-2.jpeg"
+      },
+      {
+        "id": 19502270,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-3.jpeg"
+      },
+      {
+        "id": 19502272,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-4.jpeg"
+      },
+      {
+        "id": 19502274,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-5.jpeg"
+      },
+      {
+        "id": 19502275,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-6.jpeg"
+      },
+      {
+        "id": 19502278,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-7.jpeg"
+      },
+      {
+        "id": 19502279,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-8.jpeg"
+      },
+      {
+        "id": 19502281,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-9.jpeg"
+      },
+      {
+        "id": 19502284,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-10.jpeg"
+      },
+      {
+        "id": 19502288,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-11.jpeg"
+      },
+      {
+        "id": 19502292,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-12.jpeg"
+      },
+      {
+        "id": 19502295,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-13.jpeg"
+      },
+      {
+        "id": 19502299,
+        "nr": 14,
+        "picture": "https://images.pexels.com/videos/18688462/pictures/preview-14.jpeg"
+      }
+    ]
+  }
+}

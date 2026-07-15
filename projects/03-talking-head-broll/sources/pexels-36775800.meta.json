@@ -1,0 +1,194 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 36775800,
+  "query": "coffee shop details",
+  "url": "https://www.pexels.com/video/chic-coffee-break-with-pink-decor-36775800/",
+  "download_url": "https://videos.pexels.com/video-files/36775800/15584578_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 8,
+  "user": {
+    "id": 2147728402,
+    "name": "Zenia Diamond",
+    "url": "https://www.pexels.com/@zenia-diamond-2147728402"
+  },
+  "video_files": [
+    {
+      "id": 15584561,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/36775800/15584561_360_640_30fps.mp4",
+      "size": 641319
+    },
+    {
+      "id": 15584566,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/36775800/15584566_540_960_30fps.mp4",
+      "size": 1191965
+    },
+    {
+      "id": 15584572,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/36775800/15584572_720_1280_30fps.mp4",
+      "size": 1827456
+    },
+    {
+      "id": 15584578,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/36775800/15584578_1080_1920_30fps.mp4",
+      "size": 3474533
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 31295569,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-0.jpg"
+    },
+    {
+      "id": 31295570,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-1.jpg"
+    },
+    {
+      "id": 31295571,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-2.jpg"
+    },
+    {
+      "id": 31295572,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-3.jpg"
+    },
+    {
+      "id": 31295573,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-4.jpg"
+    },
+    {
+      "id": 31295574,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-5.jpg"
+    },
+    {
+      "id": 31295575,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/36775800/pictures/preview-6.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Zenia Diamond on Pexels",
+  "downloaded_at": "2026-07-11T11:44:22.874Z",
+  "api_response": {
+    "id": 36775800,
+    "width": 1080,
+    "height": 1920,
+    "duration": 8,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/chic-coffee-break-with-pink-decor-36775800/",
+    "image": "https://images.pexels.com/videos/36775800/pexels-photo-36775800.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 2147728402,
+      "name": "Zenia Diamond",
+      "url": "https://www.pexels.com/@zenia-diamond-2147728402"
+    },
+    "video_files": [
+      {
+        "id": 15584561,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/36775800/15584561_360_640_30fps.mp4",
+        "size": 641319
+      },
+      {
+        "id": 15584566,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/36775800/15584566_540_960_30fps.mp4",
+        "size": 1191965
+      },
+      {
+        "id": 15584572,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/36775800/15584572_720_1280_30fps.mp4",
+        "size": 1827456
+      },
+      {
+        "id": 15584578,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/36775800/15584578_1080_1920_30fps.mp4",
+        "size": 3474533
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 31295569,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-0.jpg"
+      },
+      {
+        "id": 31295570,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-1.jpg"
+      },
+      {
+        "id": 31295571,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-2.jpg"
+      },
+      {
+        "id": 31295572,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-3.jpg"
+      },
+      {
+        "id": 31295573,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-4.jpg"
+      },
+      {
+        "id": 31295574,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-5.jpg"
+      },
+      {
+        "id": 31295575,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/36775800/pictures/preview-6.jpg"
+      }
+    ]
+  }
+}

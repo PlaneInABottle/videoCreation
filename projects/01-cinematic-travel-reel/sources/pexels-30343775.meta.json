@@ -1,0 +1,174 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 30343775,
+  "query": "metro train night",
+  "url": "https://www.pexels.com/video/modern-subway-station-with-moving-train-30343775/",
+  "download_url": "https://videos.pexels.com/video-files/30343775/13006767_1080_1920_50fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 6,
+  "user": {
+    "id": 266968882,
+    "name": "Esra Korkmaz",
+    "url": "https://www.pexels.com/@esrakorkmaz"
+  },
+  "video_files": [
+    {
+      "id": 13006764,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30343775/13006764_360_640_50fps.mp4",
+      "size": 986862
+    },
+    {
+      "id": 13006765,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30343775/13006765_540_960_50fps.mp4",
+      "size": 1886474
+    },
+    {
+      "id": 13006766,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30343775/13006766_720_1280_50fps.mp4",
+      "size": 3067157
+    },
+    {
+      "id": 13006767,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30343775/13006767_1080_1920_50fps.mp4",
+      "size": 7055649
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 24711096,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/30343775/pictures/preview-0.jpg"
+    },
+    {
+      "id": 24711097,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/30343775/pictures/preview-1.jpg"
+    },
+    {
+      "id": 24711098,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/30343775/pictures/preview-2.jpg"
+    },
+    {
+      "id": 24711099,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/30343775/pictures/preview-3.jpg"
+    },
+    {
+      "id": 24711100,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/30343775/pictures/preview-4.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Esra Korkmaz on Pexels",
+  "downloaded_at": "2026-07-11T12:15:41.563Z",
+  "api_response": {
+    "id": 30343775,
+    "width": 1080,
+    "height": 1920,
+    "duration": 6,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/modern-subway-station-with-moving-train-30343775/",
+    "image": "https://images.pexels.com/videos/30343775/pexels-photo-30343775.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 266968882,
+      "name": "Esra Korkmaz",
+      "url": "https://www.pexels.com/@esrakorkmaz"
+    },
+    "video_files": [
+      {
+        "id": 13006764,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30343775/13006764_360_640_50fps.mp4",
+        "size": 986862
+      },
+      {
+        "id": 13006765,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30343775/13006765_540_960_50fps.mp4",
+        "size": 1886474
+      },
+      {
+        "id": 13006766,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30343775/13006766_720_1280_50fps.mp4",
+        "size": 3067157
+      },
+      {
+        "id": 13006767,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30343775/13006767_1080_1920_50fps.mp4",
+        "size": 7055649
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 24711096,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/30343775/pictures/preview-0.jpg"
+      },
+      {
+        "id": 24711097,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/30343775/pictures/preview-1.jpg"
+      },
+      {
+        "id": 24711098,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/30343775/pictures/preview-2.jpg"
+      },
+      {
+        "id": 24711099,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/30343775/pictures/preview-3.jpg"
+      },
+      {
+        "id": 24711100,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/30343775/pictures/preview-4.jpg"
+      }
+    ]
+  }
+}

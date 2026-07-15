@@ -1,0 +1,81 @@
+{
+  "id": "01-cinematic-travel-reel",
+  "type": "cinematic-travel-reel",
+  "editStyle": "social-arc",
+  "length": 20,
+  "sourceMode": "stock-montage",
+  "cutTimes": [0, 1.5, 4, 6.25, 8.75, 10.5, 12.25, 15.75, 18.2, 20],
+  "aspect": "9:16",
+  "gradeId": "subtle-teal-orange",
+  "title": "CITY / AFTER DARK",
+  "subtitle": "a night transit study",
+  "musicQuery": "M83 Midnight City official audio",
+  "queries": [
+    {
+      "query": "reviewed night traffic hook",
+      "videoIds": [26690701],
+      "sourceIn": 2,
+      "storyFunction": "visual-hook",
+      "anchorY": 0.48
+    },
+    {
+      "query": "reviewed rainy street setup",
+      "videoIds": [38489828],
+      "sourceIn": 0.5,
+      "storyFunction": "orient-place",
+      "anchorY": 0.48
+    },
+    {
+      "query": "reviewed neon sign detail",
+      "videoIds": [31387611],
+      "sourceIn": 1,
+      "storyFunction": "sensory-details",
+      "anchorY": 0.46
+    },
+    {
+      "query": "reviewed metro movement",
+      "videoIds": [19948831],
+      "sourceIn": 1,
+      "storyFunction": "movement",
+      "anchorY": 0.48
+    },
+    {
+      "query": "reviewed neon crowd build",
+      "videoIds": [29235948],
+      "sourceIn": 1,
+      "storyFunction": "movement",
+      "anchorY": 0.46
+    },
+    {
+      "query": "reviewed train passage build",
+      "videoIds": [30343775],
+      "sourceIn": 1,
+      "storyFunction": "movement",
+      "anchorY": 0.48
+    },
+    {
+      "query": "reviewed night facade detail",
+      "videoIds": [34672414],
+      "sourceIn": 0.8,
+      "storyFunction": "sensory-details",
+      "anchorY": 0.46
+    },
+    {
+      "query": "reviewed skyline payoff",
+      "videoIds": [31310968],
+      "sourceIn": 4,
+      "storyFunction": "hero-reveal",
+      "anchorY": 0.48
+    },
+    {
+      "query": "reviewed light release",
+      "videoIds": [6543346],
+      "sourceIn": 1,
+      "storyFunction": "release",
+      "anchorY": 0.48
+    }
+  ],
+  "musicStart": 100.984,
+  "musicHookTime": 101.26,
+  "musicHookRole": "opening"
+}

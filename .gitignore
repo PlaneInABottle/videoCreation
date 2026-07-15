@@ -1,0 +1,38 @@
+# Dependencies and local caches
+node_modules/
+.cache/
+coverage/
+*.log
+
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Generated artifacts
+dist/
+output/
+projects/*/quality/
+projects/*/sources/*.info.json
+projects/*/sources/review-sheet.jpg
+
+# Downloaded and generated media. Keep the small provenance sidecars instead.
+music/
+*.mp3
+*.m4a
+*.wav
+*.flac
+*.aac
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.part
+
+# User-supplied footage stays local.
+raw-footage/*
+!raw-footage/.gitkeep
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

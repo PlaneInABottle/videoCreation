@@ -1,0 +1,25 @@
+{
+  "source": "youtube",
+  "type": "video",
+  "id": "IkQmAoXUP_c",
+  "title": "首都高 Triumph Scrambler 900 TOKYO EXPRESSWAY 4K RAW SOUND",
+  "url": "https://www.youtube.com/watch?v=IkQmAoXUP_c",
+  "channel": "Moto Rider Doge",
+  "channel_url": "https://www.youtube.com/channel/UC1ivJlB1liP0kzWaHHpRlxQ",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "attribution": "Video by Moto Rider Doge on YouTube",
+  "original_duration_seconds": 1256,
+  "requested_section_seconds": {
+    "start": 705,
+    "end": 810
+  },
+  "downloaded_duration_seconds": 109.981,
+  "downloaded_format": {
+    "container": "webm",
+    "video": "VP9 2560x1440 30000/1001 fps",
+    "audio": "Opus 48 kHz stereo"
+  },
+  "sha256": "5df21e548fe74b72f411cffacb4782d25406a6c5b683539dca2c0ebfce5551e6",
+  "downloaded_at": "2026-07-12T10:32:00Z",
+  "full_metadata": "youtube-IkQmAoXUP_c-1145-1330.info.json"
+}

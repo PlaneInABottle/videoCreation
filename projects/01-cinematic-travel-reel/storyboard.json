@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "projectId": "01-cinematic-travel-reel",
+  "createdAt": "2026-07-12T10:52:08.625Z",
+  "videoTypeId": "cinematic-travel-reel",
+  "sourceMode": "stock-montage",
+  "aspect": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 20,
+  "gradeId": "subtle-teal-orange",
+  "title": "CITY / AFTER DARK",
+  "subtitle": "a night transit study",
+  "music": {
+    "file": "music/m83-midnight-city-official-audio-dX3k_QDnzHE.mp3",
+    "start": 100.984,
+    "beatMap": "projects/01-cinematic-travel-reel/beat-map.json",
+    "featuredAt": 0.276,
+    "featuredRole": "opening"
+  },
+  "shots": [
+    {
+      "id": "shot-01",
+      "source": ".cache/pexels/pexels-26690701-1440x2536.mp4",
+      "pexelsId": 26690701,
+      "query": "reviewed night traffic hook",
+      "sourceIn": 2,
+      "sourceDuration": 1.5,
+      "timelineIn": 0,
+      "timelineOut": 1.5,
+      "storyFunction": "visual-hook",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-02",
+      "source": ".cache/pexels/pexels-38489828-1080x1920.mp4",
+      "pexelsId": 38489828,
+      "query": "reviewed rainy street setup",
+      "sourceIn": 0.5,
+      "sourceDuration": 2.5,
+      "timelineIn": 1.5,
+      "timelineOut": 4,
+      "storyFunction": "orient-place",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-03",
+      "source": ".cache/pexels/pexels-31387611-1080x1920.mp4",
+      "pexelsId": 31387611,
+      "query": "reviewed neon sign detail",
+      "sourceIn": 1,
+      "sourceDuration": 2.25,
+      "timelineIn": 4,
+      "timelineOut": 6.25,
+      "storyFunction": "sensory-details",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-04",
+      "source": ".cache/pexels/pexels-19948831-1080x1920.mp4",
+      "pexelsId": 19948831,
+      "query": "reviewed metro movement",
+      "sourceIn": 1,
+      "sourceDuration": 2.5,
+      "timelineIn": 6.25,
+      "timelineOut": 8.75,
+      "storyFunction": "movement",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-05",
+      "source": ".cache/pexels/pexels-29235948-1080x1920.mp4",
+      "pexelsId": 29235948,
+      "query": "reviewed neon crowd build",
+      "sourceIn": 1,
+      "sourceDuration": 1.75,
+      "timelineIn": 8.75,
+      "timelineOut": 10.5,
+      "storyFunction": "movement",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-06",
+      "source": ".cache/pexels/pexels-30343775-1080x1920.mp4",
+      "pexelsId": 30343775,
+      "query": "reviewed train passage build",
+      "sourceIn": 1,
+      "sourceDuration": 1.75,
+      "timelineIn": 10.5,
+      "timelineOut": 12.25,
+      "storyFunction": "movement",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-07",
+      "source": ".cache/pexels/pexels-34672414-1080x1920.mp4",
+      "pexelsId": 34672414,
+      "query": "reviewed night facade detail",
+      "sourceIn": 0.8,
+      "sourceDuration": 3.5,
+      "timelineIn": 12.25,
+      "timelineOut": 15.75,
+      "storyFunction": "sensory-details",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-08",
+      "source": ".cache/pexels/pexels-31310968-1080x1920.mp4",
+      "pexelsId": 31310968,
+      "query": "reviewed skyline payoff",
+      "sourceIn": 4,
+      "sourceDuration": 2.45,
+      "timelineIn": 15.75,
+      "timelineOut": 18.2,
+      "storyFunction": "hero-reveal",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-09",
+      "source": ".cache/pexels/pexels-6543346-1440x2496.mp4",
+      "pexelsId": 6543346,
+      "query": "reviewed light release",
+      "sourceIn": 1,
+      "sourceDuration": 1.8,
+      "timelineIn": 18.2,
+      "timelineOut": 20,
+      "storyFunction": "release",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": null
+    }
+  ],
+  "output": "output/01-cinematic-travel-reel.mp4"
+}

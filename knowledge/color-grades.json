@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-11",
+  "purpose": "Conservative color-correction workflow and creative grade starting points for project video types.",
+  "deliveryAssumption": {
+    "dynamicRange": "sdr",
+    "colorSpace": "bt709",
+    "pixelFormat": "yuv420p",
+    "note": "Do not label output BT.709 without first interpreting and converting the source correctly. HDR and log workflows require explicit transforms not defined by these SDR presets."
+  },
+  "correctionWorkflow": [
+    {
+      "order": 1,
+      "id": "interpret-source",
+      "goal": "Read source primaries, transfer, matrix, range, bit depth, and camera profile before applying a look.",
+      "checks": ["ffprobe color metadata", "full versus limited range", "action-camera flat or log profile", "HDR transfer", "rotation metadata"]
+    },
+    {
+      "order": 2,
+      "id": "normalize-color-space",
+      "goal": "Convert supported source material into the working SDR color space with an explicit colorspace or zscale transform when needed.",
+      "checks": ["no clipped highlights from conversion", "no unintended gamma shift", "skin and neutral objects remain plausible"]
+    },
+    {
+      "order": 3,
+      "id": "correct-exposure-white-balance",
+      "goal": "Set believable black, midtone, highlight, and neutral color before style.",
+      "checks": ["waveform or signal statistics", "white objects are neutral when appropriate", "faces are not underexposed", "sky and food highlight detail survives"]
+    },
+    {
+      "order": 4,
+      "id": "shot-match",
+      "goal": "Make adjacent shots feel as though they belong in one sequence.",
+      "checks": ["exposure consistency", "white-balance continuity", "saturation continuity", "skin consistency", "daylight-to-shade transitions"]
+    },
+    {
+      "order": 5,
+      "id": "creative-grade",
+      "goal": "Apply one selected look at restrained strength, adjusting per shot when necessary.",
+      "checks": ["look supports story", "important colors remain recognizable", "no clipped channels", "grade remains stable in motion"]
+    },
+    {
+      "order": 6,
+      "id": "output-check",
+      "goal": "Inspect encoded output rather than trusting only filter parameters.",
+      "checks": ["BT.709 tags", "banding", "macroblocking", "shadow detail", "skin", "sky gradients", "mobile-size preview"]
+    }
+  ],
+  "guardrails": [
+    "A preset is a starting point, not a replacement for per-shot correction.",
+    "Do not apply a creative LUT before normalizing mismatched source footage.",
+    "Protect skin tones, food identity, sky gradients, and reflective highlights.",
+    "Prefer small changes across several controls over one extreme saturation or contrast operation.",
+    "Avoid sharpening noisy or highly compressed action-camera footage before denoising and scaling decisions are complete.",
+    "Render a short representative sample before grading the full timeline."
+  ],
+  "grades": [
+    {
+      "id": "neutral-cinematic",
+      "name": "Neutral Cinematic",
+      "intent": "Natural color with slightly firmer contrast and restrained saturation, suitable as the safest default.",
+      "bestVideoTypeIds": ["cinematic-travel-reel", "fast-paced-reel", "motovlog-reel", "talking-head-broll-short", "food-reel", "compact-youtube-vlog", "lyric-video", "gaming-highlight", "podcast-clip"],
+      "visualTargets": ["clean neutral whites", "open shadows", "controlled highlights", "moderate saturation", "consistent skin"],
+      "ffmpegStartingPoint": "eq=contrast=1.04:saturation=1.02:gamma=0.99",
+      "optionalFilters": ["curves", "colorbalance", "lut3d"],
+      "avoid": ["crushed shadows", "global color cast", "aggressive vignette"],
+      "strength": "low"
+    },
+    {
+      "id": "warm-travel",
+      "name": "Warm Travel",
+      "intent": "A welcoming sunlit look for streets, beaches, people, and travel memories without turning neutrals orange.",
+      "bestVideoTypeIds": ["cinematic-travel-reel", "talking-head-broll-short", "food-reel", "compact-youtube-vlog"],
+      "visualTargets": ["slightly warm mids and highlights", "natural blue sky", "healthy skin", "soft highlight rolloff"],
+      "ffmpegStartingPoint": "colorbalance=rs=0.02:gs=0.01:bs=-0.02:rm=0.015:bm=-0.01,eq=contrast=1.03:saturation=1.05",
+      "optionalFilters": ["curves", "colorbalance", "lut3d"],
+      "avoid": ["orange whites", "yellow skin", "muddy blue water", "warming already tungsten-lit footage"],
+      "strength": "low-to-medium"
+    },
+    {
+      "id": "subtle-teal-orange",
+      "name": "Subtle Teal and Orange",
+      "intent": "Cooler shadows and warmer highlights create separation for action and city footage while keeping the effect secondary to subject color.",
+      "bestVideoTypeIds": ["cinematic-travel-reel", "fast-paced-reel", "motovlog-reel", "gaming-highlight", "fitness-reel"],
+      "visualTargets": ["slightly cyan-blue shadows", "slightly warm highlights", "neutral mids around skin", "firm but not crushed contrast"],
+      "ffmpegStartingPoint": "colorbalance=rs=-0.02:gs=0.005:bs=0.025:rh=0.025:gh=0.005:bh=-0.02,eq=contrast=1.06:saturation=1.04",
+      "optionalFilters": ["curves", "colorbalance", "lut3d"],
+      "avoid": ["cyan faces", "orange food", "electric blue shadows", "using on every daylight beach shot"],
+      "strength": "low-to-medium"
+    },
+    {
+      "id": "clean-vibrant",
+      "name": "Clean Vibrant",
+      "intent": "Bright, clear, and legible color for products, tutorials, graphics, gaming, and general social content.",
+      "bestVideoTypeIds": ["fast-paced-reel", "product-demo", "tutorial", "motion-graphics-explainer", "gaming-highlight", "fitness-reel"],
+      "visualTargets": ["clean whites", "moderate contrast", "clear brand and object colors", "bright mids", "minimal color cast"],
+      "ffmpegStartingPoint": "eq=brightness=0.01:contrast=1.04:saturation=1.07:gamma=1.01",
+      "optionalFilters": ["curves", "unsharp"],
+      "avoid": ["neon skin", "clipped colored channels", "oversharpened text or gameplay UI"],
+      "strength": "low"
+    },
+    {
+      "id": "natural-action",
+      "name": "Natural Action",
+      "intent": "Controlled action-camera footage with readable road, sky, landscape, and machine detail rather than an exaggerated action-sports look.",
+      "bestVideoTypeIds": ["motovlog-reel", "compact-youtube-vlog", "fitness-reel"],
+      "visualTargets": ["stable exposure", "retained sky highlights", "visible shadow detail", "natural road and vegetation", "moderate local crispness"],
+      "ffmpegStartingPoint": "eq=contrast=1.04:saturation=1.03:gamma=1.01,unsharp=5:5:0.25:5:5:0",
+      "optionalFilters": ["hqdn3d", "curves", "lut3d"],
+      "avoid": ["sharpening compression artifacts", "crushed helmet or road shadows", "oversaturated blue sky", "grade changes caused by automatic exposure shifts"],
+      "strength": "low"
+    },
+    {
+      "id": "clean-talking-head",
+      "name": "Clean Talking Head",
+      "intent": "Consistent skin, neutral background color, and gentle contrast for speech-led footage.",
+      "bestVideoTypeIds": ["talking-head-broll-short", "tutorial", "podcast-clip"],
+      "visualTargets": ["natural skin", "neutral whites", "soft highlight control", "open facial shadows", "matched cameras"],
+      "ffmpegStartingPoint": "colorbalance=rm=0.01:gm=0.005:bm=-0.005,eq=contrast=1.025:saturation=1.015:gamma=1.01",
+      "optionalFilters": ["curves", "colorbalance", "hqdn3d"],
+      "avoid": ["beauty-filter skin", "green or magenta skin shift", "excessive contrast", "different white balance between jump cuts"],
+      "strength": "low"
+    },
+    {
+      "id": "clean-food",
+      "name": "Clean Food",
+      "intent": "Warm-neutral presentation that emphasizes texture and freshness while preserving the real identity of ingredients.",
+      "bestVideoTypeIds": ["food-reel"],
+      "visualTargets": ["believable ingredient color", "warm highlights", "visible texture", "clean plate whites", "controlled specular highlights"],
+      "ffmpegStartingPoint": "colorbalance=rh=0.015:gh=0.005:bh=-0.01,eq=contrast=1.025:saturation=1.055:gamma=1.01",
+      "optionalFilters": ["curves", "colorbalance", "unsharp"],
+      "avoid": ["orange white plates", "oversaturated greens and reds", "crushed dark sauces", "sharpened steam noise"],
+      "strength": "low"
+    },
+    {
+      "id": "vintage-film",
+      "name": "Vintage Film",
+      "intent": "A nostalgic lower-saturation look with softened contrast, optional grain, and restrained vignette.",
+      "bestVideoTypeIds": ["lyric-video", "cinematic-travel-reel"],
+      "visualTargets": ["soft contrast", "slightly reduced saturation", "subtle warm or faded bias", "organic texture", "gentle edges"],
+      "ffmpegStartingPoint": "curves=preset=vintage,eq=saturation=0.9:contrast=0.98,vignette=angle=PI/5",
+      "optionalFilters": ["noise", "colorbalance", "lut3d"],
+      "avoid": ["heavy fake scratches", "strong vignette on vertical faces", "uniform brown cast", "grain that breaks platform compression"],
+      "strength": "medium"
+    }
+  ],
+  "ffmpegCapabilities": {
+    "primaryFilters": ["colorspace", "zscale", "eq", "curves", "colorbalance", "colorlevels", "lut3d", "vignette", "unsharp", "hqdn3d", "signalstats"],
+    "lutRule": "Treat a LUT as one creative transform in a controlled color pipeline. Record LUT path, file hash, expected input color space, and strength method.",
+    "validationRule": "Render representative samples and inspect image content; a syntactically valid filter graph does not prove a good grade."
+  },
+  "source": {
+    "url": "https://ffmpeg.org/ffmpeg-filters.html",
+    "context7LibraryId": "/websites/ffmpeg_documentation",
+    "checkedAt": "2026-07-11",
+    "supports": ["availability and behavior of FFmpeg color, LUT, curve, vignette, sharpen, denoise, and signal-analysis filters"]
+  }
+}

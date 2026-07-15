@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-12",
+  "purpose": "Human-facing editorial patterns for Instagram Reels and TikTok. These rules prioritize retention, story, recognizable musical changes, and visual motivation over mechanical beat matching.",
+  "coreRules": [
+    "Earn attention in the first one to three seconds with the strongest image, result, movement, question, or contrast.",
+    "Build one clear setup-tension-payoff arc. A collection of attractive clips is not automatically a story.",
+    "Choose a music excerpt with a recognizable entrance, lift, silence, vocal change, chorus, drop, or release that fits the video duration.",
+    "Align hero reveals, pacing changes, transition clusters, and endings with large musical changes. Ordinary cuts do not need to land on every beat.",
+    "Vary pacing by section: quick hook, readable setup, denser build, longer payoff, concise release or loop.",
+    "Use hard cuts by default. Use a transition only when motion, shape, light, location, or a major musical event motivates it.",
+    "A major musical wave can motivate a scene change without motivating a transition effect. Require footage compatibility before choosing an effect.",
+    "Prefer coherent footage from one person, place, activity, or visual world over maximum source diversity.",
+    "Declare the source mode before editing. Stock montages should avoid repeated clips; continuous-footage edits may intentionally reuse one source across distinct time ranges.",
+    "Sound design should reinforce selected actions and reveals, not decorate every cut.",
+    "Front-load value but preserve a later payoff. Do not hide the only good shot until the final second.",
+    "Separate the attention hook from the musical payoff: open with a strong visual or question, use a complete setup phrase to create anticipation, and let the recognizable refrain or drop resolve roughly six to twelve seconds later when the format supports it.",
+    "Design multiple opening variants and test retention; small hook changes can matter more than adding effects."
+  ],
+  "sourceModes": [
+    {
+      "id": "stock-montage",
+      "purpose": "Demonstrate mood, category coverage, source acquisition, and visual assembly from independently filmed clips.",
+      "requirements": [
+        "review and pin exact source IDs and in-points",
+        "avoid repeated clips by default",
+        "keep time of day, palette, subject category, and camera grammar coherent",
+        "do not imply one person, route, or location when the footage cannot support that claim"
+      ]
+    },
+    {
+      "id": "continuous-footage",
+      "purpose": "Demonstrate action continuity, geography, compression of time, and native sound from one recording or session.",
+      "requirements": [
+        "preserve screen direction and readable action",
+        "select distinct moments rather than treating low source diversity as a defect",
+        "retain or deliberately replace source audio",
+        "normalize partial-download timestamps before using the earliest segment"
+      ]
+    },
+    {
+      "id": "single-session-multicam",
+      "purpose": "Demonstrate authored coverage while keeping person, place, activity, wardrobe, light, and sound continuous.",
+      "requirements": [
+        "alternate wide, medium, close detail, POV, and reaction coverage",
+        "sync cameras and preserve action matches",
+        "use one production sound bed with J-cuts and L-cuts where useful"
+      ]
+    }
+  ],
+  "editStructures": [
+    {
+      "id": "mood-montage",
+      "shape": "iconic hook, sensory details, movement cluster, hero image, tonal release",
+      "bestFor": ["travel atmosphere", "night city", "fashion mood", "music-led visual study"]
+    },
+    {
+      "id": "continuity-journey",
+      "shape": "motion hook, route context, progression, encounter or acceleration, arrival",
+      "bestFor": ["motovlog", "walkthrough", "event day", "process with geography"]
+    },
+    {
+      "id": "reveal-arc",
+      "shape": "preview or question, withheld context, escalating proof, reveal, reaction or release",
+      "bestFor": ["destination reveal", "transformation", "product result", "before and after"]
+    },
+    {
+      "id": "proof-arc",
+      "shape": "claim, context, evidence, counterpoint or mistake, takeaway",
+      "bestFor": ["talking head", "tutorial", "product demo", "podcast clip"]
+    },
+    {
+      "id": "performance-highlight",
+      "shape": "stakes, setup, attempt, turning point, payoff, reaction or replay",
+      "bestFor": ["gaming", "fitness", "sport", "music performance"]
+    },
+    {
+      "id": "loop-study",
+      "shape": "opening motion or question, development, payoff, final frame or sound that reconnects to the opening",
+      "bestFor": ["very short visual edits", "satisfying processes", "ambient loops"]
+    }
+  ],
+  "musicAlignment": {
+    "majorEvents": [
+      "instrument or drum entrance",
+      "vocal entrance or lyric change",
+      "build into chorus or drop",
+      "brief silence before impact",
+      "large energy lift or release",
+      "recognizable hook or refrain",
+      "final cadence or designed loop point"
+    ],
+    "mapToVisuals": [
+      "Place the subject or destination reveal on the strongest useful event.",
+      "Increase shot density during a build, then hold the payoff longer after the change.",
+      "Use one transition cluster or speed change around the major event instead of repeating the same effect.",
+      "Use lyric meaning when it creates a clear visual relationship; do not cut across important words only to hit a pulse.",
+      "For anticipation edits, label the popular phrase as a payoff rather than an opening hook, preserve the preceding lyric or musical pickup, and increase visual intensity toward it.",
+      "Use musical sections rather than a rigid beat grid to shape pacing: readable setup, denser build, longer peak or payoff hold, and relaxed release.",
+      "Start and end on complete musical phrases where practical."
+    ],
+    "avoid": [
+      "choosing a flat middle section only because it has a stable BPM",
+      "cutting every shot to the same number of beats",
+      "calling regular pulse alignment a creative success",
+      "placing a generic transition on every detected onset"
+    ]
+  },
+  "popularEditRecipes": [
+    {
+      "id": "travel-reveal",
+      "durationSeconds": "12-25",
+      "structure": [
+        "0-1.5s: strongest destination preview or unusual movement",
+        "1.5-6s: two to four details that establish place and person",
+        "6-12s: movement sequence that accelerates with the musical build",
+        "major music change: hero location, activity, or emotional reveal",
+        "final 2-4s: hold, reaction, departure, or frame that can loop"
+      ],
+      "techniques": [
+        "match-on-action",
+        "foreground occlusion cut",
+        "whip pan only when both clips move in the same direction",
+        "brief speed ramp into the reveal",
+        "location ambience under selected shots"
+      ]
+    },
+    {
+      "id": "motovlog-journey",
+      "durationSeconds": "15-30",
+      "structure": [
+        "0-1.5s: close pass, road shape, lean, or destination preview",
+        "1.5-5s: start, mirror, controls, or route context",
+        "5-12s: continuous movement with enough geography to remain readable",
+        "major music change: acceleration, open-road reveal, pass, or destination",
+        "ending: arrival, engine stop, dismount, look-back, or POV loop"
+      ],
+      "techniques": [
+        "preserved engine and shift transients",
+        "motion-direction match cuts",
+        "speed ramps only around clean acceleration",
+        "longer road hold after a fast cluster"
+      ]
+    },
+    {
+      "id": "night-city-mood",
+      "durationSeconds": "10-20",
+      "structure": [
+        "0-1s: iconic crowd, sign, vehicle, or skyline",
+        "1-6s: readable city details and movement",
+        "6-10s: tighter cuts during musical build",
+        "major music change: wide skyline, crossing, train arrival, or human moment",
+        "ending: return to a related opening shape or movement"
+      ],
+      "techniques": [
+        "neon color continuity",
+        "light and shape match cuts",
+        "one or two motivated zoom or directional transitions",
+        "traffic, train, and crowd ambience accents"
+      ]
+    },
+    {
+      "id": "talking-head-proof",
+      "durationSeconds": "20-60",
+      "structure": [
+        "0-3s: clear value promise, statement of intent, or question",
+        "body: one claim at a time with B-roll mapped to the exact phrase",
+        "pattern interrupts: camera change, text, or proof only when attention needs renewal",
+        "close: concise takeaway, result, or invitation"
+      ],
+      "techniques": [
+        "word-timed captions",
+        "speech-first jump cuts",
+        "J-cuts and L-cuts",
+        "music ducking",
+        "real presenter audio and matching lips"
+      ]
+    }
+  ],
+  "observedExamples": [
+    {
+      "title": "Travel Cinematic Short Video | Train Cinematic",
+      "url": "https://www.youtube.com/watch?v=PNYH5u9Yuc4",
+      "checkedAt": "2026-07-12",
+      "observedDurationSeconds": 31.37,
+      "observation": "The edit uses a restrained opening, a very long train/platform body hold, then a faster final cluster. Its pacing contrast comes from chapters rather than frequent cuts."
+    },
+    {
+      "title": "BMW S1000RR CINEMATIC | 4K",
+      "url": "https://www.youtube.com/watch?v=PSHTkGHfSVo",
+      "checkedAt": "2026-07-12",
+      "observedDurationSeconds": 63.04,
+      "observation": "The opening alternates wide, rider, controls, lights, and machine details at high density, then gives moving road shots longer holds. One rider and many shot scales create both coherence and variety."
+    },
+    {
+      "title": "DARJEELING in One Minute | A cinematic Edit",
+      "url": "https://www.youtube.com/watch?v=7fkcyK5K9w8",
+      "checkedAt": "2026-07-12",
+      "observedDurationSeconds": 41.47,
+      "observation": "A slow forest and human introduction opens into a landscape reveal, people and place details, then a dense closing montage. The edit changes density by story section."
+    },
+    {
+      "title": "Welcome To Tokyo - Edit | Midnight City",
+      "url": "https://www.youtube.com/watch?v=JJOkj4II4zM",
+      "checkedAt": "2026-07-12",
+      "observedDurationSeconds": 17.97,
+      "observation": "Cuts cluster around large style and musical changes while car, skyline, and headlight motifs are held between clusters. The example supports authored wave maps, not routine beat matching."
+    }
+  ],
+  "reviewRubric": [
+    "Would the opening stop a cold viewer without relying on a logo or generic title?",
+    "Can the viewer describe the subject and promise after three seconds?",
+    "Does each shot add new information or emotion?",
+    "Does the sequence stay within one believable person, place, or activity?",
+    "Is there a visible build and a satisfying payoff?",
+    "Do the biggest visual decisions react to the biggest musical decisions?",
+    "Are transitions motivated by footage rather than inserted by position?",
+    "Does pacing vary enough to create contrast?",
+    "Does the ending resolve, invite a replay, or loop cleanly?",
+    "Would the edit still make sense with the music muted?"
+  ],
+  "sources": [
+    {
+      "name": "TikTok Creative Codes",
+      "url": "https://www.tiktok.com/business/en-US/blog/creative-best-practices-top-performing-ads",
+      "checkedAt": "2026-07-12",
+      "supports": [
+        "TikTok-first production",
+        "hook-body-close structure",
+        "suspense and emotion as opening hooks before a later payoff",
+        "faster early scene changes",
+        "music, movement, text, and transitions as attention tools",
+        "sound as a core platform experience"
+      ]
+    },
+    {
+      "name": "Meta Reels creative strategies",
+      "url": "https://www.facebook.com/business/news/reels-creative-strategies/",
+      "checkedAt": "2026-07-11",
+      "supports": [
+        "native 9:16 creative",
+        "early message placement",
+        "audio and visual hooks",
+        "speech and music used together when appropriate",
+        "test-and-learn creative iteration"
+      ]
+    },
+    {
+      "name": "Meta science of the hook summary",
+      "url": "https://www.socialmediatoday.com/news/meta-shares-tips-on-reels-hooks-creative-diversification-in-ads-and-threa/808182/",
+      "checkedAt": "2026-07-11",
+      "supports": [
+        "first-seconds hook decision",
+        "value promise, statement of intent, and question hooks",
+        "hook variation testing",
+        "audio-supported hooks"
+      ]
+    },
+    {
+      "name": "CapCut trending Reels guide",
+      "url": "https://www.capcut.com/resource/how-to-edit-trending-reels-on-instagram",
+      "checkedAt": "2026-07-11",
+      "supports": [
+        "strong opening hook",
+        "storytelling",
+        "match-on-action and motion blur transitions",
+        "jump cuts, overlays, and speed ramps used by format"
+      ]
+    },
+    {
+      "name": "TikTok 2026 Creative Starter Pack",
+      "url": "https://ads.tiktok.com/business/library/AUNZ_Creative_Starter_Pack_TakeItToTikTok.pdf",
+      "checkedAt": "2026-07-12",
+      "supports": [
+        "vertical high-resolution delivery",
+        "sound-on creative",
+        "hook-body-close structure",
+        "first three to six seconds as the primary hook window",
+        "music, movement, text, and transitions as optional stimulation tools"
+      ]
+    },
+    {
+      "name": "YouTube recommendation performance guidance",
+      "url": "https://support.google.com/youtube/answer/16559650?hl=en",
+      "checkedAt": "2026-07-12",
+      "supports": [
+        "appeal, engagement, and satisfaction as separate outcome dimensions",
+        "immediate delivery on the opening promise",
+        "anticipation and curiosity after the hook",
+        "testing different storytelling structures and using retention evidence"
+      ]
+    },
+    {
+      "name": "YouTube Shorts analytics guidance",
+      "url": "https://support.google.com/youtube/answer/12942217?hl=en",
+      "checkedAt": "2026-07-12",
+      "supports": [
+        "viewed versus swiped away as an opening metric",
+        "comparing like formats with like formats",
+        "reviewing both high and low performers",
+        "iterating from audience response rather than declaring quality from machine scores"
+      ]
+    }
+  ]
+}

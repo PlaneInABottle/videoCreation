@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "projectId": "03-talking-head-broll",
+  "createdAt": "2026-07-12T11:04:52.267Z",
+  "videoTypeId": "talking-head-broll-short",
+  "sourceMode": "stock-montage",
+  "aspect": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 30,
+  "gradeId": "clean-talking-head",
+  "title": "NOTICE MORE",
+  "subtitle": "a city is built from small moments",
+  "music": {
+    "file": "music/the-xx-intro-official-audio-xMV6l2y67rk.mp3",
+    "start": 18,
+    "beatMap": "projects/03-talking-head-broll/beat-map.json"
+  },
+  "voiceoverFile": "projects/03-talking-head-broll/voiceover.wav",
+  "shots": [
+    {
+      "id": "shot-01",
+      "source": ".cache/pexels/pexels-8136210-1080x1920.mp4",
+      "pexelsId": 8136210,
+      "query": "person talking to camera",
+      "sourceIn": 1.55,
+      "sourceDuration": 3.831,
+      "timelineIn": 0,
+      "timelineOut": 3.8313,
+      "storyFunction": "spoken-hook",
+      "anchorX": 0.5,
+      "anchorY": 0.38,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-02",
+      "source": ".cache/pexels/pexels-6565345-1080x1920.mp4",
+      "pexelsId": 6565345,
+      "query": "walking through city",
+      "sourceIn": 3.417,
+      "sourceDuration": 3.622,
+      "timelineIn": 3.8313,
+      "timelineOut": 7.4536,
+      "storyFunction": "spoken-hook",
+      "anchorX": 0.5,
+      "anchorY": 0.45,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-03",
+      "source": ".cache/pexels/pexels-36775800-1080x1920.mp4",
+      "pexelsId": 36775800,
+      "query": "coffee shop details",
+      "sourceIn": 3.833,
+      "sourceDuration": 3.738,
+      "timelineIn": 7.4536,
+      "timelineOut": 11.192,
+      "storyFunction": "context",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-04",
+      "source": ".cache/pexels/pexels-7066734-1080x1920.mp4",
+      "pexelsId": 7066734,
+      "query": "city architecture close up",
+      "sourceIn": 1.733,
+      "sourceDuration": 3.762,
+      "timelineIn": 11.192,
+      "timelineOut": 14.9537,
+      "storyFunction": "context",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-05",
+      "source": ".cache/pexels/pexels-8370536-1080x1920.mp4",
+      "pexelsId": 8370536,
+      "query": "person talking to camera",
+      "sourceIn": 8.618,
+      "sourceDuration": 3.692,
+      "timelineIn": 14.9537,
+      "timelineOut": 18.6456,
+      "storyFunction": "claim",
+      "anchorX": 0.5,
+      "anchorY": 0.38,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-06",
+      "source": ".cache/pexels/pexels-6083372-1080x1920.mp4",
+      "pexelsId": 6083372,
+      "query": "walking through city",
+      "sourceIn": 0.123,
+      "sourceDuration": 3.808,
+      "timelineIn": 18.6456,
+      "timelineOut": 22.4537,
+      "storyFunction": "visual-proof",
+      "anchorX": 0.5,
+      "anchorY": 0.45,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-07",
+      "source": ".cache/pexels/pexels-30090157-1080x1920.mp4",
+      "pexelsId": 30090157,
+      "query": "coffee shop details",
+      "sourceIn": 0.808,
+      "sourceDuration": 3.878,
+      "timelineIn": 22.4537,
+      "timelineOut": 26.3314,
+      "storyFunction": "visual-proof",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-08",
+      "source": ".cache/pexels/pexels-7066746-1080x1920.mp4",
+      "pexelsId": 7066746,
+      "query": "city architecture close up",
+      "sourceIn": 4.774,
+      "sourceDuration": 3.669,
+      "timelineIn": 26.3314,
+      "timelineOut": 30,
+      "storyFunction": "takeaway",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": null
+    }
+  ],
+  "output": "output/03-talking-head-broll.mp4"
+}

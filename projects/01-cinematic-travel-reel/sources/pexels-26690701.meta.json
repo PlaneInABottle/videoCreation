@@ -1,0 +1,314 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 26690701,
+  "query": "Seoul city night",
+  "url": "https://www.pexels.com/video/a-city-street-at-night-with-cars-and-lights-26690701/",
+  "download_url": "https://videos.pexels.com/video-files/26690701/11987727_1440_2536_60fps.mp4",
+  "downloaded_quality": null,
+  "width": 1440,
+  "height": 2536,
+  "duration": 16,
+  "user": {
+    "id": 837240,
+    "name": "Timo Volz",
+    "url": "https://www.pexels.com/@timo-volz-837240"
+  },
+  "video_files": [
+    {
+      "id": 11987723,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 634,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987723_360_634_60fps.mp4",
+      "size": 10177750
+    },
+    {
+      "id": 11987724,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 952,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987724_540_952_60fps.mp4",
+      "size": 20824890
+    },
+    {
+      "id": 11987725,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1268,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987725_720_1268_60fps.mp4",
+      "size": 34997119
+    },
+    {
+      "id": 11987726,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1902,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987726_1080_1902_60fps.mp4",
+      "size": 72579319
+    },
+    {
+      "id": 11987727,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1440,
+      "height": 2536,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987727_1440_2536_60fps.mp4",
+      "size": 119027332
+    },
+    {
+      "id": 11987728,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 2160,
+      "height": 3804,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/26690701/11987728_2160_3804_60fps.mp4",
+      "size": 231111600
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 22070962,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-0.jpg"
+    },
+    {
+      "id": 22070963,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-1.jpg"
+    },
+    {
+      "id": 22070964,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-2.jpg"
+    },
+    {
+      "id": 22070965,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-3.jpg"
+    },
+    {
+      "id": 22070966,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-4.jpg"
+    },
+    {
+      "id": 22070967,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-5.jpg"
+    },
+    {
+      "id": 22070968,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-6.jpg"
+    },
+    {
+      "id": 22070969,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-7.jpg"
+    },
+    {
+      "id": 22070970,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-8.jpg"
+    },
+    {
+      "id": 22070971,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-9.jpg"
+    },
+    {
+      "id": 22070972,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-10.jpg"
+    },
+    {
+      "id": 22070973,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-11.jpg"
+    },
+    {
+      "id": 22070974,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-12.jpg"
+    },
+    {
+      "id": 22070975,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-13.jpg"
+    },
+    {
+      "id": 22070976,
+      "nr": 14,
+      "picture": "https://images.pexels.com/videos/26690701/pictures/preview-14.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Timo Volz on Pexels",
+  "downloaded_at": "2026-07-11T16:33:41.863Z",
+  "api_response": {
+    "id": 26690701,
+    "width": 2180,
+    "height": 3840,
+    "duration": 16,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/a-city-street-at-night-with-cars-and-lights-26690701/",
+    "image": "https://images.pexels.com/videos/26690701/buses-cars-crossing-korea-26690701.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 837240,
+      "name": "Timo Volz",
+      "url": "https://www.pexels.com/@timo-volz-837240"
+    },
+    "video_files": [
+      {
+        "id": 11987723,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 634,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987723_360_634_60fps.mp4",
+        "size": 10177750
+      },
+      {
+        "id": 11987724,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 952,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987724_540_952_60fps.mp4",
+        "size": 20824890
+      },
+      {
+        "id": 11987725,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1268,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987725_720_1268_60fps.mp4",
+        "size": 34997119
+      },
+      {
+        "id": 11987726,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1902,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987726_1080_1902_60fps.mp4",
+        "size": 72579319
+      },
+      {
+        "id": 11987727,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1440,
+        "height": 2536,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987727_1440_2536_60fps.mp4",
+        "size": 119027332
+      },
+      {
+        "id": 11987728,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 2160,
+        "height": 3804,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/26690701/11987728_2160_3804_60fps.mp4",
+        "size": 231111600
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 22070962,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-0.jpg"
+      },
+      {
+        "id": 22070963,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-1.jpg"
+      },
+      {
+        "id": 22070964,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-2.jpg"
+      },
+      {
+        "id": 22070965,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-3.jpg"
+      },
+      {
+        "id": 22070966,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-4.jpg"
+      },
+      {
+        "id": 22070967,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-5.jpg"
+      },
+      {
+        "id": 22070968,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-6.jpg"
+      },
+      {
+        "id": 22070969,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-7.jpg"
+      },
+      {
+        "id": 22070970,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-8.jpg"
+      },
+      {
+        "id": 22070971,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-9.jpg"
+      },
+      {
+        "id": 22070972,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-10.jpg"
+      },
+      {
+        "id": 22070973,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-11.jpg"
+      },
+      {
+        "id": 22070974,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-12.jpg"
+      },
+      {
+        "id": 22070975,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-13.jpg"
+      },
+      {
+        "id": 22070976,
+        "nr": 14,
+        "picture": "https://images.pexels.com/videos/26690701/pictures/preview-14.jpg"
+      }
+    ]
+  }
+}

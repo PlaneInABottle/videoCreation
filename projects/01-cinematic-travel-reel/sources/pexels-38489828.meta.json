@@ -1,0 +1,194 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 38489828,
+  "query": "Seoul city night",
+  "url": "https://www.pexels.com/video/rainy-street-scene-in-seoul-with-neon-signs-38489828/",
+  "download_url": "https://videos.pexels.com/video-files/38489828/16346153_1080_1920_60fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 6,
+  "user": {
+    "id": 36420871,
+    "name": "FREE VIDEO HAPPY",
+    "url": "https://www.pexels.com/@free-video-happy-36420871"
+  },
+  "video_files": [
+    {
+      "id": 16346148,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/38489828/16346148_360_640_60fps.mp4",
+      "size": 994191
+    },
+    {
+      "id": 16346150,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/38489828/16346150_540_960_60fps.mp4",
+      "size": 2151108
+    },
+    {
+      "id": 16346151,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/38489828/16346151_720_1280_60fps.mp4",
+      "size": 3730593
+    },
+    {
+      "id": 16346153,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/38489828/16346153_1080_1920_60fps.mp4",
+      "size": 8235951
+    },
+    {
+      "id": 16346155,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1440,
+      "height": 2560,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/38489828/16346155_1440_2560_60fps.mp4",
+      "size": 16643364
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 33261182,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/38489828/pictures/preview-0.jpg"
+    },
+    {
+      "id": 33261183,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/38489828/pictures/preview-1.jpg"
+    },
+    {
+      "id": 33261184,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/38489828/pictures/preview-2.jpg"
+    },
+    {
+      "id": 33261185,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/38489828/pictures/preview-3.jpg"
+    },
+    {
+      "id": 33261186,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/38489828/pictures/preview-4.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by FREE VIDEO HAPPY on Pexels",
+  "downloaded_at": "2026-07-11T16:33:42.500Z",
+  "api_response": {
+    "id": 38489828,
+    "width": 1440,
+    "height": 2560,
+    "duration": 6,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/rainy-street-scene-in-seoul-with-neon-signs-38489828/",
+    "image": "https://images.pexels.com/videos/38489828/pexels-photo-38489828.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 36420871,
+      "name": "FREE VIDEO HAPPY",
+      "url": "https://www.pexels.com/@free-video-happy-36420871"
+    },
+    "video_files": [
+      {
+        "id": 16346148,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/38489828/16346148_360_640_60fps.mp4",
+        "size": 994191
+      },
+      {
+        "id": 16346150,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/38489828/16346150_540_960_60fps.mp4",
+        "size": 2151108
+      },
+      {
+        "id": 16346151,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/38489828/16346151_720_1280_60fps.mp4",
+        "size": 3730593
+      },
+      {
+        "id": 16346153,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/38489828/16346153_1080_1920_60fps.mp4",
+        "size": 8235951
+      },
+      {
+        "id": 16346155,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1440,
+        "height": 2560,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/38489828/16346155_1440_2560_60fps.mp4",
+        "size": 16643364
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 33261182,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/38489828/pictures/preview-0.jpg"
+      },
+      {
+        "id": 33261183,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/38489828/pictures/preview-1.jpg"
+      },
+      {
+        "id": 33261184,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/38489828/pictures/preview-2.jpg"
+      },
+      {
+        "id": 33261185,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/38489828/pictures/preview-3.jpg"
+      },
+      {
+        "id": 33261186,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/38489828/pictures/preview-4.jpg"
+      }
+    ]
+  }
+}

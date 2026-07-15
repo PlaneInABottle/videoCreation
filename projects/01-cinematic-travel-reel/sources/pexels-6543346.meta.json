@@ -1,0 +1,334 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 6543346,
+  "query": "city lights bokeh",
+  "url": "https://www.pexels.com/video/glittering-night-lights-6543346/",
+  "download_url": "https://videos.pexels.com/video-files/6543346/6543346-uhd_1440_2496_30fps.mp4",
+  "downloaded_quality": "uhd",
+  "width": 1440,
+  "height": 2496,
+  "duration": 7,
+  "user": {
+    "id": 2678846,
+    "name": "ROMAN ODINTSOV",
+    "url": "https://www.pexels.com/@roman-odintsov"
+  },
+  "video_files": [
+    {
+      "id": 10074093,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 936,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_540_936_30fps.mp4",
+      "size": 1457859
+    },
+    {
+      "id": 10074223,
+      "quality": "uhd",
+      "file_type": "video/mp4",
+      "width": 2160,
+      "height": 3744,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-uhd_2160_3744_30fps.mp4",
+      "size": 19230010
+    },
+    {
+      "id": 10074398,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1872,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-hd_1080_1872_30fps.mp4",
+      "size": 4479190
+    },
+    {
+      "id": 10074455,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 624,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_360_624_30fps.mp4",
+      "size": 525238
+    },
+    {
+      "id": 10074562,
+      "quality": "uhd",
+      "file_type": "video/mp4",
+      "width": 1440,
+      "height": 2496,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-uhd_1440_2496_30fps.mp4",
+      "size": 10643366
+    },
+    {
+      "id": 10074656,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1248,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-hd_720_1248_30fps.mp4",
+      "size": 2369363
+    },
+    {
+      "id": 10074818,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 240,
+      "height": 416,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_240_416_30fps.mp4",
+      "size": 311126
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 4621067,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-0.jpeg"
+    },
+    {
+      "id": 4621076,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-1.jpeg"
+    },
+    {
+      "id": 4621087,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-2.jpeg"
+    },
+    {
+      "id": 4621097,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-3.jpeg"
+    },
+    {
+      "id": 4621113,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-4.jpeg"
+    },
+    {
+      "id": 4621127,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-5.jpeg"
+    },
+    {
+      "id": 4621143,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-6.jpeg"
+    },
+    {
+      "id": 4621159,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-7.jpeg"
+    },
+    {
+      "id": 4621173,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-8.jpeg"
+    },
+    {
+      "id": 4621181,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-9.jpeg"
+    },
+    {
+      "id": 4621190,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-10.jpeg"
+    },
+    {
+      "id": 4621194,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-11.jpeg"
+    },
+    {
+      "id": 4621204,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-12.jpeg"
+    },
+    {
+      "id": 4621209,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-13.jpeg"
+    },
+    {
+      "id": 4621212,
+      "nr": 14,
+      "picture": "https://images.pexels.com/videos/6543346/pictures/preview-14.jpeg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by ROMAN ODINTSOV on Pexels",
+  "downloaded_at": "2026-07-11T12:15:37.470Z",
+  "api_response": {
+    "id": 6543346,
+    "width": 2363,
+    "height": 4096,
+    "duration": 7,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/glittering-night-lights-6543346/",
+    "image": "https://images.pexels.com/videos/6543346/pexels-photo-6543346.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 2678846,
+      "name": "ROMAN ODINTSOV",
+      "url": "https://www.pexels.com/@roman-odintsov"
+    },
+    "video_files": [
+      {
+        "id": 10074093,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 936,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_540_936_30fps.mp4",
+        "size": 1457859
+      },
+      {
+        "id": 10074223,
+        "quality": "uhd",
+        "file_type": "video/mp4",
+        "width": 2160,
+        "height": 3744,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-uhd_2160_3744_30fps.mp4",
+        "size": 19230010
+      },
+      {
+        "id": 10074398,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1872,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-hd_1080_1872_30fps.mp4",
+        "size": 4479190
+      },
+      {
+        "id": 10074455,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 624,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_360_624_30fps.mp4",
+        "size": 525238
+      },
+      {
+        "id": 10074562,
+        "quality": "uhd",
+        "file_type": "video/mp4",
+        "width": 1440,
+        "height": 2496,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-uhd_1440_2496_30fps.mp4",
+        "size": 10643366
+      },
+      {
+        "id": 10074656,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1248,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-hd_720_1248_30fps.mp4",
+        "size": 2369363
+      },
+      {
+        "id": 10074818,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 240,
+        "height": 416,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/6543346/6543346-sd_240_416_30fps.mp4",
+        "size": 311126
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 4621067,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-0.jpeg"
+      },
+      {
+        "id": 4621076,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-1.jpeg"
+      },
+      {
+        "id": 4621087,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-2.jpeg"
+      },
+      {
+        "id": 4621097,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-3.jpeg"
+      },
+      {
+        "id": 4621113,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-4.jpeg"
+      },
+      {
+        "id": 4621127,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-5.jpeg"
+      },
+      {
+        "id": 4621143,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-6.jpeg"
+      },
+      {
+        "id": 4621159,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-7.jpeg"
+      },
+      {
+        "id": 4621173,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-8.jpeg"
+      },
+      {
+        "id": 4621181,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-9.jpeg"
+      },
+      {
+        "id": 4621190,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-10.jpeg"
+      },
+      {
+        "id": 4621194,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-11.jpeg"
+      },
+      {
+        "id": 4621204,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-12.jpeg"
+      },
+      {
+        "id": 4621209,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-13.jpeg"
+      },
+      {
+        "id": 4621212,
+        "nr": 14,
+        "picture": "https://images.pexels.com/videos/6543346/pictures/preview-14.jpeg"
+      }
+    ]
+  }
+}

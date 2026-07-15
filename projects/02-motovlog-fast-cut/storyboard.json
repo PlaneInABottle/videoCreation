@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "projectId": "02-motovlog-fast-cut",
+  "createdAt": "2026-07-12T11:03:20.561Z",
+  "videoTypeId": "motovlog-reel",
+  "sourceMode": "stock-montage",
+  "aspect": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 16,
+  "gradeId": "natural-action",
+  "music": {
+    "file": "music/chris-rea-looking-for-the-summer-official-audio-sRjm5ZGNMLQ.mp3",
+    "start": 157.64,
+    "beatMap": "projects/02-motovlog-fast-cut/beat-map.json",
+    "featuredAt": 9.08,
+    "featuredRole": "payoff",
+    "volumeStart": 0.55,
+    "volumeFullAt": 9.08
+  },
+  "shots": [
+    {
+      "id": "shot-01",
+      "source": ".cache/pexels/pexels-31302363-1080x1920.mp4",
+      "pexelsId": 31302363,
+      "query": "motorcycle POV mountain road",
+      "sourceIn": 4.321,
+      "sourceDuration": 1.532,
+      "timelineIn": 0,
+      "timelineOut": 1.5325,
+      "storyFunction": "motion-hook",
+      "anchorX": 0.5,
+      "anchorY": 0.52,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-02",
+      "source": ".cache/pexels/pexels-29977292-1080x1920.mp4",
+      "pexelsId": 29977292,
+      "query": "motorcycle rider road",
+      "sourceIn": 11.979,
+      "sourceDuration": 1.767,
+      "timelineIn": 1.5325,
+      "timelineOut": 3.3,
+      "storyFunction": "motion-hook",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-03",
+      "source": ".cache/pexels/pexels-32659150-1080x1920.mp4",
+      "pexelsId": 32659150,
+      "query": "motorcycle mountain road",
+      "sourceIn": 23.706,
+      "sourceDuration": 1.9,
+      "timelineIn": 3.3,
+      "timelineOut": 5.2,
+      "storyFunction": "route-context",
+      "anchorX": 0.5,
+      "anchorY": 0.53,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-04",
+      "source": ".cache/pexels/pexels-33785924-1080x1920.mp4",
+      "pexelsId": 33785924,
+      "query": "motorcycle scenic road",
+      "sourceIn": 7.702,
+      "sourceDuration": 1.441,
+      "timelineIn": 5.2,
+      "timelineOut": 6.6409,
+      "storyFunction": "machine-detail",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-05",
+      "source": ".cache/pexels/pexels-35546988-1080x1920.mp4",
+      "pexelsId": 35546988,
+      "query": "motorcycle POV mountain road",
+      "sourceIn": 7.697,
+      "sourceDuration": 1.109,
+      "timelineIn": 6.6409,
+      "timelineOut": 7.75,
+      "storyFunction": "acceleration",
+      "anchorX": 0.5,
+      "anchorY": 0.52,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-06",
+      "source": ".cache/pexels/pexels-32729029-1080x1920.mp4",
+      "pexelsId": 32729029,
+      "query": "motorcycle rider road",
+      "sourceIn": 0.152,
+      "sourceDuration": 1.33,
+      "timelineIn": 7.75,
+      "timelineOut": 9.08,
+      "storyFunction": "acceleration",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-07",
+      "source": ".cache/pexels/pexels-35417039-1080x1920.mp4",
+      "pexelsId": 35417039,
+      "query": "motorcycle mountain road",
+      "sourceIn": 15.6,
+      "sourceDuration": 2.95,
+      "timelineIn": 9.08,
+      "timelineOut": 12.03,
+      "storyFunction": "landmark-or-encounter",
+      "anchorX": 0.5,
+      "anchorY": 0.53,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-08",
+      "source": ".cache/pexels/pexels-34232323-1080x1920.mp4",
+      "pexelsId": 34232323,
+      "query": "motorcycle scenic road",
+      "sourceIn": 15.945,
+      "sourceDuration": 3.97,
+      "timelineIn": 12.03,
+      "timelineOut": 16,
+      "storyFunction": "arrival",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "transitionToNext": null
+    }
+  ],
+  "output": "output/02-motovlog-fast-cut.mp4"
+}

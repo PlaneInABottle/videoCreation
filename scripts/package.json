@@ -1,0 +1,16 @@
+{
+  "name": "@ai-video-creation/scripts",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "create": "tsx bin/create-video.ts create",
+    "analyze": "tsx bin/create-video.ts analyze",
+    "beats": "tsx bin/create-video.ts beats",
+    "evaluate": "tsx bin/create-video.ts evaluate",
+    "test": "tsx --test src/*.test.ts",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  }
+}

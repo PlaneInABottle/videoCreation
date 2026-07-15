@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-12",
+  "purpose": "Music selection, beat analysis, edit synchronization, track fitting, and dialogue-mix defaults.",
+  "principles": [
+    "Choose music for emotional arc, groove, instrumentation, and structural fit before choosing it for BPM.",
+    "Use actual detected beat timestamps only for selected local sync points; use BPM only to describe tempo and create a fallback grid.",
+    "Treat beat, onset, downbeat, and section boundary as different event types.",
+    "Let story events, completed action, and intelligible speech override rigid beat synchronization.",
+    "Vary shot duration across half-beat, one-beat, two-beat, and phrase-length units.",
+    "Use strong effects and transitions on selected accents, not every beat.",
+    "Analyze the exact music excerpt used in the render because intros, live sections, and tempo changes can differ from the full-track estimate.",
+    "For music-led short videos, begin in or near a recognizable section and normally let a featured lift, impact, peak, vocal entrance, chorus, or drop arrive within two to five seconds.",
+    "Energy cannot identify cultural recognizability or lyric boundaries; verify known popular phrases with synced lyrics or auditioning, enter on the preceding beat, and end between complete phrases.",
+    "Shape the overall edit from musical sections and contrast rather than beat distance: readable setup, denser build, longer peak or payoff hold, and relaxed release.",
+    "Do not treat proximity to regular beats as an edit-quality score; viewers respond more strongly to hooks, section changes, contrast, and payoff."
+  ],
+  "eventModel": {
+    "beats": "Recurring pulse timestamps used as the basic rhythmic grid.",
+    "downbeats": "Likely first beat of a bar; preferred for reveals, new chapters, and major visual changes when confidence is sufficient.",
+    "onsets": "Local transient timestamps such as kicks, snares, notes, or impacts; preferred for precise accent cuts and sound effects.",
+    "sections": "Larger structural boundaries such as intro, verse, chorus, breakdown, bridge, and outro.",
+    "energyCurve": "Time-varying loudness or spectral energy used to shape escalation and select calmer dialogue regions.",
+    "confidence": "Analyzer-specific reliability measure. Low confidence triggers human review or a conservative fallback grid."
+  },
+  "timingMath": {
+    "secondsPerBeat": "60 / bpm",
+    "secondsPerBarInFourFour": "240 / bpm",
+    "exampleAt120Bpm": {
+      "halfBeatSeconds": 0.25,
+      "oneBeatSeconds": 0.5,
+      "twoBeatSeconds": 1.0,
+      "fourBeatSeconds": 2.0,
+      "eightBeatSeconds": 4.0
+    },
+    "warning": "Do not extrapolate a full-track grid from one BPM value when actual detected beat timestamps are available."
+  },
+  "cutSelectionPolicy": {
+    "priorityOrder": [
+      "narrative-event-or-speech-boundary",
+      "section-boundary-or-high-confidence-downbeat",
+      "completed-action-or-motion-match",
+      "strong-onset",
+      "regular-beat-subdivision",
+      "time-grid-fallback"
+    ],
+    "initialSnapWindowsMs": {
+      "impactCut": 80,
+      "ordinaryCut": 150,
+      "note": "Project tuning defaults, not universal perceptual thresholds."
+    },
+    "densityRule": "Increase cut density for a musical build or action peak and decrease it for orientation, dialogue, and payoff holds."
+  },
+  "analysisPipeline": [
+    {
+      "step": 1,
+      "name": "decode-analysis-copy",
+      "action": "Decode the selected excerpt to mono 44.1 kHz floating-point or PCM audio for analyzer compatibility. Keep the delivery master separate."
+    },
+    {
+      "step": 2,
+      "name": "extract-rhythm",
+      "action": "Estimate BPM and beat ticks. Store raw timestamps, confidence, analyzer name, version, parameters, and excerpt hash."
+    },
+    {
+      "step": 3,
+      "name": "extract-onsets",
+      "action": "Detect transient events and retain strength where the analyzer provides it. Remove events below silence or confidence thresholds."
+    },
+    {
+      "step": 4,
+      "name": "derive-bars-and-phrases",
+      "action": "Infer bar candidates only when meter/downbeat confidence is adequate. Otherwise expose beats without pretending that every fourth beat is a true downbeat."
+    },
+    {
+      "step": 5,
+      "name": "estimate-energy",
+      "action": "Measure short-window loudness/energy and onset density to identify calm, build, peak, and release regions."
+    },
+    {
+      "step": 6,
+      "name": "validate-map",
+      "action": "Reject non-increasing timestamps, merge duplicates within tolerance, inspect large interval outliers, and calculate drift against a tempo grid."
+    },
+    {
+      "step": 7,
+      "name": "cache",
+      "action": "Cache by audio content hash, excerpt start/end, analyzer version, and parameter set."
+    }
+  ],
+  "analysisTools": [
+    {
+      "id": "aubio-cli",
+      "fit": "phase1-prototype",
+      "strengths": ["simple CLI", "beat timestamps", "tempo estimate", "onset timestamps", "easy process integration"],
+      "limitations": ["older stable documentation", "fewer high-level structural descriptors", "beat tracking can struggle with weak or changing pulse"],
+      "commands": {
+        "beats": "aubio beat INPUT -T seconds",
+        "tempo": "aubio tempo INPUT",
+        "onsets": "aubio onset INPUT -T seconds"
+      },
+      "sourceUrl": "https://aubio.org/manual/latest/cli.html"
+    },
+    {
+      "id": "essentia-js",
+      "fit": "node-rich-analysis-candidate",
+      "strengths": ["Node-compatible WebAssembly", "large audio-analysis algorithm set", "BPM and tick extraction", "confidence and interval outputs in RhythmExtractor2013"],
+      "limitations": ["WASM memory lifecycle requires care", "algorithm availability should be checked against the package build", "RhythmExtractor2013 expects 44.1 kHz input"],
+      "algorithms": ["RhythmExtractor2013", "OnsetRate"],
+      "sourceUrls": [
+        "https://essentia.upf.edu/reference/std_RhythmExtractor2013.html",
+        "https://essentia.upf.edu/reference/std_OnsetRate.html"
+      ],
+      "context7LibraryId": "/mtg/essentia.js"
+    }
+  ],
+  "fallbacks": [
+    {
+      "condition": "beat confidence is low but BPM is plausible",
+      "strategy": "Create a tempo grid anchored to the first reliable onset; prefer two- or four-beat edits and avoid claiming downbeats."
+    },
+    {
+      "condition": "ambient or rubato track has no stable pulse",
+      "strategy": "Use section, energy, and phrase changes with time-based shot ranges; do not force beat cuts."
+    },
+    {
+      "condition": "detected beat intervals contain isolated half-time or double-time errors",
+      "strategy": "Normalize only clear outliers against neighboring median intervals while preserving genuine tempo changes."
+    },
+    {
+      "condition": "analysis fails",
+      "strategy": "Use a conservative 1.5-3.0 second shot-duration plan, align major moments manually, and mark the beat map as fallback."
+    }
+  ],
+  "musicProfiles": [
+    {
+      "id": "uplifting-electronic",
+      "name": "Uplifting Electronic",
+      "typicalBpm": { "min": 110, "idealMin": 118, "idealMax": 128, "max": 135 },
+      "moods": ["optimistic", "modern", "energetic", "bright"],
+      "traits": ["stable pulse", "clear build and drop", "layered percussion", "clean edit points"],
+      "bestVideoTypeIds": ["cinematic-travel-reel", "fast-paced-reel", "product-demo", "motion-graphics-explainer"],
+      "editPattern": "Establish on two- to four-beat shots, tighten to one beat in builds, and place the hero reveal on a phrase change or drop.",
+      "avoid": ["heavy drop under intimate dialogue", "constant half-beat cuts"]
+    },
+    {
+      "id": "indie-pop-travel",
+      "name": "Indie Pop Travel",
+      "typicalBpm": { "min": 90, "idealMin": 100, "idealMax": 122, "max": 130 },
+      "moods": ["carefree", "human", "nostalgic", "sunny"],
+      "traits": ["song-forward", "recognizable phrases", "moderate pulse", "useful verse-chorus contrast"],
+      "bestVideoTypeIds": ["cinematic-travel-reel", "talking-head-broll-short", "food-reel", "compact-youtube-vlog"],
+      "editPattern": "Use longer phrase-aware shots than electronic music; emphasize lyric gaps, drum entrances, and chorus transitions.",
+      "avoid": ["cutting against important lyrics", "using vocal-heavy section beneath dense speech"]
+    },
+    {
+      "id": "cinematic-build",
+      "name": "Cinematic Build",
+      "typicalBpm": { "min": 60, "idealMin": 70, "idealMax": 110, "max": 130 },
+      "moods": ["epic", "reflective", "awe", "anticipation"],
+      "traits": ["long arc", "dynamic swells", "impacts", "possible weak pulse in intro"],
+      "bestVideoTypeIds": ["cinematic-travel-reel", "compact-youtube-vlog", "lyric-video"],
+      "editPattern": "Map story chapters to energy sections, use restrained cuts during the build, and reserve impact cuts for climaxes.",
+      "avoid": ["forcing a beat grid through ambient intro", "using every impact"]
+    },
+    {
+      "id": "driving-rock",
+      "name": "Driving Rock",
+      "typicalBpm": { "min": 95, "idealMin": 110, "idealMax": 145, "max": 170 },
+      "moods": ["freedom", "road-trip", "confident", "energetic"],
+      "traits": ["strong snare", "clear sections", "guitar momentum", "human timing variation"],
+      "bestVideoTypeIds": ["motovlog-reel", "cinematic-travel-reel", "fast-paced-reel", "fitness-reel"],
+      "editPattern": "Use kick/snare onsets for selected action cuts, preserve two- and four-beat road holds, and align destination reveals with chorus or riff changes.",
+      "avoid": ["assuming a perfectly quantized grid", "burying engine accents under dense guitars"]
+    },
+    {
+      "id": "hip-hop-groove",
+      "name": "Hip-hop Groove",
+      "typicalBpm": { "min": 70, "idealMin": 80, "idealMax": 105, "max": 120 },
+      "moods": ["confident", "urban", "cool", "playful"],
+      "traits": ["strong kick and snare", "space between hits", "half-time interpretation", "vocal or instrumental variants"],
+      "bestVideoTypeIds": ["fast-paced-reel", "motovlog-reel", "gaming-highlight", "fitness-reel"],
+      "editPattern": "Cut selectively to dominant drums, use held shots across sparse pockets, and treat double-time subdivisions as accents rather than the default cadence.",
+      "avoid": ["double-time cutting throughout", "lyric conflict with spoken narration"]
+    },
+    {
+      "id": "percussive-action",
+      "name": "Percussive Action",
+      "typicalBpm": { "min": 115, "idealMin": 125, "idealMax": 150, "max": 180 },
+      "moods": ["intense", "urgent", "athletic", "adrenaline"],
+      "traits": ["dense transients", "clear impacts", "rises and drops", "limited melodic distraction"],
+      "bestVideoTypeIds": ["motovlog-reel", "fast-paced-reel", "gaming-highlight", "fitness-reel"],
+      "editPattern": "Use one- and two-beat action units, brief half-beat accents at the peak, and longer recovery shots after dense runs.",
+      "avoid": ["matching every transient", "using under nuanced dialogue"]
+    },
+    {
+      "id": "synthwave-drive",
+      "name": "Synthwave Drive",
+      "typicalBpm": { "min": 85, "idealMin": 95, "idealMax": 120, "max": 130 },
+      "moods": ["night-drive", "nostalgic", "focused", "cinematic"],
+      "traits": ["steady pulse", "long synth phrases", "retro tone", "clear drum entrances"],
+      "bestVideoTypeIds": ["motovlog-reel", "gaming-highlight", "cinematic-travel-reel"],
+      "editPattern": "Use stable two- to four-beat movement shots, emphasize neon/city reveals at phrase changes, and avoid over-cutting sustained synth passages.",
+      "avoid": ["mismatched bright daytime food story", "glitch effects without visual motivation"]
+    },
+    {
+      "id": "ambient-bed",
+      "name": "Ambient Bed",
+      "typicalBpm": { "min": 0, "idealMin": 60, "idealMax": 90, "max": 110 },
+      "moods": ["calm", "reflective", "intimate", "informative"],
+      "traits": ["weak or absent pulse", "slow evolution", "low transient density", "speech-friendly when sparse"],
+      "bestVideoTypeIds": ["talking-head-broll-short", "compact-youtube-vlog", "tutorial", "motion-graphics-explainer", "podcast-clip"],
+      "editPattern": "Edit to speech, gesture, visual meaning, and energy changes rather than forcing beat synchronization.",
+      "avoid": ["artificial uniform beat grid", "music level that masks room tone or speech"]
+    },
+    {
+      "id": "lofi-groove",
+      "name": "Lo-fi Groove",
+      "typicalBpm": { "min": 65, "idealMin": 72, "idealMax": 95, "max": 105 },
+      "moods": ["relaxed", "personal", "casual", "thoughtful"],
+      "traits": ["soft drums", "repeating loop", "moderate dynamics", "speech-compatible instrumental options"],
+      "bestVideoTypeIds": ["talking-head-broll-short", "food-reel", "compact-youtube-vlog", "product-demo", "tutorial", "podcast-clip"],
+      "editPattern": "Use four- to eight-beat visual ideas, occasional snare-aligned B-roll changes, and subtle ducking.",
+      "avoid": ["using the loop as a reason for repetitive visuals", "vocal samples competing with speech"]
+    },
+    {
+      "id": "funk-groove",
+      "name": "Funk Groove",
+      "typicalBpm": { "min": 90, "idealMin": 100, "idealMax": 125, "max": 135 },
+      "moods": ["tasty", "playful", "social", "energetic"],
+      "traits": ["syncopation", "strong bass", "clear accents", "human groove"],
+      "bestVideoTypeIds": ["food-reel", "fast-paced-reel", "product-demo"],
+      "editPattern": "Use syncopated accents for cuts, pours, knife actions, and reactions while preserving longer shots between accents.",
+      "avoid": ["quantizing cuts only to quarter notes", "bass-heavy mix masking kitchen sounds"]
+    }
+  ],
+  "videoTypeTempoGuidance": [
+    {
+      "videoTypeId": "cinematic-travel-reel",
+      "comfortableBpm": { "min": 85, "max": 130 },
+      "note": "Slower cinematic tracks work when section energy is strong; faster tracks need longer beat groupings."
+    },
+    {
+      "videoTypeId": "fast-paced-reel",
+      "comfortableBpm": { "min": 100, "max": 155 },
+      "note": "Pace can come from subdivisions and onset density, not BPM alone."
+    },
+    {
+      "videoTypeId": "motovlog-reel",
+      "comfortableBpm": { "min": 95, "max": 150 },
+      "note": "Maintain occasional four- or eight-beat road holds for spatial clarity."
+    },
+    {
+      "videoTypeId": "talking-head-broll-short",
+      "comfortableBpm": { "min": 60, "max": 110 },
+      "note": "Speech cadence governs the edit; instrumental density matters more than BPM."
+    },
+    {
+      "videoTypeId": "food-reel",
+      "comfortableBpm": { "min": 75, "max": 125 },
+      "note": "Match groove and texture; preparation can be fast while hero food shots hold longer."
+    },
+    {
+      "videoTypeId": "compact-youtube-vlog",
+      "comfortableBpm": { "min": 60, "max": 125 },
+      "note": "Use multiple cues appropriate to each chapter rather than one tempo for the entire video."
+    }
+  ],
+  "trackFitting": {
+    "preferredOrder": [
+      "Choose an excerpt whose natural section arc fits the target duration.",
+      "Start at a phrase or section boundary, not an arbitrary sample.",
+      "End after a cadence, impact, resolved phrase, or designed fade.",
+      "If shortening is required, remove complete bars or phrases from low-salience repeated regions.",
+      "Loop only an instrumental region with matching bar boundaries and a tested crossfade.",
+      "Time-stretch only for small corrections and only when artifacts are acceptable."
+    ],
+    "ffmpegFilters": ["atrim", "asetpts", "acrossfade", "afade", "aloop", "atempo", "rubberband"],
+    "exactDurationRule": "Trim or restructure the musical excerpt to the planned ending, apply a short fade when no natural ending exists, and use -shortest only as a final container guard rather than the edit decision.",
+    "loopRule": "Loop on bar-aligned zero-crossing-friendly boundaries and audition the crossfade; do not loop vocals or evolving builds by default."
+  },
+  "dialogueMix": {
+    "priority": "dialogue-first",
+    "workflow": [
+      "Clean and level dialogue before adding music.",
+      "Choose a sparse instrumental section under dense speech.",
+      "Use sidechain compression or timeline automation to lower music during speech.",
+      "Retain short ambience and action-sound windows where they add place or impact.",
+      "Apply final loudness normalization and peak control after mixing."
+    ],
+    "startingPoints": {
+      "sidechainRatio": { "min": 4, "max": 10 },
+      "attackMs": { "min": 5, "max": 30 },
+      "releaseMs": { "min": 150, "max": 500 },
+      "musicReductionDb": { "min": 6, "max": 14 },
+      "note": "Creative starting ranges only. Tune threshold, ratio, attack, release, and gain from the actual voice and track."
+    },
+    "ffmpegFilters": ["highpass", "equalizer", "acompressor", "sidechaincompress", "amix", "loudnorm", "alimiter"]
+  },
+  "popularTrackMetadata": {
+    "requiredFields": ["title", "artist", "sourceUrl", "sourceKind", "downloadedAt", "selectedStartSeconds", "selectedEndSeconds", "contentHash", "analysisId"],
+    "sourceKinds": ["user-file", "user-directed-download", "platform-audio-reference"],
+    "policy": "Popular music is accepted as a user-directed creative input. Metadata supports repeatability and does not block rendering."
+  },
+  "sources": [
+    {
+      "id": "aubio-cli",
+      "url": "https://aubio.org/manual/latest/cli.html",
+      "checkedAt": "2026-07-11",
+      "supports": ["beat, tempo, and onset CLI capabilities"]
+    },
+    {
+      "id": "essentia-rhythm-extractor",
+      "url": "https://essentia.upf.edu/reference/std_RhythmExtractor2013.html",
+      "checkedAt": "2026-07-11",
+      "supports": ["BPM, tick, confidence, estimate, beat-interval outputs and 44.1 kHz requirement"]
+    },
+    {
+      "id": "essentia-onset-rate",
+      "url": "https://essentia.upf.edu/reference/std_OnsetRate.html",
+      "checkedAt": "2026-07-11",
+      "supports": ["onset timestamp and onset-rate outputs and 44.1 kHz requirement"]
+    },
+    {
+      "id": "ffmpeg-filters",
+      "url": "https://ffmpeg.org/ffmpeg-filters.html",
+      "checkedAt": "2026-07-11",
+      "supports": ["audio trim, fade, loop, tempo, sidechain compression, mixing, limiting, and loudness filters"]
+    }
+  ]
+}

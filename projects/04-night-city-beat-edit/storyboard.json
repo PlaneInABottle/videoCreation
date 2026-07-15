@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "projectId": "04-night-city-beat-edit",
+  "createdAt": "2026-07-12T11:06:35.339Z",
+  "videoTypeId": "fast-paced-reel",
+  "sourceMode": "stock-montage",
+  "aspect": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 22.5,
+  "gradeId": "subtle-teal-orange",
+  "music": {
+    "file": "music/kavinsky-nightcall-official-audio-MV_3Dpw-BRY.mp3",
+    "start": 30.929,
+    "beatMap": "projects/04-night-city-beat-edit/beat-map.json",
+    "featuredAt": 0.101,
+    "featuredRole": "opening"
+  },
+  "shots": [
+    {
+      "id": "shot-01",
+      "source": ".cache/pexels/pexels-35291926-1080x1920.mp4",
+      "pexelsId": 35291926,
+      "query": "Tokyo street night",
+      "sourceIn": 0.913,
+      "sourceDuration": 1.579,
+      "timelineIn": 0,
+      "timelineOut": 1.579,
+      "storyFunction": "hook",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-02",
+      "source": ".cache/pexels/pexels-32287884-1080x1920.mp4",
+      "pexelsId": 32287884,
+      "query": "Tokyo neon signs",
+      "sourceIn": 3.453,
+      "sourceDuration": 1.556,
+      "timelineIn": 1.579,
+      "timelineOut": 3.1347,
+      "storyFunction": "hook",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-03",
+      "source": ".cache/pexels/pexels-36024206-1080x1920.mp4",
+      "pexelsId": 36024206,
+      "query": "Tokyo train night",
+      "sourceIn": 16.802,
+      "sourceDuration": 1.486,
+      "timelineIn": 3.1347,
+      "timelineOut": 4.6208,
+      "storyFunction": "promise",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-04",
+      "source": ".cache/pexels/pexels-18830028-1080x1920.mp4",
+      "pexelsId": 18830028,
+      "query": "Tokyo traffic night",
+      "sourceIn": 3.08,
+      "sourceDuration": 1.95,
+      "timelineIn": 4.6208,
+      "timelineOut": 6.5712,
+      "storyFunction": "promise",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-05",
+      "source": ".cache/pexels/pexels-18662592-1080x1920.mp4",
+      "pexelsId": 18662592,
+      "query": "Tokyo people night street",
+      "sourceIn": 11.398,
+      "sourceDuration": 2.415,
+      "timelineIn": 6.5712,
+      "timelineOut": 8.9861,
+      "storyFunction": "rapid-proof",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-06",
+      "source": ".cache/pexels/pexels-18688462-1080x1920.mp4",
+      "pexelsId": 18688462,
+      "query": "Tokyo street night",
+      "sourceIn": 0.364,
+      "sourceDuration": 1.742,
+      "timelineIn": 8.9861,
+      "timelineOut": 10.7276,
+      "storyFunction": "rapid-proof",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-07",
+      "source": ".cache/pexels/pexels-31051255-1080x1920.mp4",
+      "pexelsId": 31051255,
+      "query": "Tokyo neon signs",
+      "sourceIn": 1.473,
+      "sourceDuration": 1.172,
+      "timelineIn": 10.7276,
+      "timelineOut": 11.9,
+      "storyFunction": "escalation",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-08",
+      "source": ".cache/pexels/pexels-33441920-1080x1920.mp4",
+      "pexelsId": 33441920,
+      "query": "Tokyo train night",
+      "sourceIn": 7.486,
+      "sourceDuration": 2.1,
+      "timelineIn": 11.9,
+      "timelineOut": 14,
+      "storyFunction": "escalation",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-09",
+      "source": ".cache/pexels/pexels-31310968-1080x1920.mp4",
+      "pexelsId": 31310968,
+      "query": "Tokyo traffic night",
+      "sourceIn": 1.587,
+      "sourceDuration": 2.742,
+      "timelineIn": 14,
+      "timelineOut": 16.7416,
+      "storyFunction": "payoff",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-10",
+      "source": ".cache/pexels/pexels-28883550-1080x1920.mp4",
+      "pexelsId": 28883550,
+      "query": "Tokyo people night street",
+      "sourceIn": 23.523,
+      "sourceDuration": 1.904,
+      "timelineIn": 16.7416,
+      "timelineOut": 18.6456,
+      "storyFunction": "payoff",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-11",
+      "source": ".cache/pexels/pexels-30989297-1080x1920.mp4",
+      "pexelsId": 30989297,
+      "query": "Tokyo street night",
+      "sourceIn": 3.998,
+      "sourceDuration": 2.354,
+      "timelineIn": 18.6456,
+      "timelineOut": 21,
+      "storyFunction": "loop-or-release",
+      "anchorX": 0.5,
+      "anchorY": 0.48,
+      "transitionToNext": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-12",
+      "source": ".cache/pexels/pexels-18662590-1080x1920.mp4",
+      "pexelsId": 18662590,
+      "query": "Tokyo neon signs",
+      "sourceIn": 4.428,
+      "sourceDuration": 1.5,
+      "timelineIn": 21,
+      "timelineOut": 22.5,
+      "storyFunction": "loop-or-release",
+      "anchorX": 0.5,
+      "anchorY": 0.46,
+      "transitionToNext": null
+    }
+  ],
+  "output": "output/04-night-city-beat-edit.mp4"
+}

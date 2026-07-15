@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-11",
+  "purpose": "Creative and delivery defaults for selecting a video structure from a user request and available footage.",
+  "deliveryProfiles": [
+    {
+      "id": "vertical-short",
+      "width": 1080,
+      "height": 1920,
+      "aspectRatio": "9:16",
+      "container": "mp4",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "pixelFormat": "yuv420p",
+      "audioSampleRateHz": 48000,
+      "colorSpace": "bt709",
+      "preferredFrameRates": [30, 60],
+      "notes": [
+        "Compose specifically for vertical framing; do not rely on a final center crop.",
+        "Use 60 fps delivery only when motion or source frame rate justifies it."
+      ]
+    },
+    {
+      "id": "horizontal-standard",
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": "16:9",
+      "container": "mp4",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "pixelFormat": "yuv420p",
+      "audioSampleRateHz": 48000,
+      "colorSpace": "bt709",
+      "preferredFrameRates": [24, 25, 30, 50, 60],
+      "notes": [
+        "Prefer the source frame rate unless a deliberate timing treatment requires conversion.",
+        "YouTube recommends progressive H.264, AAC-LC or Opus, 4:2:0 chroma, and BT.709 for SDR uploads."
+      ]
+    }
+  ],
+  "platformContext": [
+    {
+      "id": "instagram-reels",
+      "recommendedDeliveryProfileIds": ["vertical-short"],
+      "projectCreativeDurationSeconds": { "min": 15, "idealMin": 25, "idealMax": 45, "max": 60 },
+      "note": "These are project creative targets, not a claim about the current platform upload maximum."
+    },
+    {
+      "id": "youtube-shorts",
+      "recommendedDeliveryProfileIds": ["vertical-short"],
+      "projectCreativeDurationSeconds": { "min": 15, "idealMin": 25, "idealMax": 45, "max": 60 },
+      "verifiedPlatformFact": "YouTube classifies eligible square or vertical uploads up to three minutes as Shorts.",
+      "sourceUrl": "https://support.google.com/youtube/answer/15424877"
+    },
+    {
+      "id": "tiktok",
+      "recommendedDeliveryProfileIds": ["vertical-short"],
+      "projectCreativeDurationSeconds": { "min": 15, "idealMin": 25, "idealMax": 45, "max": 60 },
+      "verifiedPlatformFact": "TikTok's auction in-feed specification recommends 9:16 and also lists 16:9 and 1:1.",
+      "sourceUrl": "https://ads.tiktok.com/help/article/video-ads-specifications"
+    },
+    {
+      "id": "youtube-standard",
+      "recommendedDeliveryProfileIds": ["horizontal-standard"],
+      "projectCreativeDurationSeconds": { "min": 60, "idealMin": 180, "idealMax": 300, "max": 300 },
+      "verifiedPlatformFact": "YouTube identifies 16:9 as its standard desktop aspect ratio.",
+      "sourceUrl": "https://support.google.com/youtube/answer/1722171"
+    }
+  ],
+  "types": [
+    {
+      "id": "cinematic-travel-reel",
+      "name": "Cinematic Travel Reel",
+      "phase1Priority": "primary",
+      "summary": "A compact sensory story about moving through a place, built from establishing views, details, motion, people, food, and a hero reveal.",
+      "sourceContentTags": ["city", "architecture", "landscape", "beach", "street", "food", "walking-pov", "vehicle-pov", "traveler"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 25, "shortIdeal": 35, "shortMax": 45, "longMax": 300 },
+      "narrativePattern": ["visual-hook", "orient-place", "sensory-details", "movement", "hero-reveal", "release"],
+      "shotRecipe": [
+        "Open on the strongest unusual motion, view, or reveal rather than a generic establishing shot.",
+        "Use one wide shot to orient the viewer, then alternate medium and close details.",
+        "Include human movement or POV to connect locations.",
+        "Reserve the best landscape, beach, skyline, or destination shot for a musical phrase change.",
+        "End on a held image, departure, look-back, or natural sound release."
+      ],
+      "pacing": { "baseBeatsPerShot": [2, 4], "accentBeatsPerShot": [0.5, 1], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "montage", "b-roll-layering", "cross-dissolve", "speed-ramp", "aspect-ratio-reframe", "slow-motion"],
+      "preferredColorGradeIds": ["neutral-cinematic", "warm-travel", "subtle-teal-orange"],
+      "preferredMusicProfileIds": ["uplifting-electronic", "indie-pop-travel", "cinematic-build", "driving-rock"],
+      "audioStrategy": "Use music as the main spine but preserve short location-sound accents for waves, traffic, crowds, doors, food, and vehicle movement.",
+      "avoid": ["transition on every cut", "chronological footage dump", "uniform shot lengths", "extreme teal skin tones", "opening with a weak wide shot"]
+    },
+    {
+      "id": "fast-paced-reel",
+      "name": "Fast-paced Reel or Short",
+      "phase1Priority": "primary",
+      "summary": "A hook-first short optimized for immediate comprehension, rhythmic escalation, and one clear payoff.",
+      "sourceContentTags": ["action", "city", "travel", "food", "fitness", "product", "before-after", "reaction"],
+      "deliveryProfileIds": ["vertical-short"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok"],
+      "durationSeconds": { "shortMin": 15, "shortIdeal": 30, "shortMax": 45 },
+      "narrativePattern": ["hook", "promise", "rapid-proof", "escalation", "payoff", "loop-or-release"],
+      "shotRecipe": [
+        "Communicate the subject in the first one to two seconds.",
+        "Use text or speech only when the visuals cannot establish the promise.",
+        "Group rapid shots into phrases instead of maintaining maximum speed throughout.",
+        "Place the most satisfying result at the strongest late musical event.",
+        "Optionally make the final motion or framing connect back to the opening for a clean loop."
+      ],
+      "pacing": { "baseBeatsPerShot": [1, 2], "accentBeatsPerShot": [0.5, 1], "holdBeatsPerShot": [2, 4] },
+      "editingTechniqueIds": ["hard-cut", "jump-cut", "match-cut", "montage", "zoom-punch", "freeze-frame", "speed-ramp"],
+      "preferredColorGradeIds": ["neutral-cinematic", "clean-vibrant", "subtle-teal-orange"],
+      "preferredMusicProfileIds": ["uplifting-electronic", "hip-hop-groove", "driving-rock", "percussive-action"],
+      "audioStrategy": "Use high-confidence beats and onsets for emphasis, supported by a small number of impact or whoosh effects.",
+      "avoid": ["constant half-beat cutting", "multiple simultaneous visual gimmicks", "long setup", "unreadable captions", "effects without narrative purpose"]
+    },
+    {
+      "id": "motovlog-reel",
+      "name": "Motovlog Reel",
+      "phase1Priority": "primary",
+      "summary": "A first-person journey emphasizing route, speed, machine detail, surroundings, and arrival without losing spatial clarity.",
+      "sourceContentTags": ["motorcycle", "chest-pov", "road", "traffic", "controls", "mirror", "helmet", "city", "coast", "destination", "rider-reaction"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 25, "shortIdeal": 35, "shortMax": 45, "longMax": 300 },
+      "narrativePattern": ["motion-hook", "route-context", "machine-detail", "acceleration", "landmark-or-encounter", "arrival"],
+      "shotRecipe": [
+        "Open with movement, a striking road shape, a close pass, or a destination preview.",
+        "Alternate POV with controls, mirrors, landmarks, roadside details, and rider reactions when available.",
+        "Keep enough continuous road footage to preserve direction and geography.",
+        "Use speed ramps around clean acceleration or passes, not around hazards or unreadable motion.",
+        "Finish with arrival, engine stop, dismount, or a destination reveal."
+      ],
+      "pacing": { "baseBeatsPerShot": [1, 2], "accentBeatsPerShot": [0.5, 1], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "montage", "whip-pan", "speed-ramp", "slow-motion", "aspect-ratio-reframe", "audio-impact-accent"],
+      "preferredColorGradeIds": ["natural-action", "subtle-teal-orange", "neutral-cinematic"],
+      "preferredMusicProfileIds": ["driving-rock", "synthwave-drive", "percussive-action", "hip-hop-groove"],
+      "audioStrategy": "Retain selected engine and road transients beneath music; accent shifts, starts, passes, and arrival while avoiding a continuous harsh wind bed.",
+      "avoid": ["cutting so fast that road direction is lost", "excessive artificial camera shake", "speeding up already unstable footage", "whoosh on every cut", "burying all authentic engine sound"]
+    },
+    {
+      "id": "talking-head-broll-short",
+      "name": "Talking Head with B-roll",
+      "phase1Priority": "primary",
+      "summary": "A concise spoken argument or story in which B-roll proves, clarifies, or emotionally supports each statement.",
+      "sourceContentTags": ["talking-head", "voice", "interview", "city", "food", "demonstration", "personal-story", "reaction"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 30, "shortIdeal": 40, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["spoken-hook", "context", "claim", "visual-proof", "takeaway"],
+      "shotRecipe": [
+        "Choose the cleanest complete statement before optimizing pace.",
+        "Remove dead air and repetition while preserving natural breath and intention.",
+        "Cover jump cuts with B-roll that directly illustrates the current phrase.",
+        "Return to the speaker for emotional turns, important claims, and the conclusion.",
+        "Keep captions inside a conservative center-safe region."
+      ],
+      "pacing": { "baseBeatsPerShot": [4, 8], "accentBeatsPerShot": [2, 4], "holdBeatsPerShot": [8, 16] },
+      "editingTechniqueIds": ["jump-cut", "j-cut", "l-cut", "b-roll-layering", "hard-cut", "cross-dissolve", "aspect-ratio-reframe", "audio-ducking"],
+      "preferredColorGradeIds": ["clean-talking-head", "neutral-cinematic", "warm-travel"],
+      "preferredMusicProfileIds": ["ambient-bed", "lofi-groove", "indie-pop-travel"],
+      "audioStrategy": "Dialogue is authoritative. Duck music under speech, preserve room tone across removals, and let B-roll ambience enter briefly when it adds meaning.",
+      "avoid": ["cutting mid-word", "B-roll unrelated to the sentence", "music masking consonants", "jump cuts every few words", "skin-tone shifts between angles"]
+    },
+    {
+      "id": "food-reel",
+      "name": "Food Reel",
+      "phase1Priority": "secondary",
+      "summary": "A tactile sequence built around transformation, texture, sound, plating, and reaction.",
+      "sourceContentTags": ["restaurant", "market", "ingredients", "cooking", "hands", "steam", "pour", "knife", "plating", "first-bite"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 20, "shortIdeal": 30, "shortMax": 45, "longMax": 300 },
+      "narrativePattern": ["finished-dish-hook", "place-or-ingredients", "transformation", "texture-reveal", "plate", "reaction"],
+      "shotRecipe": [
+        "Open with the finished dish, a texture reveal, pour, cut, or flame.",
+        "Alternate overhead, medium hand action, and macro detail.",
+        "Match cuts on repeated hand or utensil motion.",
+        "Slow down steam, sauce, cheese pull, slicing, or final garnish when source frame rate supports it.",
+        "Include a human reaction or clean hero plate at the end."
+      ],
+      "pacing": { "baseBeatsPerShot": [2, 4], "accentBeatsPerShot": [1, 2], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "montage", "slow-motion", "b-roll-layering", "audio-impact-accent"],
+      "preferredColorGradeIds": ["clean-food", "warm-travel", "neutral-cinematic"],
+      "preferredMusicProfileIds": ["funk-groove", "lofi-groove", "indie-pop-travel"],
+      "audioStrategy": "Layer crisp preparation sounds such as chopping, sizzling, pouring, and plating over a controlled music bed.",
+      "avoid": ["orange color cast on all foods", "crushed dark food detail", "only close-ups with no place context", "fake sound disconnected from motion", "slow motion on ordinary static shots"]
+    },
+    {
+      "id": "compact-youtube-vlog",
+      "name": "Compact YouTube Vlog",
+      "phase1Priority": "secondary",
+      "summary": "A three-to-five-minute authored journey combining direct address, observational scenes, B-roll, and clear chapter progression.",
+      "sourceContentTags": ["talking-head", "travel", "motovlog", "city", "beach", "food", "activity", "reflection"],
+      "deliveryProfileIds": ["horizontal-standard"],
+      "platformIds": ["youtube-standard"],
+      "durationSeconds": { "longMin": 180, "longIdeal": 240, "longMax": 300 },
+      "narrativePattern": ["cold-open", "premise", "departure", "progressive-scenes", "complication-or-discovery", "payoff", "reflection"],
+      "shotRecipe": [
+        "Use a short cold open containing a promise or later highlight.",
+        "State the goal quickly, then move into observed action.",
+        "Alternate spoken context with sequences that can play visually and sonically.",
+        "Give each location or activity a beginning, middle, and end.",
+        "Conclude with a concise reflection rather than an extended sign-off."
+      ],
+      "pacing": { "baseBeatsPerShot": [4, 8, 16], "accentBeatsPerShot": [2, 4], "holdBeatsPerShot": [8, 16, 32] },
+      "editingTechniqueIds": ["hard-cut", "j-cut", "l-cut", "b-roll-layering", "montage", "cross-dissolve", "fade-to-black", "audio-ducking"],
+      "preferredColorGradeIds": ["neutral-cinematic", "warm-travel", "natural-action"],
+      "preferredMusicProfileIds": ["indie-pop-travel", "ambient-bed", "lofi-groove", "cinematic-build"],
+      "audioStrategy": "Use multiple restrained music cues rather than one continuous track; preserve scene ambience and prioritize dialogue.",
+      "avoid": ["thirty-second intro montage before the premise", "music under every moment", "repeating the same information in speech and visuals", "using short-form pacing for five minutes"]
+    },
+    {
+      "id": "product-demo",
+      "name": "Product Demo",
+      "phase1Priority": "research",
+      "summary": "A problem-solution presentation that proves a product benefit through clear operation and visible results.",
+      "sourceContentTags": ["product", "hands", "detail", "operation", "before-after", "result"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 20, "shortIdeal": 35, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["problem", "product-reveal", "operation", "evidence", "result", "call-to-action"],
+      "pacing": { "baseBeatsPerShot": [2, 4], "accentBeatsPerShot": [1, 2], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "b-roll-layering", "zoom-punch", "split-screen", "audio-ducking"],
+      "preferredColorGradeIds": ["clean-vibrant", "neutral-cinematic"],
+      "preferredMusicProfileIds": ["uplifting-electronic", "lofi-groove"],
+      "audioStrategy": "Keep explanation and operation sounds clear; music supports momentum without competing with proof.",
+      "avoid": ["style before legibility", "claim without visual proof", "hiding controls with reframing", "overly dramatic grade"]
+    },
+    {
+      "id": "tutorial",
+      "name": "Tutorial or How-to",
+      "phase1Priority": "research",
+      "summary": "A stepwise explanation where continuity, labeling, and proof matter more than maximum pace.",
+      "sourceContentTags": ["talking-head", "hands", "screen", "process", "tools", "result"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 30, "shortIdeal": 45, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["outcome-preview", "requirements", "ordered-steps", "common-error", "result"],
+      "pacing": { "baseBeatsPerShot": [4, 8], "accentBeatsPerShot": [2, 4], "holdBeatsPerShot": [8, 16] },
+      "editingTechniqueIds": ["hard-cut", "jump-cut", "j-cut", "l-cut", "b-roll-layering", "zoom-punch", "freeze-frame", "audio-ducking"],
+      "preferredColorGradeIds": ["clean-vibrant", "clean-talking-head"],
+      "preferredMusicProfileIds": ["ambient-bed", "lofi-groove"],
+      "audioStrategy": "Instruction is authoritative; use music only as a quiet continuity bed and retain useful tool sounds.",
+      "avoid": ["skipping necessary action", "cutting before a result is visible", "decorative transitions between steps", "small labels"]
+    },
+    {
+      "id": "motion-graphics-explainer",
+      "name": "Motion Graphics Explainer",
+      "phase1Priority": "research",
+      "summary": "A designed explanation using typography, diagrams, icons, and animated emphasis around a concise voice track.",
+      "sourceContentTags": ["voiceover", "text", "diagram", "icon", "screen", "data"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 30, "shortIdeal": 45, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["question", "model", "explanation", "example", "summary"],
+      "pacing": { "baseBeatsPerShot": [4, 8], "accentBeatsPerShot": [1, 2], "holdBeatsPerShot": [8, 16] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "zoom-punch", "freeze-frame", "audio-impact-accent", "audio-ducking"],
+      "preferredColorGradeIds": ["clean-vibrant"],
+      "preferredMusicProfileIds": ["uplifting-electronic", "ambient-bed"],
+      "audioStrategy": "Synchronize graphic entrances to speech emphasis or light onsets; never let music reduce voice clarity.",
+      "avoid": ["animating every word", "dense simultaneous motion", "decorative charts", "inconsistent easing"]
+    },
+    {
+      "id": "lyric-video",
+      "name": "Lyric Video",
+      "phase1Priority": "research",
+      "summary": "A music-led typography piece where lyric timing, hierarchy, and visual atmosphere carry the story.",
+      "sourceContentTags": ["music", "lyrics", "typography", "abstract", "performance", "atmosphere"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 15, "shortIdeal": 30, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["musical-intro", "lyric-phrases", "chorus-emphasis", "bridge-contrast", "final-refrain"],
+      "pacing": { "baseBeatsPerShot": [2, 4, 8], "accentBeatsPerShot": [1, 2], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "cross-dissolve", "zoom-punch", "montage", "light-leak", "glitch-transition"],
+      "preferredColorGradeIds": ["neutral-cinematic", "vintage-film", "subtle-teal-orange"],
+      "preferredMusicProfileIds": ["cinematic-build", "indie-pop-travel", "hip-hop-groove"],
+      "audioStrategy": "Music is authoritative; visual and text events follow phrase, downbeat, and lyric timing.",
+      "avoid": ["word-by-word motion without reason", "low contrast text", "text over faces", "visual rhythm conflicting with lyrics"]
+    },
+    {
+      "id": "gaming-highlight",
+      "name": "Gaming Highlight",
+      "phase1Priority": "research",
+      "summary": "A setup-to-payoff sequence using gameplay clarity, reactions, captions, and selective replay or emphasis.",
+      "sourceContentTags": ["gameplay", "facecam", "voice", "reaction", "win", "fail", "score"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 20, "shortIdeal": 35, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["stakes", "setup", "attempt", "turn", "payoff", "reaction"],
+      "pacing": { "baseBeatsPerShot": [2, 4], "accentBeatsPerShot": [0.5, 1], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "jump-cut", "zoom-punch", "freeze-frame", "slow-motion", "glitch-transition", "audio-impact-accent"],
+      "preferredColorGradeIds": ["clean-vibrant", "neutral-cinematic"],
+      "preferredMusicProfileIds": ["percussive-action", "hip-hop-groove", "synthwave-drive"],
+      "audioStrategy": "Preserve game cues and reaction speech; use music and effects to support rather than conceal the payoff.",
+      "avoid": ["cropping out essential HUD context", "effect covering the decisive moment", "music masking callouts", "replay without setup"]
+    },
+    {
+      "id": "podcast-clip",
+      "name": "Podcast Clip",
+      "phase1Priority": "research",
+      "summary": "A self-contained conversational insight presented with readable captions and restrained visual support.",
+      "sourceContentTags": ["podcast", "interview", "conversation", "multi-camera", "voice", "b-roll"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 30, "shortIdeal": 45, "shortMax": 60, "longMax": 300 },
+      "narrativePattern": ["provocative-line", "context", "reasoning", "example", "conclusion"],
+      "pacing": { "baseBeatsPerShot": [8, 16], "accentBeatsPerShot": [4, 8], "holdBeatsPerShot": [16, 32] },
+      "editingTechniqueIds": ["hard-cut", "jump-cut", "j-cut", "l-cut", "b-roll-layering", "aspect-ratio-reframe", "audio-ducking"],
+      "preferredColorGradeIds": ["clean-talking-head", "neutral-cinematic"],
+      "preferredMusicProfileIds": ["ambient-bed", "lofi-groove"],
+      "audioStrategy": "Conversation is authoritative. Repair level differences, preserve turn-taking, and use little or no music when it distracts.",
+      "avoid": ["cutting out context needed for the claim", "camera changes on every sentence", "oversized captions covering expressions", "music that editorializes too heavily"]
+    },
+    {
+      "id": "fitness-reel",
+      "name": "Fitness Reel",
+      "phase1Priority": "research",
+      "summary": "An energetic progression showing preparation, effort, form, intensity, and completion.",
+      "sourceContentTags": ["fitness", "running", "gym", "equipment", "form", "effort", "result"],
+      "deliveryProfileIds": ["vertical-short", "horizontal-standard"],
+      "platformIds": ["instagram-reels", "youtube-shorts", "tiktok", "youtube-standard"],
+      "durationSeconds": { "shortMin": 20, "shortIdeal": 30, "shortMax": 45, "longMax": 300 },
+      "narrativePattern": ["result-or-effort-hook", "preparation", "progression", "peak-effort", "completion"],
+      "pacing": { "baseBeatsPerShot": [1, 2], "accentBeatsPerShot": [0.5, 1], "holdBeatsPerShot": [4, 8] },
+      "editingTechniqueIds": ["hard-cut", "match-cut", "montage", "speed-ramp", "slow-motion", "audio-impact-accent"],
+      "preferredColorGradeIds": ["natural-action", "subtle-teal-orange", "clean-vibrant"],
+      "preferredMusicProfileIds": ["percussive-action", "hip-hop-groove", "driving-rock"],
+      "audioStrategy": "Accentuate foot strikes, weights, breaths, and equipment impacts while retaining enough natural effort to feel authentic.",
+      "avoid": ["speed effects that obscure form", "cutting before repetition completion", "constant impact sounds", "crushed shadows hiding body position"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "youtube-encoding",
+      "url": "https://support.google.com/youtube/answer/1722171",
+      "checkedAt": "2026-07-11",
+      "supports": ["YouTube aspect ratio, codec, frame-rate, audio, and SDR color-space context"]
+    },
+    {
+      "id": "youtube-shorts-duration",
+      "url": "https://support.google.com/youtube/answer/15424877",
+      "checkedAt": "2026-07-11",
+      "supports": ["Current square or vertical Shorts classification up to three minutes"]
+    },
+    {
+      "id": "tiktok-video-specifications",
+      "url": "https://ads.tiktok.com/help/article/video-ads-specifications",
+      "checkedAt": "2026-07-11",
+      "supports": ["TikTok in-feed aspect-ratio and format context"]
+    }
+  ]
+}

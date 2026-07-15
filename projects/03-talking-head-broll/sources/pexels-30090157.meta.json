@@ -1,0 +1,174 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 30090157,
+  "query": "coffee shop details",
+  "url": "https://www.pexels.com/video/barista-crafting-latte-art-in-coffee-shop-30090157/",
+  "download_url": "https://videos.pexels.com/video-files/30090157/12905416_1080_1920_50fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 6,
+  "user": {
+    "id": 266968882,
+    "name": "Esra Korkmaz",
+    "url": "https://www.pexels.com/@esrakorkmaz"
+  },
+  "video_files": [
+    {
+      "id": 12905413,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30090157/12905413_360_640_50fps.mp4",
+      "size": 516652
+    },
+    {
+      "id": 12905414,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30090157/12905414_540_960_50fps.mp4",
+      "size": 1003275
+    },
+    {
+      "id": 12905415,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30090157/12905415_720_1280_50fps.mp4",
+      "size": 1657395
+    },
+    {
+      "id": 12905416,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 50,
+      "link": "https://videos.pexels.com/video-files/30090157/12905416_1080_1920_50fps.mp4",
+      "size": 4259907
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 24448657,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/30090157/pictures/preview-0.jpg"
+    },
+    {
+      "id": 24448658,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/30090157/pictures/preview-1.jpg"
+    },
+    {
+      "id": 24448659,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/30090157/pictures/preview-2.jpg"
+    },
+    {
+      "id": 24448660,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/30090157/pictures/preview-3.jpg"
+    },
+    {
+      "id": 24448661,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/30090157/pictures/preview-4.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Esra Korkmaz on Pexels",
+  "downloaded_at": "2026-07-11T11:44:23.035Z",
+  "api_response": {
+    "id": 30090157,
+    "width": 1080,
+    "height": 1920,
+    "duration": 6,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/barista-crafting-latte-art-in-coffee-shop-30090157/",
+    "image": "https://images.pexels.com/videos/30090157/pexels-photo-30090157.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 266968882,
+      "name": "Esra Korkmaz",
+      "url": "https://www.pexels.com/@esrakorkmaz"
+    },
+    "video_files": [
+      {
+        "id": 12905413,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30090157/12905413_360_640_50fps.mp4",
+        "size": 516652
+      },
+      {
+        "id": 12905414,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30090157/12905414_540_960_50fps.mp4",
+        "size": 1003275
+      },
+      {
+        "id": 12905415,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30090157/12905415_720_1280_50fps.mp4",
+        "size": 1657395
+      },
+      {
+        "id": 12905416,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 50,
+        "link": "https://videos.pexels.com/video-files/30090157/12905416_1080_1920_50fps.mp4",
+        "size": 4259907
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 24448657,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/30090157/pictures/preview-0.jpg"
+      },
+      {
+        "id": 24448658,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/30090157/pictures/preview-1.jpg"
+      },
+      {
+        "id": 24448659,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/30090157/pictures/preview-2.jpg"
+      },
+      {
+        "id": 24448660,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/30090157/pictures/preview-3.jpg"
+      },
+      {
+        "id": 24448661,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/30090157/pictures/preview-4.jpg"
+      }
+    ]
+  }
+}

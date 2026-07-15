@@ -1,0 +1,184 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 34672414,
+  "query": "neon city street",
+  "url": "https://www.pexels.com/video/neon-lit-building-in-cyberpunk-style-at-night-34672414/",
+  "download_url": "https://videos.pexels.com/video-files/34672414/14696006_1080_1920_24fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 7,
+  "user": {
+    "id": 163345030,
+    "name": "Pușcaș Adryan",
+    "url": "https://www.pexels.com/@pu-ca-adryan-163345030"
+  },
+  "video_files": [
+    {
+      "id": 14696003,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 24,
+      "link": "https://videos.pexels.com/video-files/34672414/14696003_360_640_24fps.mp4",
+      "size": 1185918
+    },
+    {
+      "id": 14696004,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 24,
+      "link": "https://videos.pexels.com/video-files/34672414/14696004_540_960_24fps.mp4",
+      "size": 3218755
+    },
+    {
+      "id": 14696005,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 24,
+      "link": "https://videos.pexels.com/video-files/34672414/14696005_720_1280_24fps.mp4",
+      "size": 5932473
+    },
+    {
+      "id": 14696006,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 24,
+      "link": "https://videos.pexels.com/video-files/34672414/14696006_1080_1920_24fps.mp4",
+      "size": 12969462
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 29028014,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-0.jpg"
+    },
+    {
+      "id": 29028015,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-1.jpg"
+    },
+    {
+      "id": 29028016,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-2.jpg"
+    },
+    {
+      "id": 29028017,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-3.jpg"
+    },
+    {
+      "id": 29028018,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-4.jpg"
+    },
+    {
+      "id": 29028019,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/34672414/pictures/preview-5.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Pușcaș Adryan on Pexels",
+  "downloaded_at": "2026-07-11T12:15:30.332Z",
+  "api_response": {
+    "id": 34672414,
+    "width": 1080,
+    "height": 1920,
+    "duration": 7,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/neon-lit-building-in-cyberpunk-style-at-night-34672414/",
+    "image": "https://images.pexels.com/videos/34672414/3d-art-project-cyberpunk-neon-34672414.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 163345030,
+      "name": "Pușcaș Adryan",
+      "url": "https://www.pexels.com/@pu-ca-adryan-163345030"
+    },
+    "video_files": [
+      {
+        "id": 14696003,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 24,
+        "link": "https://videos.pexels.com/video-files/34672414/14696003_360_640_24fps.mp4",
+        "size": 1185918
+      },
+      {
+        "id": 14696004,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 24,
+        "link": "https://videos.pexels.com/video-files/34672414/14696004_540_960_24fps.mp4",
+        "size": 3218755
+      },
+      {
+        "id": 14696005,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 24,
+        "link": "https://videos.pexels.com/video-files/34672414/14696005_720_1280_24fps.mp4",
+        "size": 5932473
+      },
+      {
+        "id": 14696006,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 24,
+        "link": "https://videos.pexels.com/video-files/34672414/14696006_1080_1920_24fps.mp4",
+        "size": 12969462
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 29028014,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-0.jpg"
+      },
+      {
+        "id": 29028015,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-1.jpg"
+      },
+      {
+        "id": 29028016,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-2.jpg"
+      },
+      {
+        "id": 29028017,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-3.jpg"
+      },
+      {
+        "id": 29028018,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-4.jpg"
+      },
+      {
+        "id": 29028019,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/34672414/pictures/preview-5.jpg"
+      }
+    ]
+  }
+}

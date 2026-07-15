@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-11",
+  "purpose": "Editorial definitions and FFmpeg execution guidance for cuts, transitions, timing, reframing, layering, and audio treatments.",
+  "globalRules": [
+    "Choose cuts for story and action continuity before adding transitions.",
+    "Use hard cuts by default; use a transition only when it communicates time, place, energy, or a deliberate visual relationship.",
+    "Normalize resolution, frame rate, timebase, sample aspect ratio, pixel format, and audio format before concat or xfade operations.",
+    "Reset trimmed stream timestamps with setpts=PTS-STARTPTS and asetpts=PTS-STARTPTS.",
+    "Render beat-synchronized edits with accurate decoded cuts rather than keyframe-limited stream copy.",
+    "Preserve dialogue and complete meaningful action even when that requires moving a cut away from a beat."
+  ],
+  "normalizationTemplate": {
+    "videoFilter": "scale=W:H:force_original_aspect_ratio=increase,crop=W:H,setsar=1,fps=FPS,format=yuv420p,settb=AVTB,setpts=PTS-STARTPTS",
+    "audioFilter": "aresample=48000,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,asetpts=PTS-STARTPTS",
+    "note": "Replace W, H, and FPS per delivery profile. Subject-aware crop coordinates should replace blind center cropping when composition requires it."
+  },
+  "techniques": [
+    {
+      "id": "hard-cut",
+      "name": "Hard Cut",
+      "category": "cut",
+      "automationLevel": "direct",
+      "description": "One shot ends and the next begins with no overlap. This is the default edit and usually the strongest choice for rhythm, action, and clarity.",
+      "useWhen": ["cutting on action", "landing on a beat or onset", "changing angle within one scene", "building fast montage", "preserving momentum"],
+      "avoidWhen": ["the change should feel like a large passage of time", "two static compositions clash without narrative intent"],
+      "editorialChecks": ["screen direction", "subject position", "motion continuity", "shot-size variation", "audio continuity"],
+      "ffmpeg": {
+        "filters": ["trim", "atrim", "setpts", "asetpts", "concat"],
+        "implementation": "Trim normalized clips at frame-accurate times, reset timestamps, then concatenate."
+      }
+    },
+    {
+      "id": "jump-cut",
+      "name": "Jump Cut",
+      "category": "cut",
+      "automationLevel": "composed",
+      "description": "A discontinuous cut within the same framing or action that visibly advances time. It can create urgency or remove dead speech.",
+      "useWhen": ["tightening talking-head delivery", "compressing repetitive action", "creating intentional energetic discontinuity"],
+      "avoidWhen": ["the missing action causes confusion", "natural performance is more important than speed"],
+      "editorialChecks": ["do not cut mid-word", "preserve a plausible breath cadence", "cover distracting jumps with B-roll when possible"],
+      "ffmpeg": {
+        "filters": ["trim", "atrim", "setpts", "asetpts", "concat"],
+        "implementation": "Create multiple non-contiguous ranges from one source and concatenate them; independently preserve room tone if speech gaps sound unnatural."
+      }
+    },
+    {
+      "id": "j-cut",
+      "name": "J-cut",
+      "category": "cut",
+      "automationLevel": "composed",
+      "description": "Audio from the incoming scene begins before its picture appears, pulling the viewer into the next moment.",
+      "useWhen": ["introducing a speaker before showing them", "entering a location through ambience", "smoothing a scene change"],
+      "avoidWhen": ["incoming audio spoils a visual reveal", "audio sources would be spatially confusing"],
+      "editorialChecks": ["incoming audio is recognizable", "lead duration matches intent", "dialogue remains intelligible"],
+      "ffmpeg": {
+        "filters": ["trim", "atrim", "adelay", "setpts", "asetpts", "concat", "amix"],
+        "implementation": "Place the incoming audio earlier than its video on the timeline. This is a timeline relationship, not a single FFmpeg filter."
+      }
+    },
+    {
+      "id": "l-cut",
+      "name": "L-cut",
+      "category": "cut",
+      "automationLevel": "composed",
+      "description": "Audio from the outgoing scene continues after the next picture begins, preserving thought or atmosphere across the visual cut.",
+      "useWhen": ["showing B-roll while a speaker finishes", "maintaining ambience", "connecting reaction and source"],
+      "avoidWhen": ["old audio contradicts the new location", "the overlap muddies two voices"],
+      "editorialChecks": ["outgoing phrase resolves cleanly", "new visual supports the continuing audio", "room tone transition is controlled"],
+      "ffmpeg": {
+        "filters": ["trim", "atrim", "adelay", "setpts", "asetpts", "concat", "amix"],
+        "implementation": "Extend outgoing audio beyond its video edit and mix it beneath the incoming picture/audio as needed."
+      }
+    },
+    {
+      "id": "match-cut",
+      "name": "Match Cut",
+      "category": "cut",
+      "automationLevel": "editorial",
+      "description": "A cut connecting shots through similar motion, shape, composition, color, meaning, or sound.",
+      "useWhen": ["linking locations", "compressing repeated actions", "making a rhythmic visual rhyme", "transitioning between POV and detail"],
+      "avoidWhen": ["the similarity is weak", "matching motion reverses screen direction unintentionally"],
+      "editorialChecks": ["match point is visually legible", "subject scale and position align", "motion direction and phase align", "the connection supports the story"],
+      "ffmpeg": {
+        "filters": ["trim", "setpts", "crop", "scale", "concat"],
+        "implementation": "Semantic or motion-aware analysis chooses the shots and cut frame; FFmpeg executes the trims and optional reframing."
+      }
+    },
+    {
+      "id": "montage",
+      "name": "Montage",
+      "category": "structure",
+      "automationLevel": "editorial",
+      "description": "A designed sequence of short shots that compresses time, summarizes activity, or builds emotion through accumulation.",
+      "useWhen": ["travel movement", "food preparation", "route progression", "fitness effort", "opening or closing summary"],
+      "avoidWhen": ["the viewer needs continuous procedural understanding", "every shot repeats the same information"],
+      "editorialChecks": ["clear sequence purpose", "varied shot scale", "directional continuity", "rhythmic variation", "strong beginning and end"],
+      "ffmpeg": {
+        "filters": ["trim", "atrim", "setpts", "asetpts", "concat", "xfade"],
+        "implementation": "Generate a cut plan first, normalize each segment, then construct a concat/xfade graph."
+      }
+    },
+    {
+      "id": "b-roll-layering",
+      "name": "B-roll Layering",
+      "category": "structure",
+      "automationLevel": "editorial",
+      "description": "Supporting footage replaces or overlays the primary image while primary speech or scene audio continues.",
+      "useWhen": ["proving a spoken claim", "hiding a jump cut", "adding place and sensory detail", "demonstrating a process"],
+      "avoidWhen": ["B-roll is generic or unrelated", "the speaker's expression carries the moment"],
+      "editorialChecks": ["each B-roll shot maps to the active phrase", "return to the speaker for emotional emphasis", "audio perspective remains coherent"],
+      "ffmpeg": {
+        "filters": ["trim", "setpts", "overlay", "concat", "amix"],
+        "implementation": "Use replacement video segments with continuing primary audio, or overlay only when picture-in-picture is intentional."
+      }
+    },
+    {
+      "id": "cross-dissolve",
+      "name": "Cross-dissolve",
+      "category": "transition",
+      "automationLevel": "direct",
+      "description": "Outgoing and incoming shots overlap gradually, suggesting a softer connection, passage of time, reflection, or change of place.",
+      "useWhen": ["calm travel change", "time passage", "memory or reflection", "similar low-motion compositions"],
+      "avoidWhen": ["fast action", "high-detail shots produce a muddy overlap", "a hard cut would be clearer"],
+      "durationSeconds": { "min": 0.25, "idealMin": 0.4, "idealMax": 0.8, "max": 1.5 },
+      "editorialChecks": ["overlap does not create an accidental double subject", "transition lands within a musical phrase", "audio transition is separately designed"],
+      "ffmpeg": {
+        "filters": ["xfade", "acrossfade"],
+        "template": "[a][b]xfade=transition=dissolve:duration=D:offset=O[v]",
+        "constraint": "Both video inputs must use constant frame rate and match resolution, pixel format, frame rate, and timebase."
+      }
+    },
+    {
+      "id": "fade-to-black",
+      "name": "Fade to Black",
+      "category": "transition",
+      "automationLevel": "direct",
+      "description": "The image fades to black to close a section, mark a major break, or provide finality.",
+      "useWhen": ["ending a video", "large time jump", "chapter break", "emotional pause"],
+      "avoidWhen": ["used repeatedly inside a fast reel", "momentum should continue"],
+      "durationSeconds": { "min": 0.2, "idealMin": 0.4, "idealMax": 1.0, "max": 2.0 },
+      "editorialChecks": ["audio resolves or bridges intentionally", "black duration is not accidental dead time"],
+      "ffmpeg": {
+        "filters": ["fade", "afade"],
+        "template": "fade=t=out:st=START:d=DURATION:color=black"
+      }
+    },
+    {
+      "id": "whip-pan",
+      "name": "Whip-pan Transition",
+      "category": "transition",
+      "automationLevel": "composed",
+      "description": "A rapid directional blur connects outgoing and incoming shots with compatible movement.",
+      "useWhen": ["motovlog movement", "location change", "high-energy phrase boundary", "matching left-right or up-down camera motion"],
+      "avoidWhen": ["both shots are static without a motivated direction", "motion directions conflict", "frequent use causes nausea"],
+      "durationSeconds": { "min": 0.12, "idealMin": 0.18, "idealMax": 0.35, "max": 0.5 },
+      "editorialChecks": ["direction matches", "blur peak hides the cut", "incoming subject remains readable after transition"],
+      "ffmpeg": {
+        "filters": ["xfade", "gblur", "tblend", "crop", "overlay"],
+        "implementation": "Compose directional movement and motion blur around the cut. A slide xfade alone is only an approximation; test the complete graph visually."
+      }
+    },
+    {
+      "id": "zoom-punch",
+      "name": "Zoom Punch",
+      "category": "transition",
+      "automationLevel": "composed",
+      "description": "A brief scale change emphasizes a beat, statement, reaction, or transition.",
+      "useWhen": ["spoken emphasis", "product detail", "reaction", "impact beat", "hiding a same-angle jump cut"],
+      "avoidWhen": ["used on every sentence", "source resolution cannot tolerate crop", "subject moves out of the crop"],
+      "durationSeconds": { "min": 0.08, "idealMin": 0.12, "idealMax": 0.3, "max": 0.5 },
+      "editorialChecks": ["anchor on subject", "preserve output resolution", "return or cut at a deliberate event"],
+      "ffmpeg": {
+        "filters": ["scale", "crop", "zoompan"],
+        "implementation": "Animate scale/crop around a subject anchor; use short duration and restrained magnitude."
+      }
+    },
+    {
+      "id": "glitch-transition",
+      "name": "Glitch Transition",
+      "category": "transition",
+      "automationLevel": "composed",
+      "description": "Brief channel offsets, displacement, frame repetition, or pixel disruption create a digital interruption.",
+      "useWhen": ["gaming", "electronic music accent", "intentional disruption", "technology theme"],
+      "avoidWhen": ["natural cinematic travel", "dialogue-led calm story", "photosensitive audience risk", "effect lasts long enough to obscure content"],
+      "durationSeconds": { "min": 0.06, "idealMin": 0.1, "idealMax": 0.25, "max": 0.4 },
+      "editorialChecks": ["short and readable", "not rapid-flashing", "effect aligns with a strong onset", "audio accent is controlled"],
+      "ffmpeg": {
+        "filters": ["rgbashift", "shuffleframes", "noise", "blend", "crop", "overlay"],
+        "implementation": "Compose a short effect segment. No single filter defines a complete glitch transition."
+      }
+    },
+    {
+      "id": "light-leak",
+      "name": "Light-leak Transition",
+      "category": "transition",
+      "automationLevel": "asset-assisted",
+      "description": "A bright organic overlay briefly washes the frame to connect scenes with a nostalgic or sunlit feeling.",
+      "useWhen": ["beach", "warm travel", "memory", "golden-hour location change"],
+      "avoidWhen": ["technical or clean product content", "highlight detail is already clipped", "repeated use"],
+      "durationSeconds": { "min": 0.25, "idealMin": 0.4, "idealMax": 0.8, "max": 1.2 },
+      "editorialChecks": ["overlay color supports grade", "brightest point covers the cut", "asset source metadata is retained"],
+      "ffmpeg": {
+        "filters": ["overlay", "blend", "fade"],
+        "implementation": "Blend a licensed light-leak video or generated gradient over both sides of the cut; animate opacity with fade."
+      }
+    },
+    {
+      "id": "speed-ramp",
+      "name": "Speed Ramp",
+      "category": "timing",
+      "automationLevel": "composed",
+      "description": "Playback speed changes over an action, commonly accelerating into motion and returning to normal or slow speed near a reveal.",
+      "useWhen": ["vehicle acceleration", "camera move", "walking transition", "food action", "fitness impact"],
+      "avoidWhen": ["speech must remain natural", "unstable or heavily compressed footage", "motion lacks a clean start and end"],
+      "editorialChecks": ["ramp follows motion energy", "speed change does not hide important action", "optical-flow artifacts are absent", "source audio is replaced or redesigned"],
+      "ffmpeg": {
+        "filters": ["trim", "setpts", "atempo", "concat", "minterpolate"],
+        "implementation": "Split the action into segments, apply different setpts factors, and concatenate. Redesign source audio or chain atempo filters within supported ranges. Use interpolation only after visual testing."
+      }
+    },
+    {
+      "id": "slow-motion",
+      "name": "Slow Motion",
+      "category": "timing",
+      "automationLevel": "direct",
+      "description": "An action plays below real-time speed to reveal detail, weight, or emotion.",
+      "useWhen": ["source was captured at high frame rate", "water, food, vehicle, gesture, reaction, or impact detail", "brief contrast after a fast run"],
+      "avoidWhen": ["low-frame-rate source produces visible stutter", "nothing meaningful changes in the shot", "dialogue must remain synchronous"],
+      "editorialChecks": ["source frame rate supports target speed", "motion remains readable", "duration does not stall the story"],
+      "ffmpeg": {
+        "filters": ["setpts", "minterpolate"],
+        "template": "setpts=FACTOR*PTS",
+        "implementation": "Prefer native high-frame-rate frames. minterpolate can synthesize frames but may fail around occlusion, spokes, water, and rapid camera motion."
+      }
+    },
+    {
+      "id": "freeze-frame",
+      "name": "Freeze Frame",
+      "category": "timing",
+      "automationLevel": "direct",
+      "description": "A selected frame is held to emphasize a reveal, label a person/place, create comedy, or provide reading time.",
+      "useWhen": ["reaction emphasis", "title card", "route or place label", "ending punctuation", "tutorial annotation"],
+      "avoidWhen": ["chosen frame has motion blur", "hold interrupts important audio continuity", "used repeatedly without a motif"],
+      "editorialChecks": ["select a sharp frame", "hold length fits text and rhythm", "audio continues intentionally"],
+      "ffmpeg": {
+        "filters": ["trim", "tpad", "loop", "setpts"],
+        "template": "tpad=stop_mode=clone:stop_duration=DURATION"
+      }
+    },
+    {
+      "id": "aspect-ratio-reframe",
+      "name": "Aspect-ratio Reframing",
+      "category": "framing",
+      "automationLevel": "editorial",
+      "description": "A source shot is recomposed for a different canvas while keeping its important subject, motion, and text visible.",
+      "useWhen": ["creating 9:16 and 16:9 versions", "following a moving subject", "removing unusable edge detail"],
+      "avoidWhen": ["crop removes essential context", "source resolution is insufficient", "multiple distant subjects cannot fit"],
+      "editorialChecks": ["face and action stay inside frame", "headroom is intentional", "horizon remains stable", "captions and UI avoid edge zones"],
+      "ffmpeg": {
+        "filters": ["crop", "scale", "pad", "overlay", "sendcmd"],
+        "verticalFillTemplate": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920:X:Y",
+        "fitTemplate": "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2",
+        "implementation": "Subject detection or human review supplies crop anchors. A blurred background fill is a fallback, not the default."
+      }
+    },
+    {
+      "id": "split-screen",
+      "name": "Split Screen",
+      "category": "framing",
+      "automationLevel": "direct",
+      "description": "Two or more synchronized views share the frame for comparison, reaction, or simultaneous context.",
+      "useWhen": ["before-after", "product result", "speaker and demonstration", "gameplay and reaction"],
+      "avoidWhen": ["content becomes too small on mobile", "timing has no meaningful relationship"],
+      "editorialChecks": ["both panels remain legible", "visual hierarchy is clear", "audio source is unambiguous"],
+      "ffmpeg": {
+        "filters": ["hstack", "vstack", "xstack", "scale", "crop", "overlay"],
+        "implementation": "Normalize panel dimensions and duration before stacking."
+      }
+    },
+    {
+      "id": "audio-ducking",
+      "name": "Music Ducking",
+      "category": "audio",
+      "automationLevel": "direct",
+      "description": "Music level is reduced dynamically when dialogue or another priority signal is present.",
+      "useWhen": ["talking head", "podcast clip", "voiceover", "motovlog speech"],
+      "avoidWhen": ["there is no priority signal", "aggressive pumping becomes audible"],
+      "editorialChecks": ["consonants remain clear", "release is smooth", "music returns between phrases", "final mix does not clip"],
+      "ffmpeg": {
+        "filters": ["sidechaincompress", "amix", "loudnorm"],
+        "template": "[music][voice]sidechaincompress=threshold=THRESHOLD:ratio=RATIO:attack=ATTACK:release=RELEASE[ducked];[ducked][voice]amix=inputs=2:duration=longest[mix]",
+        "implementation": "Tune from real tracks and voices; parameter values cannot be universal. Normalize final loudness after relative mixing."
+      }
+    },
+    {
+      "id": "audio-impact-accent",
+      "name": "Audio Impact Accent",
+      "category": "audio",
+      "automationLevel": "composed",
+      "description": "A short impact, whoosh, riser, engine, or natural transient reinforces a specific visual event.",
+      "useWhen": ["major reveal", "fast directional transition", "gear change", "landing", "knife cut", "graphic entrance"],
+      "avoidWhen": ["ordinary cuts", "effect duplicates an already strong natural sound", "repetition makes the mix artificial"],
+      "editorialChecks": ["transient aligns to the visual frame", "level fits the scene", "low frequencies do not clip the mix", "effect has source metadata"],
+      "ffmpeg": {
+        "filters": ["adelay", "atrim", "afade", "volume", "amix", "alimiter"],
+        "implementation": "Place the effect by timestamp, trim and fade boundaries, then mix and limit."
+      }
+    }
+  ],
+  "source": {
+    "url": "https://ffmpeg.org/ffmpeg-filters.html",
+    "context7LibraryId": "/websites/ffmpeg_documentation",
+    "checkedAt": "2026-07-11",
+    "verifiedFacts": [
+      "xfade input matching requirements",
+      "availability and purpose of trim, setpts, concat, xfade, acrossfade, crop, scale, pad, zoompan, minterpolate, tpad, lut3d, sidechaincompress, amix, and loudnorm filters"
+    ]
+  }
+}

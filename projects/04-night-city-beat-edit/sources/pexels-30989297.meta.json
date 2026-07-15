@@ -1,0 +1,184 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 30989297,
+  "query": "Tokyo street night",
+  "url": "https://www.pexels.com/video/nighttime-cityscape-with-busy-traffic-30989297/",
+  "download_url": "https://videos.pexels.com/video-files/30989297/13246954_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 7,
+  "user": {
+    "id": 413074398,
+    "name": "Nelemson G",
+    "url": "https://www.pexels.com/@nelemson"
+  },
+  "video_files": [
+    {
+      "id": 13246951,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/30989297/13246951_360_640_30fps.mp4",
+      "size": 793779
+    },
+    {
+      "id": 13246952,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/30989297/13246952_540_960_30fps.mp4",
+      "size": 1693169
+    },
+    {
+      "id": 13246953,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/30989297/13246953_720_1280_30fps.mp4",
+      "size": 2940546
+    },
+    {
+      "id": 13246954,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/30989297/13246954_1080_1920_30fps.mp4",
+      "size": 6515526
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 25350523,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-0.jpg"
+    },
+    {
+      "id": 25350524,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-1.jpg"
+    },
+    {
+      "id": 25350525,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-2.jpg"
+    },
+    {
+      "id": 25350526,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-3.jpg"
+    },
+    {
+      "id": 25350527,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-4.jpg"
+    },
+    {
+      "id": 25350528,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/30989297/pictures/preview-5.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Nelemson G on Pexels",
+  "downloaded_at": "2026-07-11T16:30:00.925Z",
+  "api_response": {
+    "id": 30989297,
+    "width": 1080,
+    "height": 1920,
+    "duration": 7,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/nighttime-cityscape-with-busy-traffic-30989297/",
+    "image": "https://images.pexels.com/videos/30989297/pexels-photo-30989297.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 413074398,
+      "name": "Nelemson G",
+      "url": "https://www.pexels.com/@nelemson"
+    },
+    "video_files": [
+      {
+        "id": 13246951,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/30989297/13246951_360_640_30fps.mp4",
+        "size": 793779
+      },
+      {
+        "id": 13246952,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/30989297/13246952_540_960_30fps.mp4",
+        "size": 1693169
+      },
+      {
+        "id": 13246953,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/30989297/13246953_720_1280_30fps.mp4",
+        "size": 2940546
+      },
+      {
+        "id": 13246954,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/30989297/13246954_1080_1920_30fps.mp4",
+        "size": 6515526
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 25350523,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-0.jpg"
+      },
+      {
+        "id": 25350524,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-1.jpg"
+      },
+      {
+        "id": 25350525,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-2.jpg"
+      },
+      {
+        "id": 25350526,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-3.jpg"
+      },
+      {
+        "id": 25350527,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-4.jpg"
+      },
+      {
+        "id": 25350528,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/30989297/pictures/preview-5.jpg"
+      }
+    ]
+  }
+}

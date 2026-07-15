@@ -1,0 +1,37 @@
+{
+  "id": "02-motovlog-fast-cut",
+  "type": "motovlog-reel",
+  "sourceMode": "stock-montage",
+  "editStyle": "social-arc",
+  "length": 16,
+  "aspect": "9:16",
+  "gradeId": "natural-action",
+  "musicQuery": "Chris Rea Looking for the Summer official audio",
+  "queries": [
+    {
+      "query": "motorcycle POV mountain road",
+      "count": 2,
+      "anchorY": 0.52
+    },
+    {
+      "query": "motorcycle rider road",
+      "count": 2,
+      "anchorY": 0.46
+    },
+    {
+      "query": "motorcycle mountain road",
+      "count": 2,
+      "anchorY": 0.53
+    },
+    {
+      "query": "motorcycle scenic road",
+      "count": 2,
+      "anchorY": 0.5
+    }
+  ],
+  "musicStart": 157.64,
+  "musicHookTime": 166.72,
+  "musicHookRole": "payoff",
+  "musicVolumeStart": 0.55,
+  "musicVolumeFullAt": 9.08
+}

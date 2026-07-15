@@ -1,0 +1,274 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 28883550,
+  "query": "Tokyo people night street",
+  "url": "https://www.pexels.com/video/vibrant-night-at-shibuya-crossing-28883550/",
+  "download_url": "https://videos.pexels.com/video-files/28883550/12503540_1080_1920_30fps.mp4",
+  "downloaded_quality": null,
+  "width": 1080,
+  "height": 1920,
+  "duration": 49,
+  "user": {
+    "id": 1940416158,
+    "name": "Bezaleel Fajar Luista",
+    "url": "https://www.pexels.com/@bezaleel-fajar-luista-1940416158"
+  },
+  "video_files": [
+    {
+      "id": 12503537,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/28883550/12503537_360_640_30fps.mp4",
+      "size": 15200654
+    },
+    {
+      "id": 12503538,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/28883550/12503538_540_960_30fps.mp4",
+      "size": 28697395
+    },
+    {
+      "id": 12503539,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/28883550/12503539_720_1280_30fps.mp4",
+      "size": 44807780
+    },
+    {
+      "id": 12503540,
+      "quality": null,
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 29.97,
+      "link": "https://videos.pexels.com/video-files/28883550/12503540_1080_1920_30fps.mp4",
+      "size": 80860383
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 23375469,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-0.jpg"
+    },
+    {
+      "id": 23375470,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-1.jpg"
+    },
+    {
+      "id": 23375471,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-2.jpg"
+    },
+    {
+      "id": 23375472,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-3.jpg"
+    },
+    {
+      "id": 23375473,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-4.jpg"
+    },
+    {
+      "id": 23375474,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-5.jpg"
+    },
+    {
+      "id": 23375475,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-6.jpg"
+    },
+    {
+      "id": 23375476,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-7.jpg"
+    },
+    {
+      "id": 23375477,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-8.jpg"
+    },
+    {
+      "id": 23375478,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-9.jpg"
+    },
+    {
+      "id": 23375479,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-10.jpg"
+    },
+    {
+      "id": 23375480,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-11.jpg"
+    },
+    {
+      "id": 23375481,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-12.jpg"
+    },
+    {
+      "id": 23375482,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-13.jpg"
+    },
+    {
+      "id": 23375483,
+      "nr": 14,
+      "picture": "https://images.pexels.com/videos/28883550/pictures/preview-14.jpg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "attribution": "Video by Bezaleel Fajar Luista on Pexels",
+  "downloaded_at": "2026-07-11T16:30:18.938Z",
+  "api_response": {
+    "id": 28883550,
+    "width": 1080,
+    "height": 1920,
+    "duration": 49,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/vibrant-night-at-shibuya-crossing-28883550/",
+    "image": "https://images.pexels.com/videos/28883550/central-tokyo-japan-shibuya-crossing-28883550.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 1940416158,
+      "name": "Bezaleel Fajar Luista",
+      "url": "https://www.pexels.com/@bezaleel-fajar-luista-1940416158"
+    },
+    "video_files": [
+      {
+        "id": 12503537,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/28883550/12503537_360_640_30fps.mp4",
+        "size": 15200654
+      },
+      {
+        "id": 12503538,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/28883550/12503538_540_960_30fps.mp4",
+        "size": 28697395
+      },
+      {
+        "id": 12503539,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/28883550/12503539_720_1280_30fps.mp4",
+        "size": 44807780
+      },
+      {
+        "id": 12503540,
+        "quality": null,
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 29.97,
+        "link": "https://videos.pexels.com/video-files/28883550/12503540_1080_1920_30fps.mp4",
+        "size": 80860383
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 23375469,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-0.jpg"
+      },
+      {
+        "id": 23375470,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-1.jpg"
+      },
+      {
+        "id": 23375471,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-2.jpg"
+      },
+      {
+        "id": 23375472,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-3.jpg"
+      },
+      {
+        "id": 23375473,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-4.jpg"
+      },
+      {
+        "id": 23375474,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-5.jpg"
+      },
+      {
+        "id": 23375475,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-6.jpg"
+      },
+      {
+        "id": 23375476,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-7.jpg"
+      },
+      {
+        "id": 23375477,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-8.jpg"
+      },
+      {
+        "id": 23375478,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-9.jpg"
+      },
+      {
+        "id": 23375479,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-10.jpg"
+      },
+      {
+        "id": 23375480,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-11.jpg"
+      },
+      {
+        "id": 23375481,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-12.jpg"
+      },
+      {
+        "id": 23375482,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-13.jpg"
+      },
+      {
+        "id": 23375483,
+        "nr": 14,
+        "picture": "https://images.pexels.com/videos/28883550/pictures/preview-14.jpg"
+      }
+    ]
+  }
+}
