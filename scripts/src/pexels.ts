@@ -14,8 +14,8 @@ import type {
   SourceQuery,
 } from './types.js';
 
-const API_BASE = 'https://api.pexels.com/videos/search';
-const VIDEO_API_BASE = 'https://api.pexels.com/videos/videos';
+const API_BASE = 'https://api.pexels.com/v1/videos/search';
+const VIDEO_API_BASE = 'https://api.pexels.com/v1/videos/videos';
 
 export async function searchPexelsVideos(
   apiKey: string,
@@ -165,6 +165,8 @@ export async function downloadPexelsVideo(
       video_files: video.video_files,
       video_pictures: video.video_pictures,
       license: 'Pexels License - Free for personal and commercial use',
+      license_url: 'https://www.pexels.com/license/',
+      license_checked_at: new Date().toISOString(),
       attribution: `Video by ${video.user.name} on Pexels`,
       downloaded_at: new Date().toISOString(),
       api_response: video,

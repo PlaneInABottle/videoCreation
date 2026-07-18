@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { chooseVideoFile, requestedSourceCount } from './pexels.js';
+import {
+  chooseVideoFile,
+  getPexelsVideo,
+  requestedSourceCount,
+  searchPexelsVideos,
+} from './pexels.js';
 import type { PexelsVideo } from './types.js';
 
 const video: PexelsVideo = {
@@ -45,4 +50,26 @@ test('uses pinned Pexels IDs as a reproducible source count', () => {
     () => requestedSourceCount({ query: 'invalid pins', count: 1, videoIds: [11, 22] }),
     /pins 2 videos but requests 1/,
   );
+});
+
+test('uses the current Pexels v1 video endpoints', async () => {
+  const originalFetch = globalThis.fetch;
+  const requests: string[] = [];
+  globalThis.fetch = (async (input) => {
+    requests.push(String(input));
+    return new Response(JSON.stringify(requests.length === 1 ? { videos: [video] } : video), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    });
+  }) as typeof fetch;
+
+  try {
+    await searchPexelsVideos('test-key', 'night train', 'portrait', 3);
+    await getPexelsVideo('test-key', video.id);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.match(requests[0] ?? '', /^https:\/\/api\.pexels\.com\/v1\/videos\/search\?/);
+  assert.equal(requests[1], 'https://api.pexels.com/v1/videos/videos/1');
 });
