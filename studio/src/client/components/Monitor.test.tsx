@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { StoryboardDraft } from '@ai-video-creation/scripts/types';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PlaybackClock } from '../playback-clock.js';
@@ -134,6 +134,31 @@ describe('Monitor', () => {
       expect(screen.getByRole('button', { name: 'Rendered' }).getAttribute('aria-pressed')).toBe(
         'true',
       ),
+    );
+  });
+
+  it('honors a backward timeline seek while the live edit is playing', async () => {
+    const requestFrame = vi.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 1);
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    const clock = new PlaybackClock();
+    clock.set(2.5);
+    render(
+      <Monitor draft={draft()} sources={sources} aspect="9:16" duration={4} stale clock={clock} />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Play preview' }));
+    await waitFor(() => expect(requestFrame).toHaveBeenCalled());
+    expect(document.querySelector('[data-shot-id="two"]')?.classList.contains('is-active')).toBe(
+      true,
+    );
+
+    clock.set(0.5);
+
+    expect(document.querySelector('[data-shot-id="one"]')?.classList.contains('is-active')).toBe(
+      true,
+    );
+    expect(document.querySelector('[data-shot-id="two"]')?.classList.contains('is-active')).toBe(
+      false,
     );
   });
 });

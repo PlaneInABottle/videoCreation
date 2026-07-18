@@ -7,6 +7,9 @@ import type { PlaybackClock } from '../playback-clock.js';
 
 type MonitorMode = 'live' | 'rendered';
 
+const LIVE_VIDEO_DRIFT_TOLERANCE = 0.08;
+const LIVE_MUSIC_SEEK_TOLERANCE = 0.05;
+
 interface MonitorProps {
   source?: string;
   musicSource?: string;
@@ -93,6 +96,7 @@ export function Monitor({
   const liveVideosRef = useRef(new Map<string, HTMLVideoElement>());
   const musicRef = useRef<HTMLAudioElement>(null);
   const currentTimeRef = useRef(clock.getSnapshot());
+  const livePlaybackAnchorRef = useRef({ timeline: currentTimeRef.current, wall: 0 });
   const playingRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [mode, setMode] = useState<MonitorMode>(stale || !source ? 'live' : 'rendered');
@@ -118,7 +122,9 @@ export function Monitor({
         const video = liveVideosRef.current.get(located.shot.id);
         if (video && video.readyState >= 1) {
           const target = located.shot.sourceIn + located.localTime;
-          if (Math.abs(video.currentTime - target) > 0.18) video.currentTime = target;
+          if (Math.abs(video.currentTime - target) > LIVE_VIDEO_DRIFT_TOLERANCE) {
+            video.currentTime = target;
+          }
           video.muted = draft.audioPlan?.useSourceAudio !== true;
           video.volume = Math.max(0, Math.min(1, draft.audioPlan?.sourceVolume ?? 1));
           if (shouldPlay && video.paused) void video.play().catch(() => undefined);
@@ -127,7 +133,10 @@ export function Monitor({
       const music = musicRef.current;
       if (music && draft.music) {
         const target = draft.music.start + time;
-        if (music.readyState >= 1 && Math.abs(music.currentTime - target) > 0.22) {
+        if (
+          music.readyState >= 1 &&
+          Math.abs(music.currentTime - target) > LIVE_MUSIC_SEEK_TOLERANCE
+        ) {
           music.currentTime = target;
         }
         music.volume = musicVolumeAt(draft, time);
@@ -150,15 +159,19 @@ export function Monitor({
   useEffect(() => {
     const synchronize = () => {
       const currentTime = Math.min(clock.getSnapshot(), duration);
+      const externalSeek = Math.abs(currentTime - currentTimeRef.current) > 0.01;
       currentTimeRef.current = currentTime;
-      if (playingRef.current) return;
+      if (playingRef.current && !externalSeek) return;
+      if (playingRef.current && externalSeek) {
+        livePlaybackAnchorRef.current = { timeline: currentTime, wall: performance.now() };
+      }
       if (mode === 'rendered') {
         const video = renderedVideoRef.current;
         if (video && Math.abs(video.currentTime - currentTime) > 0.18) {
           video.currentTime = Math.min(currentTime, video.duration || duration);
         }
       } else {
-        syncLiveMedia(currentTime, false);
+        syncLiveMedia(currentTime, playingRef.current);
       }
     };
     synchronize();
@@ -167,19 +180,27 @@ export function Monitor({
 
   useEffect(() => {
     if (!playing) return;
-    const startedAt = performance.now();
     const timelineStart = currentTimeRef.current >= duration - 0.01 ? 0 : currentTimeRef.current;
     if (timelineStart !== currentTimeRef.current) {
       currentTimeRef.current = timelineStart;
       clock.set(timelineStart);
     }
+    livePlaybackAnchorRef.current = { timeline: timelineStart, wall: performance.now() };
     let animationFrame = 0;
     const update = (now: number) => {
       const renderedTime = renderedVideoRef.current?.currentTime;
+      const music = musicRef.current;
+      const liveMusicTime =
+        mode === 'live' && draft.music && music && !music.paused
+          ? Math.max(0, music.currentTime - draft.music.start)
+          : undefined;
+      const liveAnchor = livePlaybackAnchorRef.current;
       const next =
         mode === 'rendered' && renderedTime !== undefined
           ? renderedTime
-          : timelineStart + (now - startedAt) / 1000;
+          : liveMusicTime !== undefined
+            ? liveMusicTime
+            : liveAnchor.timeline + (now - liveAnchor.wall) / 1000;
       if (next >= duration) {
         clock.set(duration);
         pauseAllMedia();
