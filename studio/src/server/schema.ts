@@ -88,6 +88,7 @@ export const saveDraftRequestSchema = z
   .strict();
 
 export const previewRequestSchema = saveDraftRequestSchema;
+export const musicAnalysisRequestSchema = saveDraftRequestSchema;
 
 export const finalRenderRequestSchema = z
   .object({ revision: z.string().regex(/^[a-f0-9]{64}$/) })

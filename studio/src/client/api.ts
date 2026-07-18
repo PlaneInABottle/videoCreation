@@ -1,5 +1,7 @@
 import type {
   FinalRenderRequest,
+  MusicAnalysisRequest,
+  MusicAnalysisResult,
   PreviewRequest,
   ProjectDetail,
   ProjectSummary,
@@ -36,6 +38,8 @@ export const studioApi = {
     await request(`/api/projects/${encodeURIComponent(id)}/storyboard`, jsonInit('PUT', body)),
   preview: async (id: string, body: PreviewRequest): Promise<RenderJob> =>
     await request(`/api/projects/${encodeURIComponent(id)}/previews`, jsonInit('POST', body)),
+  analyzeMusic: async (id: string, body: MusicAnalysisRequest): Promise<MusicAnalysisResult> =>
+    await request(`/api/projects/${encodeURIComponent(id)}/music-analysis`, jsonInit('POST', body)),
   renderFinal: async (id: string, body: FinalRenderRequest): Promise<RenderJob> =>
     await request(`/api/projects/${encodeURIComponent(id)}/renders`, jsonInit('POST', body)),
   job: async (id: string): Promise<RenderJob> =>

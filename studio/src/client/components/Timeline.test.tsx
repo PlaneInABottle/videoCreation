@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { StoryboardDraft } from '@ai-video-creation/scripts/types';
+import type { BeatMap, StoryboardDraft } from '@ai-video-creation/scripts/types';
 import { describe, expect, it, vi } from 'vitest';
 import { PlaybackClock } from '../playback-clock.js';
 import { snapTimelineValue } from '../timeline-math.js';
@@ -44,6 +44,22 @@ function draft(): StoryboardDraft {
   };
 }
 
+function beatMap(fallback = false): BeatMap {
+  return {
+    schemaVersion: 1,
+    source: 'music.mp3',
+    sourceHash: 'hash',
+    excerpt: { start: 0, end: 4 },
+    analyzer: { name: 'test', version: 1, sampleRate: 11_025 },
+    bpm: 120,
+    confidence: fallback ? 0.01 : 0.8,
+    beats: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5],
+    onsets: [],
+    energy: [],
+    fallback,
+  };
+}
+
 describe('Timeline', () => {
   it('dispatches keyboard trims and toggles the authored snap control', () => {
     const dispatch = vi.fn();
@@ -52,7 +68,7 @@ describe('Timeline', () => {
     render(
       <Timeline
         draft={draft()}
-        beatMap={null}
+        beatMap={beatMap()}
         sources={[]}
         selectedShotId="one"
         snapMode="major"
@@ -75,8 +91,27 @@ describe('Timeline', () => {
       key: 'ArrowRight',
     });
     expect(clock.getSnapshot()).toBe(0.1);
-    fireEvent.click(screen.getByRole('button', { name: 'Beat snap' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pulse snap' }));
     expect(onMagnet).toHaveBeenCalledWith('beat');
+  });
+
+  it('disables pulse snapping when the pulse estimate is unreliable', () => {
+    render(
+      <Timeline
+        draft={draft()}
+        beatMap={beatMap(true)}
+        sources={[]}
+        selectedShotId="one"
+        snapMode="major"
+        dispatch={vi.fn()}
+        clock={new PlaybackClock()}
+        onSnapMode={vi.fn()}
+      />,
+    );
+
+    expect((screen.getByRole('button', { name: 'Pulse snap' }) as HTMLButtonElement).disabled).toBe(
+      true,
+    );
   });
 
   it('streams trim previews during a pointer gesture and commits once on release', () => {

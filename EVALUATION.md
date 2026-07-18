@@ -132,6 +132,8 @@ Verdict: the best proof of continuity and native-audio handling, but not yet the
 - Added revision-conflict checks, stable-asset validation, source-range validation, a sequential render queue, ignored thumbnail/waveform/proxy caches, and atomic verified final replacement.
 - Added proxy and final render profiles plus globally timed title overlays that remain correct across composed segments and transitions.
 - Added live roll edits for internal cuts, continuous animation-frame playback, and revision fingerprints so late save or preview responses cannot mark newer edits current.
+- Fixed live backward seeking during playback, made music the live clock when available, tightened A/V drift correction, and kept musical markers synchronized when the excerpt moves.
+- Relabeled analyzer output as relative RMS loudness, candidate moments, loudness transients, and an estimated pulse grid instead of implying semantic song-section or true downbeat detection.
 - Serialized project writes, bounded job and proxy retention, and cached FFprobe metadata by source size and modification time.
 - Added pinned Pexels IDs, reviewed in-points, and story-function overrides.
 - Added explicit source modes: `stock-montage`, `continuous-footage`, and `single-session-multicam`.

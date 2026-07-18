@@ -4,13 +4,13 @@ This directory is the source of truth for video-planning decisions. It describes
 
 ## Files
 
-| File | Purpose |
-| --- | --- |
-| `video-types.json` | Output profiles, platform context, narratives, shot recipes, pacing, and technique references for each video type. |
+| File                           | Purpose                                                                                                             |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `video-types.json`             | Output profiles, platform context, narratives, shot recipes, pacing, and technique references for each video type.  |
 | `social-editing-patterns.json` | Source modes, edit structures, short-form recipes, observed examples, review rubric, and current platform research. |
-| `editing-techniques.json` | Cuts, transitions, timing effects, framing methods, and audio treatments with FFmpeg implementation notes. |
-| `music-genres.json` | Music profiles, beat-grid logic, synchronization policy, ducking, track fitting, and analysis-tool comparison. |
-| `color-grades.json` | Correction workflow and restrained grade presets with FFmpeg filter starting points. |
+| `editing-techniques.json`      | Cuts, transitions, timing effects, framing methods, and audio treatments with FFmpeg implementation notes.          |
+| `music-genres.json`            | Music profiles, beat-grid logic, synchronization policy, ducking, track fitting, and analysis-tool comparison.      |
+| `color-grades.json`            | Correction workflow and restrained grade presets with FFmpeg filter starting points.                                |
 
 All machine-readable files use stable kebab-case IDs. Relationships are represented by IDs, such as a video type referencing `hard-cut`, `warm-travel`, and `driving-rock`.
 
@@ -154,7 +154,7 @@ The values in `color-grades.json` are conservative starting points, not automati
 
 ## Analysis Tool Decision
 
-The current TypeScript analyzer decodes a normalized PCM excerpt and produces energy sections, large lifts/peaks/releases, onsets, beats, BPM, and confidence. BPM and recurring beats are metadata/fallback evidence. Explicit editorial hook timing is stronger than energy-only inference.
+The current TypeScript analyzer decodes a mono PCM excerpt and produces relative RMS loudness regions, candidate lifts/crests/drops, loudness transients, a fixed estimated pulse grid, BPM, and an uncalibrated pulse-fit score. Its two-second regions are not semantic verses or choruses, its pulse ticks are not individually detected beats, and every fourth tick is not a detected downbeat. Explicit editorial hook and verified phrase timing are stronger than amplitude-only inference.
 
 A future analyzer may add richer musical descriptors, but it must be evaluated on known excerpts and cannot claim cultural hook recognition from signal energy. Do not assume tempo confidence guarantees frame-accurate or editorially correct cut positions.
 

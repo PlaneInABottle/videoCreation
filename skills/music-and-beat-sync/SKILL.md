@@ -11,7 +11,7 @@ Use `../../knowledge/music-genres.json` as the source of truth.
 
 1. Select candidate music profiles from the video type, requested mood, dialogue density, and required emotional arc.
 2. Choose an excerpt containing a useful entrance, lift, impact, peak, release, vocal change, chorus, or drop. For a known popular section, verify synced lyrics or audition the track. Decide whether it is the opening hook or a later payoff. For a payoff, preserve a complete preceding lyric or musical pickup and build toward the recognizable phrase in roughly six to twelve seconds. Never back into the middle of a lyric or begin directly on the climax by default.
-3. Decode an analysis copy and generate major moments, energy sections, onset, beat, and confidence data.
+3. Decode an analysis copy and generate candidate major moments, relative RMS loudness regions, loudness transients, an estimated pulse grid, and pulse-fit data. Do not present those amplitude-derived regions as detected verses, choruses, drops, or culturally recognizable phrases.
 4. Map the hook, scene-change clusters, pacing change, payoff, and ending to large musical or narrative changes. Author exact major-wave cut times when the automatic section map is insufficient.
 5. Use beats and onsets only as secondary micro-timing aids for ordinary cuts.
 6. Preserve speech and action continuity even when a cut must move away from a beat.
@@ -39,6 +39,7 @@ Use `../../knowledge/music-genres.json` as the source of truth.
 ## Rules
 
 - Do not call every onset a beat or every fourth beat a downbeat.
+- Treat the current TypeScript analyzer's beats as a fixed estimated pulse grid and its two-second sections as relative loudness guidance. They are not true per-beat detections or semantic song sections.
 - Use a tempo grid only when detection is unreliable.
 - Vary shot durations; avoid cutting on every available event.
 - Never treat regular beat proximity as an edit-quality score.
@@ -52,3 +53,4 @@ Use `../../knowledge/music-genres.json` as the source of truth.
 - Prefer instrumental or sparse sections under speech.
 - Record title, artist, source URL, excerpt, hash, and analysis metadata for user-directed popular tracks.
 - Treat analyzer confidence as evidence, not certainty; audition important sync points.
+- Reordering or rolling video scenes must not move musical markers. Moving the music source in-point must rebase overlapping markers immediately and refresh the excerpt analysis; changing sequence length refreshes the analyzed excerpt.

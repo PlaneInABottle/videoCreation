@@ -8,7 +8,7 @@ import {
   Sparkles,
   Upload,
 } from 'lucide-react';
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import type { BeatMap } from '@ai-video-creation/scripts/types';
 import type { ProjectDetail, ProjectSummary, RenderJob } from '../shared/api.js';
 import { studioApi } from './api.js';
@@ -25,6 +25,13 @@ import {
 } from './editor-state.js';
 import { PlaybackClock } from './playback-clock.js';
 import type { TimelineSnapMode } from './timeline-math.js';
+import {
+  beatMapAnalysisSignature,
+  draftMusicAnalysisSignature,
+  projectBeatMapToDraft,
+} from './music-map.js';
+
+type MusicAnalysisState = 'current' | 'refreshing' | 'error';
 
 function projectFromPath(): string | null {
   const match = window.location.pathname.match(/^\/projects\/([^/]+)$/);
@@ -68,6 +75,7 @@ export default function App() {
   const [activeJob, setActiveJob] = useState<RenderJob | null>(null);
   const [mediaUrl, setMediaUrl] = useState<string | undefined>();
   const [draftBeatMap, setDraftBeatMap] = useState<BeatMap | null>(null);
+  const [musicAnalysisState, setMusicAnalysisState] = useState<MusicAnalysisState>('current');
   const [snapMode, setSnapMode] = useState<TimelineSnapMode>('major');
   const [editor, dispatch] = useReducer(nullableEditorReducer, null);
   const [playbackClock] = useState(() => new PlaybackClock());
@@ -123,6 +131,14 @@ export default function App() {
   const dirty = editor ? editorIsDirty(editor) : false;
   const stale = editor ? editorPreviewIsStale(editor) : false;
   const duration = editor ? draftDuration(editor.present) : 0;
+  const desiredMusicAnalysis = editor ? draftMusicAnalysisSignature(editor.present) : null;
+  const currentMusicAnalysis = editor
+    ? beatMapAnalysisSignature(editor.present, draftBeatMap)
+    : null;
+  const displayedBeatMap = useMemo(
+    () => (editor ? projectBeatMapToDraft(editor.present, draftBeatMap) : null),
+    [draftBeatMap, editor],
+  );
   const rendering = Boolean(
     activeJob && (activeJob.state === 'queued' || activeJob.state === 'running'),
   );
@@ -131,6 +147,54 @@ export default function App() {
   useEffect(() => {
     playbackClock.set(Math.min(playbackClock.getSnapshot(), duration));
   }, [duration, playbackClock]);
+
+  useEffect(() => {
+    if (!projectId || !detail || !desiredMusicAnalysis) {
+      setMusicAnalysisState('current');
+      return;
+    }
+    if (desiredMusicAnalysis === currentMusicAnalysis) {
+      setMusicAnalysisState('current');
+      return;
+    }
+
+    let active = true;
+    setMusicAnalysisState('refreshing');
+    const timer = window.setTimeout(() => {
+      const currentEditor = editorRef.current;
+      if (
+        !currentEditor ||
+        draftMusicAnalysisSignature(currentEditor.present) !== desiredMusicAnalysis
+      ) {
+        return;
+      }
+      const submittedDraft = structuredClone(currentEditor.present);
+      void studioApi
+        .analyzeMusic(projectId, {
+          baseRevision: detail.revision,
+          draft: submittedDraft,
+        })
+        .then((result) => {
+          if (
+            !active ||
+            !editorRef.current ||
+            draftMusicAnalysisSignature(editorRef.current.present) !== desiredMusicAnalysis
+          ) {
+            return;
+          }
+          setDraftBeatMap(result.beatMap);
+          setMusicAnalysisState('current');
+        })
+        .catch(() => {
+          if (active) setMusicAnalysisState('error');
+        });
+    }, 350);
+
+    return () => {
+      active = false;
+      window.clearTimeout(timer);
+    };
+  }, [currentMusicAnalysis, desiredMusicAnalysis, detail, projectId]);
 
   useEffect(() => {
     const guard = (event: BeforeUnloadEvent) => {
@@ -380,7 +444,7 @@ export default function App() {
         <Inspector
           detail={detail}
           draft={editor.present}
-          beatMap={draftBeatMap}
+          beatMap={displayedBeatMap}
           selectedShotId={editor.selectedShotId}
           dispatch={dispatch}
         />
@@ -388,7 +452,8 @@ export default function App() {
 
       <Timeline
         draft={editor.present}
-        beatMap={draftBeatMap}
+        beatMap={displayedBeatMap}
+        musicAnalysisState={musicAnalysisState}
         sources={detail.sources}
         {...(detail.waveformUrl ? { waveformUrl: detail.waveformUrl } : {})}
         {...(detail.musicDuration === undefined ? {} : { musicDuration: detail.musicDuration })}

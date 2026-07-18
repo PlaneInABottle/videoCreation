@@ -1518,7 +1518,7 @@ input[type='range'] {
   box-shadow: 0 0 3px rgb(139 92 246 / 22%);
 }
 
-.beat-marker.is-downbeat {
+.beat-marker.is-group-start {
   top: 3px;
   bottom: 3px;
   width: 2px;

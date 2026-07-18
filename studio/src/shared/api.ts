@@ -84,6 +84,12 @@ export interface PreviewRequest {
   draft: StoryboardDraft;
 }
 
+export type MusicAnalysisRequest = PreviewRequest;
+
+export interface MusicAnalysisResult {
+  beatMap: BeatMap | null;
+}
+
 export interface FinalRenderRequest {
   revision: string;
 }

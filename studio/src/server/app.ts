@@ -10,6 +10,7 @@ import { RenderJobQueue } from './jobs.js';
 import { ProjectStore, RevisionConflictError } from './project-store.js';
 import {
   finalRenderRequestSchema,
+  musicAnalysisRequestSchema,
   previewRequestSchema,
   saveDraftRequestSchema,
 } from './schema.js';
@@ -129,6 +130,18 @@ export function createStudioApp(services: StudioServices = {}): express.Express 
         draft: StoryboardDraft;
       };
       res.json(await store.saveDraft(req.params.id!, body.baseRevision, body.draft));
+    } catch (error) {
+      next(error);
+    }
+  });
+  app.post('/api/projects/:id/music-analysis', async (req, res, next) => {
+    try {
+      const body = musicAnalysisRequestSchema.parse(req.body) as {
+        baseRevision: string;
+        draft: StoryboardDraft;
+      };
+      const prepared = await store.prepareDraft(req.params.id!, body.baseRevision, body.draft);
+      res.json({ beatMap: prepared.beatMap });
     } catch (error) {
       next(error);
     }

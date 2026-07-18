@@ -1,6 +1,12 @@
 import { Activity, GripVertical, Magnet, Minus, Music2, Plus, Type, Video } from 'lucide-react';
 import { MIN_SHOT_DURATION } from '@ai-video-creation/scripts/storyboard-edit';
-import type { BeatMap, StoryboardDraft, TitlePlan } from '@ai-video-creation/scripts/types';
+import type {
+  BeatMap,
+  MusicMomentKind,
+  MusicSectionLabel,
+  StoryboardDraft,
+  TitlePlan,
+} from '@ai-video-creation/scripts/types';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type {
   CSSProperties,
@@ -21,9 +27,45 @@ const DEFAULT_PIXELS_PER_SECOND = 72;
 const KEYBOARD_NUDGE = 0.1;
 const LABEL_WIDTH = 96;
 
+const SECTION_LABELS: Record<MusicSectionLabel, string> = {
+  calm: 'quieter',
+  steady: 'level',
+  build: 'rising',
+  peak: 'louder',
+  release: 'falling',
+};
+
+const SECTION_DESCRIPTIONS: Record<MusicSectionLabel, string> = {
+  calm: 'two-second loudness region below this excerpt’s average',
+  steady: 'two-second loudness region without a strong rise, fall, high, or low',
+  build: 'two-second loudness region that rose from the previous region',
+  peak: 'two-second loudness region above this excerpt’s average',
+  release: 'two-second loudness region that fell from the previous region',
+};
+
+const MOMENT_LABELS: Record<MusicMomentKind, string> = {
+  impact: 'impact',
+  lift: 'lift',
+  peak: 'crest',
+  release: 'drop',
+};
+
+function sectionLabel(label: MusicSectionLabel): string {
+  return SECTION_LABELS[label];
+}
+
+function sectionDescription(label: MusicSectionLabel): string {
+  return SECTION_DESCRIPTIONS[label];
+}
+
+function momentLabel(kind: MusicMomentKind): string {
+  return MOMENT_LABELS[kind];
+}
+
 interface TimelineProps {
   draft: StoryboardDraft;
   beatMap: BeatMap | null;
+  musicAnalysisState?: 'current' | 'refreshing' | 'error';
   sources: SourceInfo[];
   waveformUrl?: string;
   musicDuration?: number;
@@ -181,6 +223,7 @@ function TimelineSeekSurface({
 export function Timeline({
   draft,
   beatMap,
+  musicAnalysisState = 'current',
   sources,
   waveformUrl,
   musicDuration,
@@ -209,7 +252,7 @@ export function Timeline({
     ...(beatMap?.majorMoments?.map((moment) => moment.time) ?? []),
   ].filter((time) => time >= 0 && time <= duration);
   const snapCandidates =
-    snapMode === 'beat'
+    snapMode === 'beat' && !beatMap?.fallback
       ? [
           ...structuralSnapCandidates,
           ...(beatMap?.beats.filter((time) => time >= 0 && time <= duration) ?? []),
@@ -408,9 +451,14 @@ export function Timeline({
               aria-pressed={snapMode === 'beat'}
               className={snapMode === 'beat' ? 'is-active' : ''}
               onClick={() => onSnapMode('beat')}
-              title="Also snap manual boundaries to every detected beat"
+              disabled={!beatMap || beatMap.fallback}
+              title={
+                beatMap?.fallback
+                  ? 'Pulse snapping is unavailable because the pulse fit is unreliable'
+                  : 'Also snap manual boundaries to the estimated pulse grid'
+              }
             >
-              Beat snap
+              Pulse snap
             </button>
           </div>
           <div className="timeline-zoom" aria-label="Timeline zoom">
@@ -459,10 +507,20 @@ export function Timeline({
             <div className="track-label track-label-detailed">
               <Activity aria-hidden="true" />
               <span>
-                Energy <small>{beatMap?.sections?.length ?? 0} sections</small>
+                Loudness guide{' '}
+                <small>
+                  {musicAnalysisState === 'refreshing'
+                    ? 'refreshing…'
+                    : musicAnalysisState === 'error'
+                      ? 'refresh failed'
+                      : `${beatMap?.sections?.length ?? 0} regions`}
+                </small>
               </span>
             </div>
-            <div className="track-content analysis-content" aria-label="Music energy and sections">
+            <div
+              className="track-content analysis-content"
+              aria-label="Relative RMS loudness guide and candidate musical moments"
+            >
               {beatMap?.sections?.map((section, index) => (
                 <div
                   key={`${section.start}-${section.label}-${index}`}
@@ -474,9 +532,9 @@ export function Timeline({
                       (Math.min(section.end, duration) - section.start) * pixelsPerSecond,
                     ),
                   }}
-                  title={`${section.label} section ${shortTime(section.start)}–${shortTime(section.end)}`}
+                  title={`${sectionLabel(section.label)}: ${sectionDescription(section.label)} (${shortTime(section.start)}–${shortTime(section.end)})`}
                 >
-                  {section.end - section.start > 1.3 ? section.label : ''}
+                  {section.end - section.start > 1.3 ? sectionLabel(section.label) : ''}
                 </div>
               ))}
               {energyPoints ? (
@@ -496,9 +554,9 @@ export function Timeline({
                   key={`${moment.time}-${moment.kind}`}
                   className={`major-marker is-${moment.kind}`}
                   style={{ left: moment.time * pixelsPerSecond }}
-                  title={`${moment.kind} at ${shortTime(moment.time)}`}
+                  title={`${momentLabel(moment.kind)} at ${shortTime(moment.time)} · relative strength ${moment.strength.toFixed(2)}`}
                 >
-                  <span>{moment.kind}</span>
+                  <span>{momentLabel(moment.kind)}</span>
                 </span>
               ))}
             </div>
@@ -508,10 +566,10 @@ export function Timeline({
             <div className="track-label track-label-detailed">
               <Music2 aria-hidden="true" />
               <span>
-                Rhythm{' '}
+                Estimated pulse{' '}
                 <small>
                   {beatMap
-                    ? `${Math.round(beatMap.bpm)} BPM · ${Math.round(beatMap.confidence * 100)}%`
+                    ? `${Math.round(beatMap.bpm)} BPM · fit ${Math.round(beatMap.confidence * 100)}/100`
                     : 'No map'}
                 </small>
               </span>
@@ -523,9 +581,9 @@ export function Timeline({
               {beatMap?.beats.map((time, index) => (
                 <span
                   key={`beat-${time}-${index}`}
-                  className={`beat-marker ${index % 4 === 0 ? 'is-downbeat' : ''}`}
+                  className={`beat-marker ${index % 4 === 0 ? 'is-group-start' : ''}`}
                   style={{ left: time * pixelsPerSecond }}
-                  title={`${index % 4 === 0 ? `4-beat group ${Math.floor(index / 4) + 1}, ` : ''}beat ${index + 1} at ${shortTime(time)}`}
+                  title={`${index % 4 === 0 ? `Estimated 4-pulse group ${Math.floor(index / 4) + 1}, ` : ''}pulse ${index + 1} at ${shortTime(time)} (not a detected downbeat)`}
                 >
                   {index % 4 === 0 ? <small>{Math.floor(index / 4) + 1}</small> : null}
                 </span>
@@ -535,12 +593,12 @@ export function Timeline({
                   key={`onset-${time}-${index}`}
                   className="onset-marker"
                   style={{ left: time * pixelsPerSecond }}
-                  title={`Onset at ${shortTime(time)}`}
+                  title={`Loudness transient at ${shortTime(time)}`}
                 />
               ))}
               <span className="rhythm-legend" aria-hidden="true">
-                <i className="legend-downbeat" /> 4-beat group <i className="legend-beat" /> beat{' '}
-                <i className="legend-onset" /> transient
+                <i className="legend-downbeat" /> 4-pulse group <i className="legend-beat" /> pulse{' '}
+                <i className="legend-onset" /> loudness transient
               </span>
             </div>
           </div>

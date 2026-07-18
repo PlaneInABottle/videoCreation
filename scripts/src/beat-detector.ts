@@ -1,4 +1,4 @@
-import { spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { probeMedia } from './analyzer.js';
@@ -9,10 +9,9 @@ const SAMPLE_RATE = 11_025;
 const FRAME_SIZE = 512;
 const HOP_SIZE = 256;
 
-function decodeMono(path: string, start: number, duration: number): Float32Array {
-  const result = spawnSync(
-    'ffmpeg',
-    [
+async function decodeMono(path: string, start: number, duration: number): Promise<Float32Array> {
+  const buffer = await new Promise<Buffer>((resolveDecode, reject) => {
+    const child = spawn('ffmpeg', [
       '-v',
       'error',
       '-ss',
@@ -29,13 +28,38 @@ function decodeMono(path: string, start: number, duration: number): Float32Array
       '-f',
       'f32le',
       'pipe:1',
-    ],
-    { encoding: null, maxBuffer: 256 * 1024 * 1024 },
-  );
-  if (result.status !== 0) {
-    throw new Error(`Audio decode failed: ${result.stderr?.toString('utf8') ?? 'unknown error'}`);
-  }
-  const buffer = result.stdout;
+    ]);
+    const stdout: Buffer[] = [];
+    const stderr: Buffer[] = [];
+    let outputBytes = 0;
+    let outputTooLarge = false;
+    child.stdout.on('data', (chunk: Buffer) => {
+      outputBytes += chunk.length;
+      if (outputBytes > 256 * 1024 * 1024) {
+        outputTooLarge = true;
+        child.kill();
+        return;
+      }
+      stdout.push(chunk);
+    });
+    child.stderr.on('data', (chunk: Buffer) => stderr.push(chunk));
+    child.once('error', reject);
+    child.once('close', (code) => {
+      if (outputTooLarge) {
+        reject(new Error('Audio decode exceeded the 256 MB analysis limit'));
+        return;
+      }
+      if (code !== 0) {
+        reject(
+          new Error(
+            `Audio decode failed: ${Buffer.concat(stderr).toString('utf8') || 'unknown error'}`,
+          ),
+        );
+        return;
+      }
+      resolveDecode(Buffer.concat(stdout));
+    });
+  });
   const samples = new Float32Array(Math.floor(buffer.length / 4));
   for (let index = 0; index < samples.length; index += 1) {
     samples[index] = buffer.readFloatLE(index * 4);
@@ -267,7 +291,7 @@ export async function analyzeBeats(
     // Missing cache entries are computed below.
   }
   const duration = end - start;
-  const samples = decodeMono(path, start, duration);
+  const samples = await decodeMono(path, start, duration);
   const { energy, novelty } = extractEnvelope(samples);
   const tempo = estimateTempo(novelty);
   const map: BeatMap = {

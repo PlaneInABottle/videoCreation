@@ -224,6 +224,24 @@ describe('Studio API', () => {
     expect((await waveform.arrayBuffer()).byteLength).toBeGreaterThan(100);
   });
 
+  it('refreshes music analysis for an unsaved excerpt without saving the storyboard', async () => {
+    const loaded = await json('/api/projects/demo');
+    loaded.body.draft.music.start = 1;
+    const analyzed = await json('/api/projects/demo/music-analysis', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        baseRevision: loaded.body.revision,
+        draft: loaded.body.draft,
+      }),
+    });
+
+    expect(analyzed.response.status).toBe(200);
+    expect(analyzed.body.beatMap.excerpt).toEqual({ start: 1, end: 3 });
+    const canonical = await json('/api/projects/demo');
+    expect(canonical.body.storyboard.music.start).toBe(0);
+  });
+
   it('saves a validated draft and rejects stale or unsafe changes', async () => {
     const loaded = await json('/api/projects/demo');
     loaded.body.draft.title = 'Changed safely';

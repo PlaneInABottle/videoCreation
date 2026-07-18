@@ -57,18 +57,19 @@ npm run studio:build
 npm run studio
 ```
 
-The Studio discovers the existing `projects/*/storyboard.json` files and presents a gapless bottom timeline with scene, title, music, waveform, musical-section, energy, beat, transient, and major-moment tracks. It supports:
+The Studio discovers the existing `projects/*/storyboard.json` files and presents a gapless bottom timeline with scene, title, music, waveform, relative-loudness, estimated-pulse, loudness-transient, and candidate-moment tracks. It supports:
 
 - Dragging scenes to reorder them while preserving transitions only between still-adjacent pairs.
 - Live-width end trimming, internal roll edits that resize both neighboring scenes, `Alt`-drag slipping within a source, and keyboard nudges. A gesture becomes one undo step when released.
 - Moving and resizing titles, changing crop anchors and grades, and dragging the music excerpt.
-- Off, major-event, and opt-in detected-beat snap modes with timeline zoom. Beat detection is an editing aid, never an automatic cut-placement score.
+- Off, major-event, and opt-in estimated-pulse snap modes with timeline zoom. Pulse snapping is disabled when the fit is unreliable and is never an automatic cut-placement score.
+- Immediate marker rebasing while moving the music excerpt, followed by a debounced analysis refresh. Reordering or rolling scenes leaves musical markers fixed because the video moves against the music, not the other way around.
 - Inspecting source clips, editorial intent, transition reasons, quality metrics, and current review sheets.
 - Automatically switching stale edits to a responsive live cut/title/music preview whose playhead follows animation frames.
 - Rendering an exact low-resolution FFmpeg proxy for transitions, reframing, grades, timing effects, and the final audio graph without modifying the saved storyboard.
 - Explicitly saving a validated storyboard before atomically rendering and evaluating the final output.
 
-The live browser preview is deliberately labeled as an approximation: it keeps scene boundaries, source in-points, titles, music start, and basic source/music levels aligned while editing, but it does not imitate FFmpeg transitions, crop/grade processing, speed effects, or the final mix. Use **Rendered** or **Update preview** for those exact decisions.
+The live browser preview is deliberately labeled as an approximation: it keeps scene boundaries, source in-points, titles, music start, and basic source/music levels aligned while editing, uses music as the playback clock when available, and honors timeline seeks during playback. It does not imitate FFmpeg transitions, crop/grade processing, speed effects, or the final mix. Use **Rendered** or **Update preview** for those exact decisions.
 
 Draft history is browser-memory state with a 50-step undo/redo limit. Proxy media, thumbnails, waveforms, and intermediate renders live under ignored `.cache/` paths. Studio v1 intentionally does not upload media, add or delete source clips, or host projects remotely. Native source audio remains hard-cut-only.
 
@@ -140,7 +141,10 @@ Create `projects/<id>/project.json`:
   "title": "ONE DAY AWAY",
   "cutTimes": [0, 1.5, 5, 9, 14, 20, 26, 30],
   "queries": [
-    { "query": "reviewed city movement", "videoIds": [12345, 23456, 34567, 45678] },
+    {
+      "query": "reviewed city movement",
+      "videoIds": [12345, 23456, 34567, 45678]
+    },
     { "query": "reviewed street details", "videoIds": [56789, 67890, 78901] }
   ]
 }
@@ -148,7 +152,7 @@ Create `projects/<id>/project.json`:
 
 `videoIds` pins reviewed Pexels results so rerenders do not drift when search ranking changes. Use one query entry per reviewed clip when each needs its own `sourceIn`, `storyFunction`, or framing anchor. The number of `cutTimes` must be the number of shots plus one, beginning at `0` and ending at the project duration. Omit `cutTimes` to use section-shaped automatic pacing.
 
-When `musicStart` is omitted, the pipeline keeps a designed opening with an early lift or backs up from a later structural event by complete bars. Energy analysis cannot determine which lyric or melody is culturally recognizable. For a known popular section, set `musicStart` to the beginning of a complete setup phrase, `musicHookTime` to the recognizable phrase's absolute track time, and `musicHookRole` to `opening` or `payoff`. Use `payoff` when the visual hook should create immediate attention while the music builds anticipation for roughly 6-12 seconds. Pacing follows musical sections: readable setup, denser build, longer peak or payoff hold, and relaxed release. `musicVolumeStart` and `musicVolumeFullAt` can add a gradual audio rise into a payoff.
+When `musicStart` is omitted, the pipeline keeps a designed opening with an early lift or backs up from a later candidate event by estimated four-pulse groups. The local analyzer uses relative RMS loudness and a fixed pulse estimate; it does not detect true bars, verses, choruses, lyric boundaries, or cultural recognizability. For a known popular section, set `musicStart` to the beginning of a complete setup phrase, `musicHookTime` to the recognizable phrase's absolute track time, and `musicHookRole` to `opening` or `payoff`. Use `payoff` when the visual hook should create immediate attention while the music builds anticipation for roughly 6-12 seconds. Pacing may use the loudness guide as fallback evidence, while verified or authored musical sections remain stronger. `musicVolumeStart` and `musicVolumeFullAt` can add a gradual audio rise into a payoff.
 
 Scene changes may be authored on large musical waves, but transition effects are never inferred from music alone. Add `transitionAccents` only after reviewing both clips around a cut. Then run `npm run create -- --project projects/my-travel-reel`.
 
