@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./storyboard-edit": "./src/storyboard-edit.ts",
+    "./types": "./src/types.ts"
+  },
   "scripts": {
     "create": "tsx bin/create-video.ts create",
     "analyze": "tsx bin/create-video.ts analyze",

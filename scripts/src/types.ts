@@ -39,6 +39,7 @@ export interface ProjectConfig {
 export interface TransitionPlan {
   type: string;
   duration: number;
+  reason?: string;
 }
 
 export interface StoryboardShot {
@@ -51,9 +52,17 @@ export interface StoryboardShot {
   timelineIn: number;
   timelineOut: number;
   storyFunction: string;
+  editorialIntent?: string;
   anchorX: number;
   anchorY: number;
   transitionToNext: TransitionPlan | null;
+}
+
+export interface TitlePlan {
+  timelineIn: number;
+  timelineOut: number;
+  anchorX: number;
+  anchorY: number;
 }
 
 export type MusicMomentKind = 'impact' | 'lift' | 'peak' | 'release';
@@ -103,11 +112,13 @@ export interface Storyboard {
   gradeId: string;
   title?: string;
   subtitle?: string;
+  titlePlan?: TitlePlan;
   music?: {
     file: string;
     start: number;
     beatMap: string;
     featuredAt?: number;
+    featuredSourceTime?: number;
     featuredRole?: 'opening' | 'payoff';
     volumeStart?: number;
     volumeFullAt?: number;
@@ -121,6 +132,33 @@ export interface Storyboard {
   };
   shots: StoryboardShot[];
   output: string;
+}
+
+export type StoryboardDraftShot = Omit<
+  StoryboardShot,
+  'sourceDuration' | 'timelineIn' | 'timelineOut'
+> & {
+  duration: number;
+};
+
+export type StoryboardDraft = Omit<Storyboard, 'durationSeconds' | 'shots'> & {
+  shots: StoryboardDraftShot[];
+};
+
+export type RenderProfileName = 'final' | 'proxy';
+
+export type RenderPhase = 'segments' | 'compose' | 'audio' | 'verify' | 'complete';
+
+export interface RenderProgress {
+  phase: RenderPhase;
+  completed?: number;
+  total?: number;
+}
+
+export interface RenderStoryboardOptions {
+  profile?: RenderProfileName;
+  output?: string;
+  onProgress?: (progress: RenderProgress) => void;
 }
 
 export interface ProbeStream {

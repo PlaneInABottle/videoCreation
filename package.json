@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "scripts"
+    "scripts",
+    "studio"
   ],
   "devDependencies": {
     "@eslint/js": "9.39.3",
@@ -19,10 +20,14 @@
     "analyze": "npm --workspace scripts run analyze --",
     "beats": "npm --workspace scripts run beats --",
     "evaluate": "npm --workspace scripts run evaluate --",
-    "test": "npm --workspace scripts test",
-    "lint": "npm --workspace scripts run lint",
-    "format": "npm --workspace scripts run format",
-    "typecheck": "npm --workspace scripts run typecheck"
+    "studio:dev": "npm --workspace studio run dev",
+    "studio:build": "npm --workspace studio run build",
+    "studio": "npm --workspace studio run start",
+    "studio:test": "npm --workspace studio test",
+    "test": "npm --workspace scripts test && npm --workspace studio test",
+    "lint": "npm --workspace scripts run lint && npm --workspace studio run lint",
+    "format": "npm --workspace scripts run format && npm --workspace studio run format",
+    "typecheck": "npm --workspace scripts run typecheck && npm --workspace studio run typecheck"
   },
   "engines": {
     "node": ">=20"

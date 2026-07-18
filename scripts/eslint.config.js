@@ -16,5 +16,11 @@ export default tseslint.config(
         fetch: 'readonly',
       },
     },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+    },
   },
 );

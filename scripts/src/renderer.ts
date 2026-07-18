@@ -1,13 +1,27 @@
-import { createHash } from 'node:crypto';
-import { access, mkdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { createHash, randomUUID } from 'node:crypto';
+import { access, mkdir, rename, rm } from 'node:fs/promises';
+import { basename, dirname, isAbsolute, resolve } from 'node:path';
 import { verifyRenderedMedia } from './analyzer.js';
 import { cacheRoot, projectRoot, readJson, writeJson } from './config.js';
 import { run } from './process.js';
-import type { Storyboard, StoryboardShot } from './types.js';
+import type {
+  RenderProfileName,
+  RenderStoryboardOptions,
+  Storyboard,
+  StoryboardShot,
+} from './types.js';
 
 interface GradeKnowledge {
   grades: Array<{ id: string; ffmpegStartingPoint: string }>;
+}
+
+interface RenderProfile {
+  name: RenderProfileName;
+  width: number;
+  height: number;
+  preset: string;
+  crf: number;
+  audioBitrate: string;
 }
 
 function contentHash(value: unknown): string {
@@ -45,18 +59,65 @@ export function musicVolumeEnvelope(
   return `volume='${start.toFixed(3)}+${(1 - start).toFixed(3)}*min(t/${volumeFullAt.toFixed(3)}\\,1)':eval=frame,`;
 }
 
-function titleFilter(storyboard: Storyboard): string | null {
+export function resolveRenderProfile(
+  storyboard: Storyboard,
+  name: RenderProfileName,
+): RenderProfile {
+  if (name === 'proxy') {
+    return storyboard.aspect === '9:16'
+      ? {
+          name,
+          width: 540,
+          height: 960,
+          preset: 'ultrafast',
+          crf: 24,
+          audioBitrate: '128k',
+        }
+      : {
+          name,
+          width: 960,
+          height: 540,
+          preset: 'ultrafast',
+          crf: 24,
+          audioBitrate: '128k',
+        };
+  }
+  return {
+    name,
+    width: storyboard.width,
+    height: storyboard.height,
+    preset: 'veryfast',
+    crf: 19,
+    audioBitrate: '192k',
+  };
+}
+
+export function titleFilter(storyboard: Storyboard): string | null {
   if (!storyboard.title) return null;
-  const size = storyboard.aspect === '9:16' ? 72 : 64;
+  const referenceWidth = storyboard.aspect === '9:16' ? 1080 : 1920;
+  const typographyScale = storyboard.width / referenceWidth;
+  const size = Math.max(1, Math.round((storyboard.aspect === '9:16' ? 72 : 64) * typographyScale));
   const subtitleSize = Math.round(size * 0.42);
+  const titleShadow = Math.max(1, Math.round(3 * typographyScale));
+  const subtitleShadow = Math.max(1, Math.round(2 * typographyScale));
+  const subtitleGap = Math.max(1, Math.round(18 * typographyScale));
   const title = escapeDrawtext(storyboard.title.toUpperCase());
+  const plan = storyboard.titlePlan ?? {
+    timelineIn: 0.35,
+    timelineOut: Math.min(2.8, storyboard.durationSeconds),
+    anchorX: 0.5,
+    anchorY: 0.72,
+  };
+  const x = `(w-text_w)*${plan.anchorX.toFixed(3)}`;
+  const y = `h*${plan.anchorY.toFixed(3)}`;
+  const enable = `between(t,${plan.timelineIn.toFixed(3)},${plan.timelineOut.toFixed(3)})`;
   const filters = [
-    `drawtext=text='${title}':fontcolor=white:fontsize=${size}:font='DejaVu Sans':x=(w-text_w)/2:y=h*0.72:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable='between(t,0.35,2.8)'`,
+    `drawtext=text='${title}':fontcolor=white:fontsize=${size}:font='DejaVu Sans':x=${x}:y=${y}:shadowcolor=black@0.8:shadowx=${titleShadow}:shadowy=${titleShadow}:enable='${enable}'`,
   ];
   if (storyboard.subtitle) {
     const subtitle = escapeDrawtext(storyboard.subtitle);
     filters.push(
-      `drawtext=text='${subtitle}':fontcolor=white@0.92:fontsize=${subtitleSize}:font='DejaVu Sans':x=(w-text_w)/2:y=h*0.72+${size + 18}:shadowcolor=black@0.8:shadowx=2:shadowy=2:enable='between(t,0.55,2.8)'`,
+      `drawtext=text='${subtitle}':fontcolor=white@0.92:fontsize=${subtitleSize}:font='DejaVu Sans':x=${x}:y=${y}+${size + subtitleGap}:shadowcolor=black@0.8:shadowx=${subtitleShadow}:shadowy=${subtitleShadow}:enable='${enable}'`,
     );
   }
   return filters.join(',');
@@ -118,6 +179,7 @@ async function renderSegment(
   index: number,
   grade: string,
   directory: string,
+  profile: RenderProfile,
 ): Promise<string> {
   const cacheKey = contentHash({
     shot,
@@ -125,8 +187,7 @@ async function renderSegment(
     height: storyboard.height,
     fps: storyboard.fps,
     grade,
-    title: index === 0 ? storyboard.title : null,
-    subtitle: index === 0 ? storyboard.subtitle : null,
+    profile,
   });
   const output = resolve(
     directory,
@@ -134,10 +195,6 @@ async function renderSegment(
   );
   if (await exists(output)) return output;
   const filters = [cropFilter(storyboard, shot), grade];
-  if (index === 0) {
-    const text = titleFilter(storyboard);
-    if (text) filters.push(text);
-  }
   await run(
     'ffmpeg',
     [
@@ -156,9 +213,9 @@ async function renderSegment(
       '-c:v',
       'libx264',
       '-preset',
-      'veryfast',
+      profile.preset,
       '-crf',
-      '19',
+      String(profile.crf),
       '-pix_fmt',
       'yuv420p',
       '-movflags',
@@ -174,6 +231,7 @@ async function composeVisual(
   storyboard: Storyboard,
   segments: string[],
   output: string,
+  profile: RenderProfile,
 ): Promise<void> {
   if (await exists(output)) return;
   const args = ['-y', '-v', 'error'];
@@ -202,9 +260,14 @@ async function composeVisual(
       transition,
     );
   }
-  graph.push(
-    `[${current}]tpad=stop_mode=clone:stop_duration=0.2,trim=duration=${storyboard.durationSeconds.toFixed(3)},setpts=PTS-STARTPTS[visual]`,
-  );
+  const finalFilters = [
+    'tpad=stop_mode=clone:stop_duration=0.2',
+    `trim=duration=${storyboard.durationSeconds.toFixed(3)}`,
+    'setpts=PTS-STARTPTS',
+  ];
+  const text = titleFilter(storyboard);
+  if (text) finalFilters.push(text);
+  graph.push(`[${current}]${finalFilters.join(',')}[visual]`);
   args.push(
     '-filter_complex',
     graph.join(';'),
@@ -214,9 +277,9 @@ async function composeVisual(
     '-c:v',
     'libx264',
     '-preset',
-    'veryfast',
+    profile.preset,
     '-crf',
-    '19',
+    String(profile.crf),
     '-pix_fmt',
     'yuv420p',
     '-movflags',
@@ -226,7 +289,12 @@ async function composeVisual(
   await run('ffmpeg', args, { inheritStderr: true });
 }
 
-async function addAudio(storyboard: Storyboard, visual: string, output: string): Promise<string[]> {
+async function addAudio(
+  storyboard: Storyboard,
+  visual: string,
+  output: string,
+  profile: RenderProfile,
+): Promise<string[]> {
   const useSourceAudio = storyboard.audioPlan?.useSourceAudio === true;
   if (!storyboard.music && !useSourceAudio) {
     throw new Error('Storyboard must provide music or enable source audio');
@@ -342,7 +410,7 @@ async function addAudio(storyboard: Storyboard, visual: string, output: string):
     '-c:a',
     'aac',
     '-b:a',
-    '192k',
+    profile.audioBitrate,
     '-ar',
     '48000',
     '-ac',
@@ -365,43 +433,93 @@ async function addAudio(storyboard: Storyboard, visual: string, output: string):
   return args;
 }
 
-export async function renderStoryboard(storyboard: Storyboard): Promise<string> {
+export async function renderStoryboard(
+  storyboard: Storyboard,
+  options: RenderStoryboardOptions = {},
+): Promise<string> {
+  const profile = resolveRenderProfile(storyboard, options.profile ?? 'final');
+  const renderPlan: Storyboard = {
+    ...storyboard,
+    width: profile.width,
+    height: profile.height,
+  };
   const gradeKnowledge = await readJson<GradeKnowledge>(
     resolve(projectRoot, 'knowledge', 'color-grades.json'),
   );
-  const grade = gradeKnowledge.grades.find((candidate) => candidate.id === storyboard.gradeId);
-  if (!grade) throw new Error(`Unknown color grade: ${storyboard.gradeId}`);
+  const grade = gradeKnowledge.grades.find((candidate) => candidate.id === renderPlan.gradeId);
+  if (!grade) throw new Error(`Unknown color grade: ${renderPlan.gradeId}`);
 
-  const renderDirectory = resolve(cacheRoot, 'renders', storyboard.projectId);
+  const renderDirectory = resolve(cacheRoot, 'renders', renderPlan.projectId, profile.name);
   await mkdir(renderDirectory, { recursive: true });
   const segments: string[] = [];
-  for (const [index, shot] of storyboard.shots.entries()) {
+  for (const [index, shot] of renderPlan.shots.entries()) {
     segments.push(
-      await renderSegment(storyboard, shot, index, grade.ffmpegStartingPoint, renderDirectory),
+      await renderSegment(
+        renderPlan,
+        shot,
+        index,
+        grade.ffmpegStartingPoint,
+        renderDirectory,
+        profile,
+      ),
     );
+    options.onProgress?.({
+      phase: 'segments',
+      completed: index + 1,
+      total: renderPlan.shots.length,
+    });
   }
   const visual = resolve(
     renderDirectory,
-    `visual-${contentHash({ compositionVersion: 2, segments, shots: storyboard.shots, duration: storyboard.durationSeconds })}.mp4`,
+    `visual-${contentHash({
+      compositionVersion: 3,
+      segments,
+      shots: renderPlan.shots,
+      duration: renderPlan.durationSeconds,
+      title: renderPlan.title,
+      subtitle: renderPlan.subtitle,
+      titlePlan: renderPlan.titlePlan,
+      profile,
+    })}.mp4`,
   );
-  await composeVisual(storyboard, segments, visual);
+  options.onProgress?.({ phase: 'compose' });
+  await composeVisual(renderPlan, segments, visual, profile);
 
-  const output = resolve(projectRoot, storyboard.output);
-  await mkdir(resolve(output, '..'), { recursive: true });
-  const audioArgs = await addAudio(storyboard, visual, output);
-  const probe = await verifyRenderedMedia(output, {
-    width: storyboard.width,
-    height: storyboard.height,
-    duration: storyboard.durationSeconds,
-    requireAudio: true,
-  });
+  const output = options.output
+    ? isAbsolute(options.output)
+      ? options.output
+      : resolve(projectRoot, options.output)
+    : resolve(projectRoot, storyboard.output);
+  await mkdir(dirname(output), { recursive: true });
+  const temporaryOutput = resolve(
+    dirname(output),
+    `.${basename(output, '.mp4')}-${randomUUID()}.tmp.mp4`,
+  );
+  let audioArgs: string[] = [];
+  let probe: Awaited<ReturnType<typeof verifyRenderedMedia>>;
+  try {
+    options.onProgress?.({ phase: 'audio' });
+    audioArgs = await addAudio(renderPlan, visual, temporaryOutput, profile);
+    options.onProgress?.({ phase: 'verify' });
+    probe = await verifyRenderedMedia(temporaryOutput, {
+      width: renderPlan.width,
+      height: renderPlan.height,
+      duration: renderPlan.durationSeconds,
+      requireAudio: true,
+    });
+    await rename(temporaryOutput, output);
+  } finally {
+    await rm(temporaryOutput, { force: true });
+  }
   await writeJson(resolve(renderDirectory, 'render-manifest.json'), {
-    storyboard,
+    storyboard: renderPlan,
+    profile,
     segments,
     visual,
     output,
     finalAudioCommand: { command: 'ffmpeg', args: audioArgs },
     probe,
   });
+  options.onProgress?.({ phase: 'complete' });
   return output;
 }
