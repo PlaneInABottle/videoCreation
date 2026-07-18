@@ -17,6 +17,14 @@ Use `../../knowledge/editing-techniques.json` for definitions, constraints, and 
 6. Validate continuity: screen direction, action completion, subject position, shot-size variation, speech, and ambience.
 7. Emit a timestamped cut plan using technique IDs from the knowledge file.
 
+## Gapless Timeline Editing
+
+- Reordering a shot ripples the sequence; it never creates a gap. Preserve an authored transition only when its original from/to pair remains adjacent. New adjacencies start as hard cuts.
+- Trimming a shot end changes sequence duration and ripples every downstream timeline time. Rolling an internal cut grows one adjacent shot while shrinking the other, preserving total duration. Enforce a 0.5-second minimum shot duration and validate both source handles before preview or save.
+- A slip edit moves `sourceIn` without changing timeline duration. Reject slips before source time zero or beyond the probed source duration.
+- Snap only manual boundary or title gestures within a small visible threshold. Default to scene edges, the playhead, and authored large musical moments; allow every detected beat only through an explicit opt-in mode. A snap aid must never become beat-grid enforcement or an evaluation score.
+- Keep transition choices to the reviewed project whitelist. Native source-audio timelines remain hard-cut-only until an explicit audio-overlap model exists.
+
 ## Cut Plan Contract
 
 ```json

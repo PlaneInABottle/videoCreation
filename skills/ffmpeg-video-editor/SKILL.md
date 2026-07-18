@@ -23,6 +23,16 @@ Load the system `ffmpeg-video-editor` skill for general command patterns. Use th
 6. Build dialogue, native source audio, ambience, effect, and music layers independently. For partial downloads, inspect stream start timestamps and avoid or normalize pre-keyframe gaps before selecting the first segment.
 7. Encode H.264/AAC MP4 with `+faststart`.
 8. Verify dimensions, duration tolerance, video/audio streams, frame rate, and decode integrity with FFprobe/FFmpeg.
+9. Write the completed render to a temporary path, verify it, and atomically replace the requested output. Never expose a partial final file.
+
+Apply title overlays after the global timeline has been composed. Per-segment title filters restart timestamps and can repeat, disappear early, or drift across `xfade` chains.
+
+## Render Profiles
+
+- `proxy`: exact edit decisions and audio graph at 540x960 vertical or 960x540 horizontal, `libx264` ultrafast CRF 24, AAC 128 kbps. Cache by the compiled draft hash under `.cache/studio/previews/`.
+- `final`: authored delivery dimensions, `libx264` veryfast CRF 19, AAC 192 kbps, followed by full stream and decode verification.
+
+The proxy is the authoritative Studio preview for transitions, reframing, grades, timing effects, and the final audio graph. The browser may provide a responsive live edit preview by sequencing probed source media against draft shot boundaries and source in-points, with approximate title and audio timing. Label that mode clearly as an approximation; never describe it as exact transition, effect, crop, grade, or mix playback.
 
 ## Required Defaults
 

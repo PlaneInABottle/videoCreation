@@ -16,9 +16,10 @@ Compose the other project skills; do not duplicate their detailed knowledge.
 5. Fill every narrative beat with a distinct visual function. Prefer one coherent person, place, or activity over maximum source diversity.
 6. Use `editing-techniques` to create cuts, reframes, transitions, timing changes, and audio accents.
 7. Write the storyboard before rendering.
-8. Use `ffmpeg-video-editor` to render and verify the output.
-9. Run `npm run evaluate -- --storyboard <path>` and review the fresh contact, detailed-contact, and transition sheets. Treat `technical-pass` as decode/delivery evidence, never editorial approval.
-10. Preserve the request, resolved plan, source metadata, music structure map, storyboard, render command manifest, probe result, and quality report.
+8. For manual revision, open the local Studio, review source handles and editorial reasons, and adjust the gapless draft against the responsive live cut preview. Render an exact proxy before judging transitions, effects, grades, reframing, or the final mix. Previewing must not mutate the canonical storyboard.
+9. Save the validated draft explicitly, then use `ffmpeg-video-editor` to render and verify the output. Reject stale revisions and changes to stable source, music, or output paths.
+10. Run `npm run evaluate -- --storyboard <path>` and review the fresh contact, detailed-contact, and transition sheets. Treat `technical-pass` as decode/delivery evidence, never editorial approval.
+11. Preserve the request, resolved plan, source metadata, music structure map, storyboard, render command manifest, probe result, and quality report.
 
 ## Storyboard Contract
 
@@ -59,4 +60,4 @@ Compose the other project skills; do not duplicate their detailed knowledge.
 
 ## Revision
 
-When the user requests a change, update the storyboard first and rerender only affected intermediates. A machine pass does not replace visual review. Keep the prior storyboard and output until the replacement verifies successfully.
+When the user requests a change, revise the draft against the responsive live cut preview, then render a low-resolution exact proxy before judging effects or mix quality. Keep edits gapless, preserve a featured phrase as an absolute source time when the music excerpt moves, and retain only transitions whose original shot pair remains adjacent after a reorder. Save only after review, then rerender affected intermediates. A machine pass does not replace visual review. Keep the prior storyboard and output until the replacement verifies successfully.

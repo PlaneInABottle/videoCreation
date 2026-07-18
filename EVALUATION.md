@@ -1,6 +1,6 @@
 # Editorial and Pipeline Review
 
-Evaluation date: 2026-07-12
+Evaluation date: 2026-07-19
 
 ## Bottom Line
 
@@ -41,6 +41,7 @@ What is still missing:
 - It is a multi-city mood montage, not one documented trip; the title no longer claims Seoul.
 - There is no traveler, recurring human objective, or authored action that connects scenes.
 - Shot-scale variety is limited because most sources are vertical establishing or medium views.
+- The `10.5–12.25s` train-platform shot decodes cleanly but is much darker and lower-information than its neighbors. The abrupt visual collapse can read as a glitch even though the proxy has no corrupt frames.
 - Traffic, rain, train, and crowd ambience are absent.
 
 Verdict: useful as a reviewed Pexels montage demo, below strong creator travel work built from one filmed experience.
@@ -100,7 +101,7 @@ Remaining limits:
 
 - Still independently filmed stock rather than one night with a person or objective.
 - No traffic, crowd, or train sound accents.
-- Existing storyboard transitions must be regenerated under the new explicit-only transition rule before claiming the current shared defaults.
+- The current output uses hard cuts only; visual continuity still depends on independently filmed stock.
 
 Verdict: competent mood-template reference, not top creator work.
 
@@ -127,6 +128,11 @@ Verdict: the best proof of continuity and native-audio handling, but not yet the
 
 ## Pipeline Changes in This Pass
 
+- Added a localhost React/Express Studio for inspecting sources and review sheets, editing a gapless multitrack storyboard, and rendering exact FFmpeg proxies before an explicit save.
+- Added revision-conflict checks, stable-asset validation, source-range validation, a sequential render queue, ignored thumbnail/waveform/proxy caches, and atomic verified final replacement.
+- Added proxy and final render profiles plus globally timed title overlays that remain correct across composed segments and transitions.
+- Added live roll edits for internal cuts, continuous animation-frame playback, and revision fingerprints so late save or preview responses cannot mark newer edits current.
+- Serialized project writes, bounded job and proxy retention, and cached FFprobe metadata by source size and modification time.
 - Added pinned Pexels IDs, reviewed in-points, and story-function overrides.
 - Added explicit source modes: `stock-montage`, `continuous-footage`, and `single-session-multicam`.
 - Added type-aware repetition checks: stock montages warn on repeated clips; continuous footage does not.

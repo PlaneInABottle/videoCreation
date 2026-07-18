@@ -42,6 +42,36 @@ npm run typecheck
 npm run lint
 ```
 
+## Local Studio
+
+Open the desktop editing interface:
+
+```bash
+npm run studio:dev
+```
+
+Then visit `http://127.0.0.1:4173`. The server binds to localhost only. For the production client bundle:
+
+```bash
+npm run studio:build
+npm run studio
+```
+
+The Studio discovers the existing `projects/*/storyboard.json` files and presents a gapless bottom timeline with scene, title, music, waveform, musical-section, energy, beat, transient, and major-moment tracks. It supports:
+
+- Dragging scenes to reorder them while preserving transitions only between still-adjacent pairs.
+- Live-width end trimming, internal roll edits that resize both neighboring scenes, `Alt`-drag slipping within a source, and keyboard nudges. A gesture becomes one undo step when released.
+- Moving and resizing titles, changing crop anchors and grades, and dragging the music excerpt.
+- Off, major-event, and opt-in detected-beat snap modes with timeline zoom. Beat detection is an editing aid, never an automatic cut-placement score.
+- Inspecting source clips, editorial intent, transition reasons, quality metrics, and current review sheets.
+- Automatically switching stale edits to a responsive live cut/title/music preview whose playhead follows animation frames.
+- Rendering an exact low-resolution FFmpeg proxy for transitions, reframing, grades, timing effects, and the final audio graph without modifying the saved storyboard.
+- Explicitly saving a validated storyboard before atomically rendering and evaluating the final output.
+
+The live browser preview is deliberately labeled as an approximation: it keeps scene boundaries, source in-points, titles, music start, and basic source/music levels aligned while editing, but it does not imitate FFmpeg transitions, crop/grade processing, speed effects, or the final mix. Use **Rendered** or **Update preview** for those exact decisions.
+
+Draft history is browser-memory state with a 50-step undo/redo limit. Proxy media, thumbnails, waveforms, and intermediate renders live under ignored `.cache/` paths. Studio v1 intentionally does not upload media, add or delete source clips, or host projects remotely. Native source audio remains hard-cut-only.
+
 ## Create Videos
 
 Render a predefined project:
@@ -151,6 +181,7 @@ For long mixed recordings, analyze in chunks and preserve source timestamps. A s
 
 ## Output Profiles
 
+- Studio proxy: 540x960 vertical or 960x540 horizontal, H.264/AAC, exact timeline and audio graph.
 - Vertical short: 1080x1920, 30 fps, H.264/AAC MP4.
 - Horizontal standard: 1920x1080, source-appropriate pacing, H.264/AAC MP4.
 
