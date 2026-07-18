@@ -32,6 +32,7 @@ What works:
 - Nine unique reviewed sources; no repeated traffic or rain clips.
 - The daylight insert around eleven seconds is gone.
 - A readable traffic → rain → neon → metro → crowd → train → facade → skyline → bokeh progression.
+- The low-information platform clip at `10.5–12.25s` was replaced with a brighter, directional train arrival so the build no longer reads as a decode glitch.
 - Authored scene changes at the excerpt's major waves, including `4.0`, `6.25`, `8.75`, `12.25`, and `15.75` seconds.
 - The skyline payoff arrives at `15.75s`, followed by a distinct visual release.
 - Ordinary cuts are true hard cuts. No automatic zoom/dissolve effect is inferred from music.
@@ -41,7 +42,6 @@ What is still missing:
 - It is a multi-city mood montage, not one documented trip; the title no longer claims Seoul.
 - There is no traveler, recurring human objective, or authored action that connects scenes.
 - Shot-scale variety is limited because most sources are vertical establishing or medium views.
-- The `10.5–12.25s` train-platform shot decodes cleanly but is much darker and lower-information than its neighbors. The abrupt visual collapse can read as a glitch even though the proxy has no corrupt frames.
 - Traffic, rain, train, and crowd ambience are absent.
 
 Verdict: useful as a reviewed Pexels montage demo, below strong creator travel work built from one filmed experience.

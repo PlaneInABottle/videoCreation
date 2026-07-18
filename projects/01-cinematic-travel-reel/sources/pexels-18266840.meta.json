@@ -1,0 +1,296 @@
+{
+  "source": "pexels",
+  "type": "video",
+  "id": 18266840,
+  "query": "reviewed bright train arrival build",
+  "url": "https://www.pexels.com/video/a-subway-train-is-pulling-into-a-station-18266840/",
+  "download_url": "https://videos.pexels.com/video-files/18266840/18266840-hd_1080_1920_60fps.mp4",
+  "downloaded_quality": "hd",
+  "width": 1080,
+  "height": 1920,
+  "duration": 18,
+  "user": {
+    "id": 3171078,
+    "name": "Victor  Hernandez",
+    "url": "https://www.pexels.com/@victor-hernandez-3171078"
+  },
+  "video_files": [
+    {
+      "id": 7720737,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 240,
+      "height": 426,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_240_426_30fps.mp4",
+      "size": 1223518
+    },
+    {
+      "id": 7720738,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 540,
+      "height": 960,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_540_960_30fps.mp4",
+      "size": 4239139
+    },
+    {
+      "id": 7720739,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/18266840/18266840-hd_1080_1920_60fps.mp4",
+      "size": 13765633
+    },
+    {
+      "id": 7720740,
+      "quality": "hd",
+      "file_type": "video/mp4",
+      "width": 720,
+      "height": 1280,
+      "fps": 60,
+      "link": "https://videos.pexels.com/video-files/18266840/18266840-hd_720_1280_60fps.mp4",
+      "size": 7104231
+    },
+    {
+      "id": 7720741,
+      "quality": "sd",
+      "file_type": "video/mp4",
+      "width": 360,
+      "height": 640,
+      "fps": 30,
+      "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_360_640_30fps.mp4",
+      "size": 2251285
+    }
+  ],
+  "video_pictures": [
+    {
+      "id": 19083884,
+      "nr": 0,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-0.jpeg"
+    },
+    {
+      "id": 19083885,
+      "nr": 1,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-1.jpeg"
+    },
+    {
+      "id": 19083887,
+      "nr": 2,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-2.jpeg"
+    },
+    {
+      "id": 19083889,
+      "nr": 3,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-3.jpeg"
+    },
+    {
+      "id": 19083890,
+      "nr": 4,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-4.jpeg"
+    },
+    {
+      "id": 19083893,
+      "nr": 5,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-5.jpeg"
+    },
+    {
+      "id": 19083897,
+      "nr": 6,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-6.jpeg"
+    },
+    {
+      "id": 19083901,
+      "nr": 7,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-7.jpeg"
+    },
+    {
+      "id": 19083905,
+      "nr": 8,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-8.jpeg"
+    },
+    {
+      "id": 19083909,
+      "nr": 9,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-9.jpeg"
+    },
+    {
+      "id": 19083914,
+      "nr": 10,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-10.jpeg"
+    },
+    {
+      "id": 19083918,
+      "nr": 11,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-11.jpeg"
+    },
+    {
+      "id": 19083922,
+      "nr": 12,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-12.jpeg"
+    },
+    {
+      "id": 19083924,
+      "nr": 13,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-13.jpeg"
+    },
+    {
+      "id": 19083926,
+      "nr": 14,
+      "picture": "https://images.pexels.com/videos/18266840/pictures/preview-14.jpeg"
+    }
+  ],
+  "license": "Pexels License - Free for personal and commercial use",
+  "license_url": "https://www.pexels.com/license/",
+  "license_checked_at": "2026-07-18T22:11:50.570Z",
+  "attribution": "Video by Victor  Hernandez on Pexels",
+  "downloaded_at": "2026-07-18T22:11:50.570Z",
+  "api_response": {
+    "id": 18266840,
+    "width": 1080,
+    "height": 1920,
+    "duration": 18,
+    "full_res": null,
+    "tags": [],
+    "url": "https://www.pexels.com/video/a-subway-train-is-pulling-into-a-station-18266840/",
+    "image": "https://images.pexels.com/videos/18266840/pexels-photo-18266840.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=630",
+    "avg_color": null,
+    "user": {
+      "id": 3171078,
+      "name": "Victor  Hernandez",
+      "url": "https://www.pexels.com/@victor-hernandez-3171078"
+    },
+    "video_files": [
+      {
+        "id": 7720737,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 240,
+        "height": 426,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_240_426_30fps.mp4",
+        "size": 1223518
+      },
+      {
+        "id": 7720738,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 540,
+        "height": 960,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_540_960_30fps.mp4",
+        "size": 4239139
+      },
+      {
+        "id": 7720739,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 1080,
+        "height": 1920,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/18266840/18266840-hd_1080_1920_60fps.mp4",
+        "size": 13765633
+      },
+      {
+        "id": 7720740,
+        "quality": "hd",
+        "file_type": "video/mp4",
+        "width": 720,
+        "height": 1280,
+        "fps": 60,
+        "link": "https://videos.pexels.com/video-files/18266840/18266840-hd_720_1280_60fps.mp4",
+        "size": 7104231
+      },
+      {
+        "id": 7720741,
+        "quality": "sd",
+        "file_type": "video/mp4",
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "link": "https://videos.pexels.com/video-files/18266840/18266840-sd_360_640_30fps.mp4",
+        "size": 2251285
+      }
+    ],
+    "video_pictures": [
+      {
+        "id": 19083884,
+        "nr": 0,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-0.jpeg"
+      },
+      {
+        "id": 19083885,
+        "nr": 1,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-1.jpeg"
+      },
+      {
+        "id": 19083887,
+        "nr": 2,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-2.jpeg"
+      },
+      {
+        "id": 19083889,
+        "nr": 3,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-3.jpeg"
+      },
+      {
+        "id": 19083890,
+        "nr": 4,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-4.jpeg"
+      },
+      {
+        "id": 19083893,
+        "nr": 5,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-5.jpeg"
+      },
+      {
+        "id": 19083897,
+        "nr": 6,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-6.jpeg"
+      },
+      {
+        "id": 19083901,
+        "nr": 7,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-7.jpeg"
+      },
+      {
+        "id": 19083905,
+        "nr": 8,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-8.jpeg"
+      },
+      {
+        "id": 19083909,
+        "nr": 9,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-9.jpeg"
+      },
+      {
+        "id": 19083914,
+        "nr": 10,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-10.jpeg"
+      },
+      {
+        "id": 19083918,
+        "nr": 11,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-11.jpeg"
+      },
+      {
+        "id": 19083922,
+        "nr": 12,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-12.jpeg"
+      },
+      {
+        "id": 19083924,
+        "nr": 13,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-13.jpeg"
+      },
+      {
+        "id": 19083926,
+        "nr": 14,
+        "picture": "https://images.pexels.com/videos/18266840/pictures/preview-14.jpeg"
+      }
+    ]
+  }
+}
