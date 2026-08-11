@@ -1,8 +1,8 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { StoryboardDraft } from '@ai-video-creation/scripts/types';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PlaybackClock } from '../playback-clock.js';
-import { Monitor } from './Monitor.js';
+import { Monitor, shouldCorrectMediaTime } from './Monitor.js';
 
 function draft(firstDuration = 2): StoryboardDraft {
   return {
@@ -55,6 +55,16 @@ const sources = [
   { shotId: 'one', source: 'one.mp4', available: true, mediaUrl: '/one.mp4' },
   { shotId: 'two', source: 'two.mp4', available: true, mediaUrl: '/two.mp4' },
 ];
+
+function makeVideoReady(shotId: string, currentTime: number) {
+  const video = document.querySelector<HTMLVideoElement>(`[data-shot-id="${shotId}"]`);
+  expect(video).not.toBeNull();
+  Object.defineProperties(video!, {
+    readyState: { configurable: true, get: () => 4 },
+    seeking: { configurable: true, get: () => false },
+  });
+  video!.currentTime = currentTime;
+}
 
 beforeEach(() => {
   vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
@@ -145,6 +155,7 @@ describe('Monitor', () => {
     render(
       <Monitor draft={draft()} sources={sources} aspect="9:16" duration={4} stale clock={clock} />,
     );
+    makeVideoReady('two', 0.5);
 
     fireEvent.click(screen.getByRole('button', { name: 'Play preview' }));
     await waitFor(() => expect(requestFrame).toHaveBeenCalled());
@@ -160,5 +171,72 @@ describe('Monitor', () => {
     expect(document.querySelector('[data-shot-id="two"]')?.classList.contains('is-active')).toBe(
       false,
     );
+  });
+
+  it('advances across a scene boundary when the live audio playhead stalls', async () => {
+    const frames: FrameRequestCallback[] = [];
+    vi.spyOn(performance, 'now').mockReturnValue(1_000);
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
+      frames.push(callback);
+      return frames.length;
+    });
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    const clock = new PlaybackClock();
+    const musicDraft = draft();
+    musicDraft.music = {
+      file: 'music.mp3',
+      start: 100,
+      beatMap: 'beat-map.json',
+    };
+    render(
+      <Monitor
+        draft={musicDraft}
+        sources={sources}
+        musicSource="/music.mp3"
+        aspect="9:16"
+        duration={4}
+        stale
+        clock={clock}
+      />,
+    );
+    const audio = document.querySelector('audio');
+    expect(audio).not.toBeNull();
+    Object.defineProperties(audio!, {
+      paused: { configurable: true, get: () => false },
+      currentTime: { configurable: true, get: () => 100 },
+    });
+    makeVideoReady('one', 0);
+    const secondVideo = document.querySelector<HTMLVideoElement>('[data-shot-id="two"]');
+    expect(secondVideo).not.toBeNull();
+    let secondVideoTime = 0;
+    let secondVideoSeekCount = 0;
+    Object.defineProperties(secondVideo!, {
+      readyState: { configurable: true, get: () => 4 },
+      seeking: { configurable: true, get: () => false },
+      currentTime: {
+        configurable: true,
+        get: () => secondVideoTime,
+        set: (value: number) => {
+          secondVideoTime = value;
+          secondVideoSeekCount += 1;
+        },
+      },
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Play preview' }));
+    await waitFor(() => expect(frames.length).toBeGreaterThan(0));
+    act(() => frames.shift()?.(3_100));
+    act(() => frames.shift()?.(3_300));
+
+    expect(clock.getSnapshot()).toBeCloseTo(2.3, 3);
+    expect(document.querySelector('[data-shot-id="two"]')?.classList.contains('is-active')).toBe(
+      true,
+    );
+    expect(secondVideoSeekCount).toBe(1);
+  });
+
+  it('does not restart a media seek that is already in progress', () => {
+    expect(shouldCorrectMediaTime(1, 2, true, 0.08)).toBe(false);
+    expect(shouldCorrectMediaTime(1, 2, false, 0.08)).toBe(true);
   });
 });

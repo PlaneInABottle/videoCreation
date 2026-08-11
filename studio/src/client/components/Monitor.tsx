@@ -10,6 +10,15 @@ type MonitorMode = 'live' | 'rendered';
 const LIVE_VIDEO_DRIFT_TOLERANCE = 0.08;
 const LIVE_MUSIC_SEEK_TOLERANCE = 0.05;
 
+export function shouldCorrectMediaTime(
+  currentTime: number,
+  targetTime: number,
+  seeking: boolean,
+  tolerance: number,
+): boolean {
+  return !seeking && Math.abs(currentTime - targetTime) > tolerance;
+}
+
 interface MonitorProps {
   source?: string;
   musicSource?: string;
@@ -97,6 +106,10 @@ export function Monitor({
   const musicRef = useRef<HTMLAudioElement>(null);
   const currentTimeRef = useRef(clock.getSnapshot());
   const livePlaybackAnchorRef = useRef({ timeline: currentTimeRef.current, wall: 0 });
+  const warmedVideoIdsRef = useRef(new Set<string>());
+  const activeLiveShotIdRef = useRef<string | undefined>(undefined);
+  const liveSeekGenerationRef = useRef(0);
+  const liveTimelineSuspendedRef = useRef(false);
   const playingRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [mode, setMode] = useState<MonitorMode>(stale || !source ? 'live' : 'rendered');
@@ -110,9 +123,40 @@ export function Monitor({
     musicRef.current?.pause();
   }
 
+  const warmVideo = useCallback(
+    (shot: StoryboardDraft['shots'][number], video: HTMLVideoElement) => {
+      if (!warmedVideoIdsRef.current.has(shot.id)) {
+        warmedVideoIdsRef.current.add(shot.id);
+        video.preload = 'auto';
+      }
+      if (
+        video.readyState >= 1 &&
+        shouldCorrectMediaTime(video.currentTime, shot.sourceIn, video.seeking, 0.01)
+      ) {
+        video.currentTime = shot.sourceIn;
+      }
+    },
+    [],
+  );
+
   const syncLiveMedia = useCallback(
-    (time: number, shouldPlay: boolean) => {
+    (
+      time: number,
+      shouldPlay: boolean,
+      forceVideoPosition = false,
+      forceMusicPosition = forceVideoPosition,
+    ) => {
       const located = shotAt(draft, time);
+      const sceneChanged = located?.shot.id !== activeLiveShotIdRef.current;
+      activeLiveShotIdRef.current = located?.shot.id;
+      const locatedIndex = located
+        ? draft.shots.findIndex((candidate) => candidate.id === located.shot.id)
+        : -1;
+      const upcoming = draft.shots[locatedIndex + 1];
+      if (upcoming) {
+        const upcomingVideo = liveVideosRef.current.get(upcoming.id);
+        if (upcomingVideo) warmVideo(upcoming, upcomingVideo);
+      }
       for (const [shotId, video] of liveVideosRef.current) {
         const active = shotId === located?.shot.id;
         video.classList.toggle('is-active', active);
@@ -122,7 +166,15 @@ export function Monitor({
         const video = liveVideosRef.current.get(located.shot.id);
         if (video && video.readyState >= 1) {
           const target = located.shot.sourceIn + located.localTime;
-          if (Math.abs(video.currentTime - target) > LIVE_VIDEO_DRIFT_TOLERANCE) {
+          if (
+            (forceVideoPosition || sceneChanged) &&
+            shouldCorrectMediaTime(
+              video.currentTime,
+              target,
+              video.seeking,
+              LIVE_VIDEO_DRIFT_TOLERANCE,
+            )
+          ) {
             video.currentTime = target;
           }
           video.muted = draft.audioPlan?.useSourceAudio !== true;
@@ -134,14 +186,53 @@ export function Monitor({
       if (music && draft.music) {
         const target = draft.music.start + time;
         if (
+          forceMusicPosition &&
           music.readyState >= 1 &&
-          Math.abs(music.currentTime - target) > LIVE_MUSIC_SEEK_TOLERANCE
+          shouldCorrectMediaTime(
+            music.currentTime,
+            target,
+            music.seeking,
+            LIVE_MUSIC_SEEK_TOLERANCE,
+          )
         ) {
           music.currentTime = target;
         }
         music.volume = musicVolumeAt(draft, time);
         if (shouldPlay && music.paused) void music.play().catch(() => undefined);
       }
+    },
+    [draft, warmVideo],
+  );
+
+  const suspendLiveTimelineForSeek = useCallback(
+    (time: number) => {
+      const located = shotAt(draft, time);
+      const video = located ? liveVideosRef.current.get(located.shot.id) : undefined;
+      if (!video) return;
+
+      const generation = ++liveSeekGenerationRef.current;
+      liveTimelineSuspendedRef.current = true;
+      const events = ['loadeddata', 'canplay', 'seeked'] as const;
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        window.clearTimeout(timeout);
+        window.clearTimeout(checkAfterSeekStarts);
+        for (const event of events) video.removeEventListener(event, check);
+        video.removeEventListener('error', finish);
+        if (generation !== liveSeekGenerationRef.current) return;
+        liveTimelineSuspendedRef.current = false;
+        currentTimeRef.current = time;
+        livePlaybackAnchorRef.current = { timeline: time, wall: performance.now() };
+      };
+      const check = () => {
+        if (video.readyState >= 2 && !video.seeking) finish();
+      };
+      const timeout = window.setTimeout(finish, 3_000);
+      const checkAfterSeekStarts = window.setTimeout(check, 0);
+      for (const event of events) video.addEventListener(event, check);
+      video.addEventListener('error', finish);
     },
     [draft],
   );
@@ -152,16 +243,18 @@ export function Monitor({
   }, [source, stale]);
 
   useEffect(() => {
+    liveSeekGenerationRef.current += 1;
+    liveTimelineSuspendedRef.current = false;
     pauseAllMedia();
     setPlaying(false);
   }, [mode, source]);
 
   useEffect(() => {
-    const synchronize = () => {
+    const synchronize = (forcePosition = false) => {
       const currentTime = Math.min(clock.getSnapshot(), duration);
       const externalSeek = Math.abs(currentTime - currentTimeRef.current) > 0.01;
       currentTimeRef.current = currentTime;
-      if (playingRef.current && !externalSeek) return;
+      if (playingRef.current && !externalSeek && !forcePosition) return;
       if (playingRef.current && externalSeek) {
         livePlaybackAnchorRef.current = { timeline: currentTime, wall: performance.now() };
       }
@@ -171,12 +264,13 @@ export function Monitor({
           video.currentTime = Math.min(currentTime, video.duration || duration);
         }
       } else {
-        syncLiveMedia(currentTime, playingRef.current);
+        syncLiveMedia(currentTime, playingRef.current, forcePosition || externalSeek);
+        if (playingRef.current && externalSeek) suspendLiveTimelineForSeek(currentTime);
       }
     };
-    synchronize();
-    return clock.subscribe(synchronize);
-  }, [clock, duration, mode, syncLiveMedia]);
+    synchronize(true);
+    return clock.subscribe(() => synchronize());
+  }, [clock, duration, mode, suspendLiveTimelineForSeek, syncLiveMedia]);
 
   useEffect(() => {
     if (!playing) return;
@@ -188,19 +282,16 @@ export function Monitor({
     livePlaybackAnchorRef.current = { timeline: timelineStart, wall: performance.now() };
     let animationFrame = 0;
     const update = (now: number) => {
+      if (mode === 'live' && liveTimelineSuspendedRef.current) {
+        animationFrame = requestAnimationFrame(update);
+        return;
+      }
       const renderedTime = renderedVideoRef.current?.currentTime;
-      const music = musicRef.current;
-      const liveMusicTime =
-        mode === 'live' && draft.music && music && !music.paused
-          ? Math.max(0, music.currentTime - draft.music.start)
-          : undefined;
       const liveAnchor = livePlaybackAnchorRef.current;
       const next =
         mode === 'rendered' && renderedTime !== undefined
           ? renderedTime
-          : liveMusicTime !== undefined
-            ? liveMusicTime
-            : liveAnchor.timeline + (now - liveAnchor.wall) / 1000;
+          : liveAnchor.timeline + (now - liveAnchor.wall) / 1000;
       if (next >= duration) {
         clock.set(duration);
         pauseAllMedia();
@@ -218,6 +309,8 @@ export function Monitor({
 
   async function togglePlayback() {
     if (playing) {
+      liveSeekGenerationRef.current += 1;
+      liveTimelineSuspendedRef.current = false;
       pauseAllMedia();
       setPlaying(false);
       return;
@@ -243,7 +336,7 @@ export function Monitor({
     const start = currentTime >= duration - 0.01 ? 0 : currentTime;
     currentTimeRef.current = start;
     if (start !== currentTime) clock.set(start);
-    syncLiveMedia(start, true);
+    syncLiveMedia(start, true, true);
     setPlaying(true);
   }
 
@@ -279,7 +372,7 @@ export function Monitor({
           <video ref={renderedVideoRef} src={source} playsInline preload="metadata" />
         ) : (
           <div className="live-video-stack">
-            {draft.shots.map((shot) => {
+            {draft.shots.map((shot, index) => {
               const media = sources.find((candidate) => candidate.shotId === shot.id);
               return media?.mediaUrl ? (
                 <video
@@ -287,19 +380,34 @@ export function Monitor({
                   data-shot-id={shot.id}
                   ref={(element) => {
                     if (element) liveVideosRef.current.set(shot.id, element);
-                    else liveVideosRef.current.delete(shot.id);
+                    else {
+                      liveVideosRef.current.delete(shot.id);
+                      warmedVideoIdsRef.current.delete(shot.id);
+                    }
                   }}
                   className={initialActiveShotId === shot.id ? 'is-active' : ''}
                   src={media.mediaUrl}
                   muted={draft.audioPlan?.useSourceAudio !== true}
                   playsInline
-                  preload="metadata"
-                  onLoadedMetadata={() => syncLiveMedia(currentTimeRef.current, playing)}
+                  preload={index <= 1 ? 'auto' : 'metadata'}
+                  onLoadedMetadata={(event) => {
+                    const time = currentTimeRef.current;
+                    if (shotAt(draft, time)?.shot.id === shot.id) {
+                      syncLiveMedia(time, playing, true, false);
+                    } else {
+                      warmVideo(shot, event.currentTarget);
+                    }
+                  }}
                 />
               ) : null;
             })}
             {draft.music && musicSource ? (
-              <audio ref={musicRef} src={musicSource} preload="metadata" />
+              <audio
+                ref={musicRef}
+                src={musicSource}
+                preload="auto"
+                onLoadedMetadata={() => syncLiveMedia(currentTimeRef.current, playing, false, true)}
+              />
             ) : null}
             {sources.every((candidate) => !candidate.mediaUrl) ? (
               <div className="monitor-empty">

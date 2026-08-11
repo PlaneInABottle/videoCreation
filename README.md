@@ -69,7 +69,7 @@ The Studio discovers the existing `projects/*/storyboard.json` files and present
 - Rendering an exact low-resolution FFmpeg proxy for transitions, reframing, grades, timing effects, and the final audio graph without modifying the saved storyboard.
 - Explicitly saving a validated storyboard before atomically rendering and evaluating the final output.
 
-The live browser preview is deliberately labeled as an approximation: it keeps scene boundaries, source in-points, titles, music start, and basic source/music levels aligned while editing, uses music as the playback clock when available, and honors timeline seeks during playback. It does not imitate FFmpeg transitions, crop/grade processing, speed effects, or the final mix. Use **Rendered** or **Update preview** for those exact decisions.
+The live browser preview is deliberately labeled as an approximation: it keeps scene boundaries, source in-points, titles, music start, and basic source/music levels aligned while editing, advances from a monotonic timeline clock, and honors timeline seeks during playback. It prepares the current and upcoming scene before their cuts, and media elements follow the clock without restarting an in-progress decode seek. It does not imitate FFmpeg transitions, crop/grade processing, speed effects, or the final mix. Use **Rendered** or **Update preview** for those exact decisions.
 
 Draft history is browser-memory state with a 50-step undo/redo limit. Proxy media, thumbnails, waveforms, and intermediate renders live under ignored `.cache/` paths. Studio v1 intentionally does not upload media, add or delete source clips, or host projects remotely. Native source audio remains hard-cut-only.
 
